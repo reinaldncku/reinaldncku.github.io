@@ -12,8 +12,12 @@
     <![endif]-->
   </head>
   <body>
+    
+    {%- include header.html -%}
+    
     <div class="wrapper">
       <header>
+        
         
         
         <h1><a href="{{ "/" | absolute_url }}">{{ site.title | default: site.github.repository_name }}</a></h1>
@@ -43,12 +47,6 @@
       </header>
       <section>
         
-      <h2>{{ site.data.samplelist.docs_list_title }}</h2>
-      <ul>
-        {% for item in site.data.samplelist.docs %}
-          <li><a href="{{ item.url }}">{{ item.title }}</a></li>
-        {% endfor %}
-        </ul>
         
       {{ content }}
 
