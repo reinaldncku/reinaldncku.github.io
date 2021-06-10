@@ -1,12 +1,18 @@
-## About
+## Summary
 
-You can use the [editor on GitHub](https://github.com/reinaldncku/reinaldncku.github.io/edit/main/index.md) to maintain and preview the content for your website in Markdown files.
+Hello! I am Reinald Adrian Pugoy, a PhD candidate at the National Cheng Kung University in Tainan City, Taiwan. I am a member of the Intelligent Knowledge Management Lab under the supervision of Prof. Hung-Yu Kao. I am also an Assistant Professor (on study leave) at the University of the Philippines - Open University.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Current Research Interests
 
-### Research Interests
+- Recommender Systems
+- Natural Language Processing
+- Machine Learning
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Past Research Interests
+
+- Digital Image Processing
+- e-Learning Technologies
+- Web & Mobile App Development
 
 ```markdown
 Syntax highlighted code block
