@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## Reinald Adrian D. Pugoy 
 
 You can use the [editor on GitHub](https://github.com/reinaldncku/reinaldncku.github.io/edit/main/index.md) to maintain and preview the content for your website in Markdown files.
 
