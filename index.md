@@ -1,42 +1,23 @@
 ## Summary
-
+----
 Hello! I am Reinald Adrian Pugoy, a PhD candidate at the National Cheng Kung University in Tainan City, Taiwan. I am a member of the Intelligent Knowledge Management Lab under the supervision of Prof. Hung-Yu Kao. I am also an Assistant Professor (on study leave) at the University of the Philippines - Open University.
 
-### Current Research Interests
+## Research Interests
+----
+### Current 
 
 - Recommender Systems
 - Natural Language Processing
 - Machine Learning
 
-### Past Research Interests
+### Former
 
 - Digital Image Processing
 - e-Learning Technologies
 - Web & Mobile App Development
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
 ### Publications
+----
 
 #### Natural Language Processing / Recommender Systems
 
