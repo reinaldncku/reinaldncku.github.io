@@ -22,7 +22,7 @@ Nice to meet you!
 ### Former
 
 - Digital Image Processing
-- e-Learning Technologies & Usability Studies
+- e-Learning Technologies
 - Web & Mobile App Development
 - Voice over Internet Protocol (VoIP)
 
