@@ -16,14 +16,14 @@ Nice to meet you!
 
 - Recommender Systems
 - Natural Language Processing
-- Machine Learning
+- Machine Learning / Deep Learning
 - Data Mining
 
 ### Former
 
 - Digital Image Processing
 - e-Learning Technologies
-- Web & Mobile App Development
+- Web and Mobile App Development
 - Voice over Internet Protocol (VoIP)
 
 <br />
