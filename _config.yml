@@ -4,5 +4,5 @@ header_pages:
   - about.md
   - portfolio.md
   
-masthead_title: "RADLP Scholarly Profile"
+logo: "/assets/images/logo.png"
 
