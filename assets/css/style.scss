@@ -17,13 +17,12 @@ section {
  width: 920px;
 }
 
-.site-masthead {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  /* padding-top: $spacing-unit / 2;
-  padding-bottom: $spacing-unit / 2; */
-}
+.site-title::before {
+content: url("https://ikmlab.csie.ncku.edu.tw/media/Reinald-Adrian-Pugoy.png");
+display: inline-block;
+position: relative;
+width: 32px;
+top: 32px;
 
 strong {
  color: #494949;
