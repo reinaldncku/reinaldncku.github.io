@@ -8,6 +8,7 @@ I received my MS and BS degrees (both in Computer Science) from the [University 
 
 Nice to meet you!
 
+<br />
 
 ## Research Interests
 ----
@@ -25,6 +26,7 @@ Nice to meet you!
 - Web & Mobile App Development
 - Voice over Internet Protocol (VoIP)
 
+<br />
 
 ## Selected Publications
 ----
