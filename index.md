@@ -33,7 +33,7 @@ Nice to meet you!
 
 #### Natural Language Processing / Recommender Systems
 - **Unsupervised Extractive Summarization-Based Representations for Accurate and Explainable Collaborative Filtering** [[PDF]](#) <br />
-**Reinald Adrian D. Pugoy**, Hung-Yu Kao <br />
+<span style="text-decoration: underline">Reinald Adrian D. Pugoy</span>, Hung-Yu Kao <br />
 *Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics (ACL 2021)* (Acceptance Rate: 21.3%) <br />
 
 - **BERT-Based Neural Collaborative Filtering and Fixed-Length Contiguous Tokens Explanation** [[PDF]](https://www.aclweb.org/anthology/2020.aacl-main.18/) <br />
