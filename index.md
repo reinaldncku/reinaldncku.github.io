@@ -28,7 +28,7 @@ Nice to meet you!
 
 <br />
 
-## Selected Publications
+## Select Publications
 ----
 
 #### Natural Language Processing / Recommender Systems
