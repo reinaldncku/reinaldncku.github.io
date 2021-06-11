@@ -34,7 +34,9 @@ Nice to meet you!
 #### Natural Language Processing / Recommender Systems
 
 #### e-Learning Technologies
-
+- **Hybrid Online/Offline Mobile Solutions for Accessing Open Educational Resources in Areas with Poor Internet Connectivity** [PDF](https://10.1108/AAOUJ-09-2016-0030)
+**<u>Reinald Adrian D. Pugoy</u>**, Consuelo D.L. Habito, Roberto B. Figueroa, Jr.
+- 
 #### Digital Image Processing
 
 #### Theses
