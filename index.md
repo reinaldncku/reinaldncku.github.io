@@ -53,7 +53,7 @@ Nice to meet you!
 #### Digital Image Processing
 - **Automated Rice Leaf Disease Detection Using Color Image Analysis** [[PDF]](https://www.spiedigitallibrary.org/conference-proceedings-of-spie/8009/80090F/Automated-rice-leaf-disease-detection-using-color-image-analysis/10.1117/12.896494.short) <br />
 **Reinald Adrian D. Pugoy**, Vladimir Y. Mariano <br />
-*Proceedings of the 3rd International Conference on Digital Image Processing (ICDIP 2011)* <br />
+*Proceedings of the 3rd International Conference on Digital Image Processing (ICDIP 2011)* <br /><br />
 
 #### Theses
 (to follow)
