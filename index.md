@@ -35,7 +35,7 @@ Nice to meet you!
 
 #### e-Learning Technologies
 - **Hybrid Online/Offline Mobile Solutions for Accessing Open Educational Resources in Areas with Poor Internet Connectivity** [[PDF]](http://dx.doi.org/10.1108/AAOUJ-09-2016-0030)
-<b><u>Reinald Adrian D. Pugoy</u></b>, Consuelo D.L. Habito, Roberto B. Figueroa, Jr.
+<u>Reinald Adrian D. Pugoy</u>, Consuelo D.L. Habito, Roberto B. Figueroa, Jr.
 - 
 #### Digital Image Processing
 
