@@ -40,8 +40,6 @@ Nice to meet you!
 **Reinald Adrian D. Pugoy**, Hung-Yu Kao <br />
 *Proceedings of The 1st Conference of the Asia-Pacific Chapter of the Association for Computational Linguistics (AACL 2020)* <br /> <br />
 
-<br /><br />
-
 #### e-Learning Technologies
 - **Hybrid Online/Offline Mobile Solutions for Accessing Open Educational Resources in Areas with Poor Internet Connectivity** [[PDF]](http://dx.doi.org/10.1108/AAOUJ-09-2016-0030) <br />
 **Reinald Adrian D. Pugoy**, Consuelo D.L. Habito, Roberto B. Figueroa Jr. <br />
