@@ -38,7 +38,7 @@ Nice to meet you!
 
 - **BERT-Based Neural Collaborative Filtering and Fixed-Length Contiguous Tokens Explanation** [[PDF]](https://www.aclweb.org/anthology/2020.aacl-main.18/) <br />
 **Reinald Adrian D. Pugoy**, Hung-Yu Kao <br />
-*Proceedings of The 1st Conference of the Asia-Pacific Chapter of the Association for Computational Linguistics (AACL 2020)* <br /> <br />
+*Proceedings of the 1st Conference of the Asia-Pacific Chapter of the Association for Computational Linguistics (AACL 2020)* <br /> <br />
 
 #### e-Learning Technologies
 - **Hybrid Online/Offline Mobile Solutions for Accessing Open Educational Resources in Areas with Poor Internet Connectivity** [[PDF]](http://dx.doi.org/10.1108/AAOUJ-09-2016-0030) <br />
@@ -51,6 +51,9 @@ Nice to meet you!
 
 
 #### Digital Image Processing
+- **Automated Rice Leaf Disease Detection Using Color Image Analysis** [[PDF]](https://www.spiedigitallibrary.org/conference-proceedings-of-spie/8009/80090F/Automated-rice-leaf-disease-detection-using-color-image-analysis/10.1117/12.896494.short) <br />
+**Reinald Adrian D. Pugoy**, Vladimir Y. Mariano <br />
+*Proceedings of the 3rd International Conference on Digital Image Processing (ICDIP 2011)* <br />
 
 #### Theses
-
+(to follow)
