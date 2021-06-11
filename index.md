@@ -34,11 +34,11 @@ Nice to meet you!
 #### Natural Language Processing / Recommender Systems
 
 #### e-Learning Technologies
-- **Hybrid Online/Offline Mobile Solutions for Accessing Open Educational Resources in Areas with Poor Internet Connectivity** [[PDF]](http://dx.doi.org/10.1108/AAOUJ-09-2016-0030)
+- **Hybrid Online/Offline Mobile Solutions for Accessing Open Educational Resources in Areas with Poor Internet Connectivity** [[PDF]](http://dx.doi.org/10.1108/AAOUJ-09-2016-0030) <br />
 **Reinald Adrian D. Pugoy**, Consuelo D.L. Habito, Roberto B. Figueroa Jr. 
 *Asian Association of Open Universities Journal (AAOUJ)* <br />
 
-- **Augmented Reality in Nursing Education: Addressing the Limitations of Developing a Learning Material for Nurses in the Philippines and Thailand** [[PDF]](https://ijodel.com/wp-content/uploads/2016/08/002_Pugoy_etal.pdf)
+- **Augmented Reality in Nursing Education: Addressing the Limitations of Developing a Learning Material for Nurses in the Philippines and Thailand** [[PDF]](https://ijodel.com/wp-content/uploads/2016/08/002_Pugoy_etal.pdf) <br />
 **Reinald Adrian D. Pugoy**, Rita C. Ramos, Roberto B. Figueroa Jr., Mark Harold C. Rivera, Boontip Siritarungsri, Aree Cheevakasemsook, Premruetai Noimuenwai, Pattaya Kaewsarn
 *International  Journal  on Open and Distance e-Learning (IJODeL)* <br />
 
