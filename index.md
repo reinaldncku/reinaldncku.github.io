@@ -45,7 +45,7 @@ Nice to meet you!
 **Reinald Adrian D. Pugoy**, Consuelo D.L. Habito, Roberto B. Figueroa Jr. <br />
 *Asian Association of Open Universities Journal (AAOUJ) Vol. 11, No. 2, 2016* <br />
 
-- **Augmented Reality in Nursing Education: Addressing the Limitations of Developing a Learning Material for Nurses in the Philippines and Thailand** [[PDF]](https://ijodel.com/wp-content/uploads/2016/08/002_Pugoy_etal.pdf) <br />
+- **Augmented Reality in Nursing Education: Addressing the Limitations of Developing a Learning Material for Nurses in the Philippines and Thailand** [[PDF]](https://ijodel.com/june-2016-issue/) <br />
 **Reinald Adrian D. Pugoy**, Rita C. Ramos, Roberto B. Figueroa Jr., Mark Harold C. Rivera, Boontip Siritarungsri, Aree Cheevakasemsook, Premruetai Noimuenwai, Pattaya Kaewsarn <br />
 *International  Journal on Open and Distance e-Learning (IJODeL) Vol. 2, No. 1, 2016* <br /> <br />
 
