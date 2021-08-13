@@ -32,7 +32,7 @@ Nice to meet you!
 ----
 
 #### Natural Language Processing / Recommender Systems
-- **Unsupervised Extractive Summarization-Based Representations for Accurate and Explainable Collaborative Filtering** [[PDF]](#) <br />
+- **Unsupervised Extractive Summarization-Based Representations for Accurate and Explainable Collaborative Filtering** [[PDF]](https://aclanthology.org/2021.acl-long.232/) <br />
 **Reinald Adrian D. Pugoy**, Hung-Yu Kao <br />
 *Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics (ACL 2021)* (Acceptance Rate: 21.3%) <br />
 
