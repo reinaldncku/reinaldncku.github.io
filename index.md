@@ -15,7 +15,7 @@ Nice to meet you!
 ### Current 
 
 - Recommender Systems
-- Natural Language Processing
+- Natural Language Processing / Computational Linguistics
 - Machine Learning / Deep Learning
 - Data Mining
 
