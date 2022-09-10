@@ -58,3 +58,11 @@ Nice to meet you!
 #### Theses
 - Master's Thesis: **Spatio-Spectral Feature Extraction in Digital Images for Object Classification**
 - Undergraduate Special Problem: **Smart Predictive Algorithm, Dialer, and Evaluation**
+
+
+## Select Awards
+----
+- **Taiwan MOE Scholarship Award (2018-2022)**, Ministry of Education of the Republic of China (Taiwan)
+- **Gawad Chancellor (Chancellor's Award) for Outstanding Faculty (2017)**, UP Open University
+- **AAOU Young Innovator's Award - Silver Medal (2017)**, Asian Association of Open Universities
+- **AAOU Young Innovator's Award - Silver Medal (2015)**, Asian Association of Open Universities
