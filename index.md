@@ -59,7 +59,7 @@ Nice to meet you!
 - Master's Thesis: **Spatio-Spectral Feature Extraction in Digital Images for Object Classification**
 - Undergraduate Special Problem: **Smart Predictive Algorithm, Dialer, and Evaluation**
 
-
+<br />
 ## Select Awards
 ----
 - **Taiwan MOE Scholarship Award (2018-2022)**, Ministry of Education of the Republic of China (Taiwan)
