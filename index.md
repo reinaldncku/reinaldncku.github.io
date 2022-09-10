@@ -75,7 +75,12 @@ Nice to meet you!
 ## Complete Publication List
 ----
 <i> From latest to oldest </i>
-1. **Unsupervised Extractive Summarization-Based Representations for Accurate and Explainable Collaborative Filtering**, <u>RA Pugoy</u>, HY Kao, 59th Annual Meeting of the Association for Computational Linguistics (ACL 2021)
-2. **BERT-Based Neural Collaborative Filtering and Fixed-Length Contiguous Tokens Explanation**, <u>RA Pugoy</u>, HY Kao, 1st Conference of the Asia-Pacific Chapter of the Association for Computational Linguistics (AACL 2020)
-3. **The Talking Comic Strip: Technology-Enhanced Learning for English Communication**, <u>RA Pugoy</u>, RC Ramos, RB Figueroa, B Siritarungsri, A Cheevakasemsook, P Noimuenwai, P Kaewsarn, Innovating Education in Technology-Supported Environments (Springer)
+### Conference Papers
+1. **ACES: Automated Academic Essay Scoring Using a Natural Language Processing-Based Regression Mechanism**, <u>RA Pugoy</u>, *35th Annual Conference of the Asian Association of Open Universities (AAOU 2022)*
+2. **Unsupervised Extractive Summarization-Based Representations for Accurate and Explainable Collaborative Filtering**, <u>RA Pugoy</u>, HY Kao, *59th Annual Meeting of the Association for Computational Linguistics (ACL 2021)*
+3. **BERT-Based Neural Collaborative Filtering and Fixed-Length Contiguous Tokens Explanation**, <u>RA Pugoy</u>, HY Kao, *1st Conference of the Asia-Pacific Chapter of the Association for Computational Linguistics (AACL 2020)*
+4. **The Talking Comic Strip: Technology-Enhanced Learning for English Communication**, <u>RA Pugoy</u>, RC Ramos, RB Figueroa, B Siritarungsri, A Cheevakasemsook, P Noimuenwai, P Kaewsarn, *Innovating Education in Technology-Supported Environments (Springer)*
+5. 
 
+### Journal Articles
+1. **Hybrid Online/Offline Mobile Solutions for Accessing Open Educational Resources in Areas with Poor Internet Connectivity**, RA Pugoy, CDL Habito, RB Figueroa, *Asian Association of Open Universities Journal (AAOUJ) Vol. 11, No. 2, 2016*
