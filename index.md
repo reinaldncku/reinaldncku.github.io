@@ -72,4 +72,4 @@ Nice to meet you!
 ## Complete Publication List
 ----
 <i> From latest to oldest </i>
-1. *Unsupervised Extractive Summarization-Based Representations for Accurate and Explainable Collaborative Filtering*, RA Pugoy, HY Kao, 59th Annual Meeting of the Association for Computational Linguistics (ACL 2021)
+1. **Unsupervised Extractive Summarization-Based Representations for Accurate and Explainable Collaborative Filtering**, RA Pugoy, HY Kao, 59th Annual Meeting of the Association for Computational Linguistics (ACL 2021)
