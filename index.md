@@ -1,6 +1,6 @@
 ## About
 ----
-Hello! 大家好! I am Reinald Adrian Pugoy (李仁傑), an Assistant Professor at the [University of the Philippines - Open University (UPOU)](https://fics.upou.edu.ph), which pioneered Open and Distance e-Learning in the Philippines. Courses I teach include Programming Languages and Software Engineering, and I handle mostly graduate students. I also designed and shepherded the first AI course in the university. Furthermore, I happen to be the current Director of our university's [ICT Development Office](https://ictdo.upou.edu.ph/).
+Hello! 大家好! I am Reinald Adrian Pugoy (李仁傑), an Assistant Professor at the [University of the Philippines - Open University (UPOU)](https://fics.upou.edu.ph), which pioneered Open and Distance e-Learning in the Philippines. Courses I teach include Programming Languages, Object-Oriented Programming and Artificial Intelligence, and I handle mostly graduate students. Furthermore, I happen to be the current Director of our university's [ICT Development Office](https://ictdo.upou.edu.ph/).
 
 I am also a PhD candidate at the [Department of Computer Science and Information Engineering](https://www.csie.ncku.edu.tw/), National Cheng Kung University (NCKU) in Tainan City, Taiwan. I am a member of the [Intelligent Knowledge Management Lab](https://ikmlab.csie.ncku.edu.tw) under the supervision of [Prof. Hung-Yu Kao](https://ikmlab.csie.ncku.edu.tw/advisor.html). My current research deals with the intersection of Recommender Systems, Natural Language Processing, and Deep Learning.
 
@@ -63,6 +63,13 @@ Nice to meet you!
 ## Select Awards
 ----
 - **Taiwan MOE Scholarship Award (2018-2022)**, Ministry of Education of the Republic of China (Taiwan)
+- **One UP Faculty Grant Award in Computer Science for Outstanding Teaching and Public Service (2019-2021)**, University of the Philippines System
 - **Gawad Chancellor (Chancellor's Award) for Outstanding Faculty (2017)**, UP Open University
 - **AAOU Young Innovator's Award - Silver Medal (2017)**, Asian Association of Open Universities
 - **AAOU Young Innovator's Award - Silver Medal (2015)**, Asian Association of Open Universities
+
+<br />
+## Complete Publication List
+----
+<i> From latest to oldest </i>
+1. *Unsupervised Extractive Summarization-Based Representations for Accurate and Explainable Collaborative Filtering*, RA Pugoy, HY Kao, 59th Annual Meeting of the Association for Computational Linguistics (ACL 2021)
