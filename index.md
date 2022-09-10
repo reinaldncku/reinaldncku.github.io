@@ -1,6 +1,6 @@
 ## About
 ----
-Hello! 大家好! I am Reinald Adrian Pugoy (李仁傑), an Assistant Professor at the [University of the Philippines - Open University (UPOU)](https://fics.upou.edu.ph), which pioneered Open and Distance e-Learning in the Philippines. Courses I teach include Programming Languages and Software Engineering, and I handle mostly graduate students. I also designed and shepherded the first AI course in the university. 
+Hello! 大家好! I am Reinald Adrian Pugoy (李仁傑), an Assistant Professor at the [University of the Philippines - Open University (UPOU)](https://fics.upou.edu.ph), which pioneered Open and Distance e-Learning in the Philippines. Courses I teach include Programming Languages and Software Engineering, and I handle mostly graduate students. I also designed and shepherded the first AI course in the university. Furthermore, I happen to be the current Director of our university's [ICT Development Office](https://ictdo.upou.edu.ph/).
 
 I am also a PhD candidate at the [Department of Computer Science and Information Engineering](https://www.csie.ncku.edu.tw/), National Cheng Kung University (NCKU) in Tainan City, Taiwan. I am a member of the [Intelligent Knowledge Management Lab](https://ikmlab.csie.ncku.edu.tw) under the supervision of [Prof. Hung-Yu Kao](https://ikmlab.csie.ncku.edu.tw/advisor.html). My current research deals with the intersection of Recommender Systems, Natural Language Processing, and Deep Learning.
 
