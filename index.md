@@ -67,9 +67,3 @@ Nice to meet you!
 - **Gawad Chancellor (Chancellor's Award) for Outstanding Faculty (2017)**, UP Open University
 - **AAOU Young Innovator's Award - Silver Medal (2017)**, Asian Association of Open Universities
 - **AAOU Young Innovator's Award - Silver Medal (2015)**, Asian Association of Open Universities
-
-<br />
-## Complete Publication List
-----
-<i> From latest to oldest </i>
-1. **Unsupervised Extractive Summarization-Based Representations for Accurate and Explainable Collaborative Filtering**, RA Pugoy, HY Kao, 59th Annual Meeting of the Association for Computational Linguistics (ACL 2021)
