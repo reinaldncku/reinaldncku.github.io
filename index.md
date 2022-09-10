@@ -1,12 +1,12 @@
 ## About
 ----
-Hello! 大家好! I am Reinald Adrian Pugoy (李仁傑), a PhD candidate at the [Department of Computer Science and Information Engineering](https://www.csie.ncku.edu.tw/), National Cheng Kung University (NCKU) in Tainan City, Taiwan. I am a member of the [Intelligent Knowledge Management Lab](https://ikmlab.csie.ncku.edu.tw) under the supervision of [Prof. Hung-Yu Kao](https://ikmlab.csie.ncku.edu.tw/advisor.html). My current research deals with the intersection of Recommender Systems, Natural Language Processing, and Deep Learning.
+Hello! 大家好! I am Reinald Adrian Pugoy (李仁傑), an Assistant Professor at the [University of the Philippines - Open University (UPOU)](https://fics.upou.edu.ph), which pioneered Open and Distance e-Learning in the Philippines. Courses I teach include Programming Languages and Software Engineering, and I handle mostly graduate students. I also designed and shepherded the first AI course in the university. 
 
-I am also an Assistant Professor at the [University of the Philippines - Open University (UPOU)](https://fics.upou.edu.ph), which pioneered Open and Distance e-Learning in the Philippines. Courses I teach include Programming Languages and Software Engineering, and I handle mostly graduate students. I also designed and shepherded the first AI course in the university. 
+I am also a PhD candidate at the [Department of Computer Science and Information Engineering](https://www.csie.ncku.edu.tw/), National Cheng Kung University (NCKU) in Tainan City, Taiwan. I am a member of the [Intelligent Knowledge Management Lab](https://ikmlab.csie.ncku.edu.tw) under the supervision of [Prof. Hung-Yu Kao](https://ikmlab.csie.ncku.edu.tw/advisor.html). My current research deals with the intersection of Recommender Systems, Natural Language Processing, and Deep Learning.
 
 I received my MS and BS degrees (both in Computer Science) from the [University of the Philippines - Los Baños (UPLB)](https://uplb.edu.ph/main/) where I used to do research on Digital Image Processing and VoIP, respectively.
 
-Nice to meet you!
+Nice to meet you! 
 
 <br />
 
@@ -22,7 +22,7 @@ Nice to meet you!
 ### Former
 
 - Digital Image Processing
-- e-Learning Technologies
+- Augmented Reality 
 - Web and Mobile App Development
 - Voice over Internet Protocol (VoIP)
 
@@ -56,4 +56,5 @@ Nice to meet you!
 *Proceedings of the 3rd International Conference on Digital Image Processing (ICDIP 2011)* <br /><br />
 
 #### Theses
-(to follow)
+- Master's Thesis: **Spatio-Spectral Feature Extraction in Digital Images for Object Classification**
+- Undergraduate Special Problem: **Smart Predictive Algorithm, Dialer, and Evaluation**
