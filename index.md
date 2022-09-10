@@ -81,7 +81,11 @@ Nice to meet you!
 3. **BERT-Based Neural Collaborative Filtering and Fixed-Length Contiguous Tokens Explanation**, <u>RA Pugoy</u>, HY Kao, *1st Conference of the Asia-Pacific Chapter of the Association for Computational Linguistics (AACL 2020)*
 4. **The Talking Comic Strip: Technology-Enhanced Learning for English Communication**, <u>RA Pugoy</u>, RC Ramos, RB Figueroa, B Siritarungsri, A Cheevakasemsook, P Noimuenwai, P Kaewsarn, *Innovating Education in Technology-Supported Environments (Springer)*
 5. **Software Implementation of a Platform to Ensure Credibility of Online Assessment for the ASEAN Studies Graduate Program**, MAL Crisanto, <u>RA Pugoy</u>, JD Sta Rita, MAD Saludadez, *3rd International Conference on Open and Distance e-Learning (ICODeL 2018)*
-6. **Technical Support and System Administration for the UP Open University Massive Open Distance e-Learning Platform**, <u>RA Pugoy</u>, VT Banasihan, 5th National Conference on Open and Distance eLearning (NCODeL 2017)
+6. **Technical Support and System Administration for the UP Open University Massive Open Distance e-Learning Platform**, <u>RA Pugoy</u>, VT Banasihan, *5th National Conference on Open and Distance eLearning (NCODeL 2017)*
+7. **Badge Enrolment and Digital Certificates: Technical Considerations in Customizing the UP Open University Massive Open Distance e-Learning Platform**, <u>RA Pugoy</u>, *31st Asian Association of Open Universities Conference (AAOU 2017)*
+8. (not yet finished)
+
+<br />
 
 ### Journal Articles
 1. **Hybrid Online/Offline Mobile Solutions for Accessing Open Educational Resources in Areas with Poor Internet Connectivity**, RA Pugoy, CDL Habito, RB Figueroa, *Asian Association of Open Universities Journal (AAOUJ) Vol. 11, No. 2, 2016*
