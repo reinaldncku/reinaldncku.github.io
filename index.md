@@ -60,10 +60,20 @@ Nice to meet you!
 - Undergraduate Special Problem: **Smart Predictive Algorithm, Dialer, and Evaluation**
 
 <br />
+
 ## Select Awards
 ----
 - **Taiwan MOE Scholarship Award (2018-2022)**, Ministry of Education of the Republic of China (Taiwan)
-- **One UP Faculty Grant Award in Computer Science for Outstanding Teaching and Public Service (2019 to 2021)**, University of the Philippines System
+- **One UP Faculty Grant Award in Computer Science for Outstanding Teaching and Public Service (2019-2021)**, University of the Philippines System
 - **Gawad Chancellor (Chancellor's Award) for Outstanding Faculty (2017)**, UP Open University
 - **AAOU Young Innovator's Award - Silver Medal (2017)**, Asian Association of Open Universities
 - **AAOU Young Innovator's Award - Silver Medal (2015)**, Asian Association of Open Universities
+
+
+<br />
+
+## Complete Publication List
+----
+<i> From latest to oldest </i>
+1. **Unsupervised Extractive Summarization-Based Representations for Accurate and Explainable Collaborative Filtering**, RA Pugoy, HY Kao, 59th Annual Meeting of the Association for Computational Linguistics (ACL 2021)
+
