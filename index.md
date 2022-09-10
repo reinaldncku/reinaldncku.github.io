@@ -75,5 +75,7 @@ Nice to meet you!
 ## Complete Publication List
 ----
 <i> From latest to oldest </i>
-1. **Unsupervised Extractive Summarization-Based Representations for Accurate and Explainable Collaborative Filtering**, RA Pugoy, HY Kao, 59th Annual Meeting of the Association for Computational Linguistics (ACL 2021)
+1. **Unsupervised Extractive Summarization-Based Representations for Accurate and Explainable Collaborative Filtering**, <u>RA Pugoy</u>, HY Kao, 59th Annual Meeting of the Association for Computational Linguistics (ACL 2021)
+2. **BERT-Based Neural Collaborative Filtering and Fixed-Length Contiguous Tokens Explanation**, <u>RA Pugoy</u>, HY Kao, 1st Conference of the Asia-Pacific Chapter of the Association for Computational Linguistics (AACL 2020)
+3. **The Talking Comic Strip: Technology-Enhanced Learning for English Communication**, <u>RA Pugoy</u>, RC Ramos, RB Figueroa, B Siritarungsri, A Cheevakasemsook, P Noimuenwai, P Kaewsarn, Innovating Education in Technology-Supported Environments (Springer)
 
