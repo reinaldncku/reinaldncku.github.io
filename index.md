@@ -68,6 +68,7 @@ Nice to meet you!
 - **Gawad Chancellor (Chancellor's Award) for Outstanding Faculty (2017)**, UP Open University
 - **AAOU Young Innovator's Award - Silver Medal (2017)**, Asian Association of Open Universities
 - **AAOU Young Innovator's Award - Silver Medal (2015)**, Asian Association of Open Universities
+- **Top Graduate of the MS Computer Science Program (2011)**, Institute of Computer Science, UP Los Banos
 
 
 <br />
