@@ -75,24 +75,31 @@ Nice to meet you!
 ## Complete Publication List
 ----
 <i> From latest to oldest </i>
-### Journal Articles and Book Chapter
+### Journal Articles (2) and Book Chapter (1)
 1. **Hybrid Online/Offline Mobile Solutions for Accessing Open Educational Resources in Areas with Poor Internet Connectivity**, RA Pugoy, CDL Habito, RB Figueroa, *Asian Association of Open Universities Journal (AAOUJ) Vol. 11, No. 2, 2016*
 2. **Augmented Reality in Nursing Education: Addressing the Limitations of Developing a Learning Material for Nurses in the Philippines and Thailand**, <u>RA Pugoy</u>, RC Ramos, RB Figueroa, MHC Rivera, B Siritarungsri, A Cheevakasemsook, P Noimuenwai, P Kaewsarn, *International  Journal on Open and Distance e-Learning (IJODeL) Vol. 2, No. 1, 2016*
 3. **The Talking Comic Strip: Technology-Enhanced Learning for English Communication**, <u>RA Pugoy</u>, RC Ramos, RB Figueroa, B Siritarungsri, A Cheevakasemsook, P Noimuenwai, P Kaewsarn, *Innovating Education in Technology-Supported Environments (Springer)*
 
+<br />
 
 ### Conference Papers
-1. **ACES: Automated Academic Essay Scoring Using a Natural Language Processing-Based Regression Mechanism**, <u>RA Pugoy</u>, *35th Annual Conference of the Asian Association of Open Universities (AAOU 2022)*
-2. **Unsupervised Extractive Summarization-Based Representations for Accurate and Explainable Collaborative Filtering**, <u>RA Pugoy</u>, HY Kao, *59th Annual Meeting of the Association for Computational Linguistics (ACL 2021)*
-3. **BERT-Based Neural Collaborative Filtering and Fixed-Length Contiguous Tokens Explanation**, <u>RA Pugoy</u>, HY Kao, *1st Conference of the Asia-Pacific Chapter of the Association for Computational Linguistics (AACL 2020)*
-4. **Software Implementation of a Platform to Ensure Credibility of Online Assessment for the ASEAN Studies Graduate Program**, MAL Crisanto, <u>RA Pugoy</u>, JD Sta Rita, MAD Saludadez, *3rd International Conference on Open and Distance e-Learning (ICODeL 2018)*
-5. **Technical Support and System Administration for the UP Open University Massive Open Distance e-Learning Platform**, <u>RA Pugoy</u>, VT Banasihan, *5th National Conference on Open and Distance eLearning (NCODeL 2017)*
-6. **Badge Enrolment and Digital Certificates: Technical Considerations in Customizing the UP Open University Massive Open Distance e-Learning Platform**, <u>RA Pugoy</u>, *31st Asian Association of Open Universities Conference (AAOU 2017)*
-7. **Usability Evaluation of the UP Open University Massive Open Distance e-Learning Platform**, <u>RA Pugoy</u>, JP Banares, *MoodleMoot Philippines 2018*
-8. 
+1. **ACES: Automated Academic Essay Scoring Using a Natural Language Processing-Based Regression Mechanism**, <u>RA Pugoy</u>, *35th Annual Conference of the Asian Association of Open Universities (AAOU 2022), Jeju, Korea*
+2. **Unsupervised Extractive Summarization-Based Representations for Accurate and Explainable Collaborative Filtering**, <u>RA Pugoy</u>, HY Kao, *59th Annual Meeting of the Association for Computational Linguistics (ACL 2021), Bangkok, Thailand*
+3. **BERT-Based Neural Collaborative Filtering and Fixed-Length Contiguous Tokens Explanation**, <u>RA Pugoy</u>, HY Kao, *1st Conference of the Asia-Pacific Chapter of the Association for Computational Linguistics (AACL 2020), Suzhou, China*
+4. **Software Implementation of a Platform to Ensure Credibility of Online Assessment for the ASEAN Studies Graduate Program**, MAL Crisanto, <u>RA Pugoy</u>, JD Sta Rita, MAD Saludadez, *3rd International Conference on Open and Distance e-Learning (ICODeL 2018), Kaohsiung, Taiwan*
+5.  **Usability Evaluation of the UP Open University Massive Open Distance e-Learning Platform**, <u>RA Pugoy</u>, JP Banares, *MoodleMoot Philippines 2018, Manila, Philippines*
+6. **Technical Support and System Administration for the UP Open University Massive Open Distance e-Learning Platform**, <u>RA Pugoy</u>, VT Banasihan, *5th National Conference on Open and Distance eLearning (NCODeL 2017), Manila, Philippines*
+7. **Badge Enrolment and Digital Certificates: Technical Considerations in Customizing the UP Open University Massive Open Distance e-Learning Platform**, <u>RA Pugoy</u>, *31st Asian Association of Open Universities Conference (AAOU 2017), Jogjakarta, Indonesia*
+8. **Creating a Platform to Ensure Credibility of Online Assessment: A Study on the Systems Requirement for the ASEAN Studies Graduate Program**, JA Saludadez, K Jeotee, <u>RA Pugoy</u>, MAL Crisanto, DL Piamonte, MA Saludadez, JD Sta. Rita, *31st Asian Association of Open Universities Conference (AAOU 2017), Jogjakarta, Indonesia*
+9. **Gender Differences in Augmented Reality Perceptions Among Students of Advanced Computer Systems in the UP Open University**, <u>RA Pugoy</u>, *International Conference on Open and Innovative Education (ICOIE 2017), Hong Kong, China*
+10. 
+
+<br />
 
 ### Accepted Abstracts
-1. **System Design and Architecture of the ASEAN Studies Graduate Program Online Assessment Platform**, <u>RA Pugoy</u>, MAL Crisanto, JA Saludadez, K Jeotee, MA Saludadez, JD Sta. Rita, DL Piamonte, *World Conference on Online Learning (ICDE 2017)*
+1. **System Design and Architecture of the ASEAN Studies Graduate Program Online Assessment Platform**, <u>RA Pugoy</u>, MAL Crisanto, JA Saludadez, K Jeotee, MA Saludadez, JD Sta. Rita, DL Piamonte, *World Conference on Online Learning (ICDE 2017), Toronto, Canada*
+2. **Customizing Certificates of Completion for the UP Open University MOOCs**, <u>RA Pugoy</u>, *MoodleMoot Japan 2017, Tochigi, Japan*
+3. **Podcasting as a Mobile Solution for Accessing Open Educational Resources in Bandwidth-Challenged Areas**, <u>RA Pugoy</u>, *14th International Conference for Media in Education (ICoME 2016), Kyoto, Japan*
 
 
 <br />
