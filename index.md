@@ -92,7 +92,8 @@ Nice to meet you!
 7. **Badge Enrolment and Digital Certificates: Technical Considerations in Customizing the UP Open University Massive Open Distance e-Learning Platform**, <u>RA Pugoy</u>, *31st Asian Association of Open Universities Conference (AAOU 2017), Jogjakarta, Indonesia*
 8. **Creating a Platform to Ensure Credibility of Online Assessment: A Study on the Systems Requirement for the ASEAN Studies Graduate Program**, JA Saludadez, K Jeotee, <u>RA Pugoy</u>, MAL Crisanto, DL Piamonte, MA Saludadez, JD Sta. Rita, *31st Asian Association of Open Universities Conference (AAOU 2017), Jogjakarta, Indonesia*
 9. **Gender Differences in Augmented Reality Perceptions Among Students of Advanced Computer Systems in the UP Open University**, <u>RA Pugoy</u>, *International Conference on Open and Innovative Education (ICOIE 2017), Hong Kong, China*
-10. 
+10. **Usability Evaluation of Augmented Reality Applications for English Communication in Nursing: Philippines and Thailand Perspectives**, <u>RA Pugoy</u>, RC Ramos, RB Figueroa, B Siritarungsri, A Cheevakasemsook, P Noimuenwai, P Kaewsarn, *3rd International Conference on Open and Flexible Education (ICOFE 2016), Hong Kong, China*
+11. 
 
 <br />
 
@@ -100,6 +101,7 @@ Nice to meet you!
 1. **System Design and Architecture of the ASEAN Studies Graduate Program Online Assessment Platform**, <u>RA Pugoy</u>, MAL Crisanto, JA Saludadez, K Jeotee, MA Saludadez, JD Sta. Rita, DL Piamonte, *World Conference on Online Learning (ICDE 2017), Toronto, Canada*
 2. **Customizing Certificates of Completion for the UP Open University MOOCs**, <u>RA Pugoy</u>, *MoodleMoot Japan 2017, Tochigi, Japan*
 3. **Podcasting as a Mobile Solution for Accessing Open Educational Resources in Bandwidth-Challenged Areas**, <u>RA Pugoy</u>, *14th International Conference for Media in Education (ICoME 2016), Kyoto, Japan*
+4. **Mobile Solutions for Synchronized and Offline Version of Audio-Based Open Educational Resources**, <u>RA Pugoy</u>, *International Mobile Learning Festival (IMLF 2016), Bangkok, Thailand*
 
 
 <br />
