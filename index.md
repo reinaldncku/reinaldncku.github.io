@@ -75,12 +75,6 @@ Nice to meet you!
 ## Complete Publication List
 ----
 <i> From latest to oldest </i>
-### Journal Articles (2) and Book Chapter (1)
-1. **Hybrid Online/Offline Mobile Solutions for Accessing Open Educational Resources in Areas with Poor Internet Connectivity**, RA Pugoy, CDL Habito, RB Figueroa, *Asian Association of Open Universities Journal (AAOUJ) Vol. 11, No. 2, 2016*
-2. **Augmented Reality in Nursing Education: Addressing the Limitations of Developing a Learning Material for Nurses in the Philippines and Thailand**, <u>RA Pugoy</u>, RC Ramos, RB Figueroa, MHC Rivera, B Siritarungsri, A Cheevakasemsook, P Noimuenwai, P Kaewsarn, *International  Journal on Open and Distance e-Learning (IJODeL) Vol. 2, No. 1, 2016*
-3. **The Talking Comic Strip: Technology-Enhanced Learning for English Communication**, <u>RA Pugoy</u>, RC Ramos, RB Figueroa, B Siritarungsri, A Cheevakasemsook, P Noimuenwai, P Kaewsarn, *Innovating Education in Technology-Supported Environments (Springer)*
-
-<br />
 
 ### Conference Papers (21)
 1. **ACES: Automated Academic Essay Scoring Using a Natural Language Processing-Based Regression Mechanism**, <u>RA Pugoy</u>, *35th Annual Conference of the Asian Association of Open Universities (AAOU 2022), Jeju, Korea*
@@ -107,6 +101,17 @@ Nice to meet you!
 
 <br />
 
+### Journal Articles (2) 
+1. **Hybrid Online/Offline Mobile Solutions for Accessing Open Educational Resources in Areas with Poor Internet Connectivity**, RA Pugoy, CDL Habito, RB Figueroa, *Asian Association of Open Universities Journal (AAOUJ) Vol. 11, No. 2, 2016*
+2. **Augmented Reality in Nursing Education: Addressing the Limitations of Developing a Learning Material for Nurses in the Philippines and Thailand**, <u>RA Pugoy</u>, RC Ramos, RB Figueroa, MHC Rivera, B Siritarungsri, A Cheevakasemsook, P Noimuenwai, P Kaewsarn, *International  Journal on Open and Distance e-Learning (IJODeL) Vol. 2, No. 1, 2016*
+
+<br />
+
+### Book Chapter (1)
+1. **The Talking Comic Strip: Technology-Enhanced Learning for English Communication**, <u>RA Pugoy</u>, RC Ramos, RB Figueroa, B Siritarungsri, A Cheevakasemsook, P Noimuenwai, P Kaewsarn, *Innovating Education in Technology-Supported Environments (Springer)*
+
+<br />
+
 ### Accepted Abstracts (6)
 1. **System Design and Architecture of the ASEAN Studies Graduate Program Online Assessment Platform**, <u>RA Pugoy</u>, MAL Crisanto, JA Saludadez, K Jeotee, MA Saludadez, JD Sta. Rita, DL Piamonte, *World Conference on Online Learning (ICDE 2017), Toronto, Canada*
 2. **Customizing Certificates of Completion for the UP Open University MOOCs**, <u>RA Pugoy</u>, *MoodleMoot Japan 2017, Tochigi, Japan*
@@ -116,5 +121,3 @@ Nice to meet you!
 6. **An Exploration of Augmented Reality Applications on English Communication for Nursing in ASEAN**,  RB Figueroa, RC Ramos, <u>RA Pugoy</u>, MHC Rivera, B Siritarungsri, A Cheevakasemsook, P Noimuenwai, P Kaewsarn, *Globalization and Localization in Computer-Assisted Language Learning 2015 Conference (GLoCALL 2015), Daejeon, Korea*
 
 <br />
-
-
