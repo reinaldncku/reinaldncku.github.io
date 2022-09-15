@@ -78,47 +78,47 @@ Nice to meet you!
 <i> From latest to oldest </i>
 
 ### Conference Papers (21)
-1. **ACES: Automated Academic Essay Scoring Using a Natural Language Processing-Based Regression Mechanism**, <u>RA Pugoy</u>, *35th Annual Conference of the Asian Association of Open Universities (AAOU 2022), Jeju, Korea*
-2. **Unsupervised Extractive Summarization-Based Representations for Accurate and Explainable Collaborative Filtering**, <u>RA Pugoy</u>, HY Kao, *59th Annual Meeting of the Association for Computational Linguistics (ACL 2021), Bangkok, Thailand*
-3. **BERT-Based Neural Collaborative Filtering and Fixed-Length Contiguous Tokens Explanation**, <u>RA Pugoy</u>, HY Kao, *1st Conference of the Asia-Pacific Chapter of the Association for Computational Linguistics (AACL 2020), Suzhou, China*
-4. **Software Implementation of a Platform to Ensure Credibility of Online Assessment for the ASEAN Studies Graduate Program**, MAL Crisanto, <u>RA Pugoy</u>, JD Sta Rita, MAD Saludadez, *3rd International Conference on Open and Distance e-Learning (ICODeL 2018), Kaohsiung, Taiwan*
-5.  **Usability Evaluation of the UP Open University Massive Open Distance e-Learning Platform**, <u>RA Pugoy</u>, JP Banares, *MoodleMoot Philippines 2018, Manila, Philippines*
-6. **Technical Support and System Administration for the UP Open University Massive Open Distance e-Learning Platform**, <u>RA Pugoy</u>, VT Banasihan, *5th National Conference on Open and Distance eLearning (NCODeL 2017), Manila, Philippines*
-7. **Badge Enrolment and Digital Certificates: Technical Considerations in Customizing the UP Open University Massive Open Distance e-Learning Platform**, <u>RA Pugoy</u>, *31st Asian Association of Open Universities Conference (AAOU 2017), Jogjakarta, Indonesia*
-8. **Creating a Platform to Ensure Credibility of Online Assessment: A Study on the Systems Requirement for the ASEAN Studies Graduate Program**, JA Saludadez, K Jeotee, <u>RA Pugoy</u>, MAL Crisanto, DL Piamonte, MA Saludadez, JD Sta. Rita, *31st Asian Association of Open Universities Conference (AAOU 2017), Jogjakarta, Indonesia*
-9. **Gender Differences in Augmented Reality Perceptions Among Students of Advanced Computer Systems in the UP Open University**, <u>RA Pugoy</u>, *International Conference on Open and Innovative Education (ICOIE 2017), Hong Kong, China*
-10. **Usability Evaluation of Augmented Reality Applications for English Communication in Nursing: Philippines and Thailand Perspectives**, <u>RA Pugoy</u>, RC Ramos, RB Figueroa, B Siritarungsri, A Cheevakasemsook, P Noimuenwai, P Kaewsarn, *3rd International Conference on Open and Flexible Education (ICOFE 2016), Hong Kong, China*
-11. **Mobile Solutions for Synchronized and Offline Version of Open Educational Resources**, <u>RA Pugoy</u>, *29th Annual Conference of the Asian Open Universities (AAOU 2015), Kuala Lumpur, Malaysia*
-12. **Applying the Multiple Paths Framework for Philippine Biodiversity Open Education Resources**, RB Figueroa, CDL Habito, <u>RA Pugoy</u>, *29th Annual Conference of the Asian Open Universities (AAOU 2015), Kuala Lumpur, Malaysia*
-13. **Free and Sustainable Organizing Approaches for Open Education Resources in Android Devices**, RB Figueroa, <u>RA Pugoy</u>, *12th International Conference for Media in Education (ICoME 2014), Seoul, Korea*
-14. **A Report Generation Extension for an Open Source Human Resource Management System**, RB Figueroa, <u>RA Pugoy</u>, MB Mendoza, B Whitney, CR Discipulo, EN Gonzalez, M Trinidad, *International Small and Medium Enterprises Conference (ISMEC 2014), Kuala Lumpur, Malaysia*
-15. **WeBook Mobilization Solutions for Web-Based Learning Resources**, <u>RA Pugoy</u>, RB Figueroa, *26th Annual Conference of the Asian Open Universities (AAOU 2012), Chiba, Japan*
-16. **An Interpreter for TROBOL: TROBOL-Oriented Language, Implemented in an Undergraduate Course**, MBY De Robles, AFO Faminial, MD Queliste, <u> RA Pugoy</u>, *4th UPLB College of Arts and Sciences Student-Faculty Research Conference, Los Banos, Philippines*
-17. **Spatio-Spectral Feature Extaction in Digital Images for Object Classification**, <u>RA Pugoy</u>, VY Mariano, *9th National Conference of Information Technology Educators (NCITE 2011), Puerto Princesa City, Philippines*
-18. **Automated Rice Leaf Disease Detection Using Color Image Analysis**, <u>RA Pugoy</u>, VY Mariano, *2011 3rd International Conference on Digital Image Processing (ICDIP 2011), Chengdu, China*
-19. **Automated Rice Leaf Disease Detection Using Shape Image Analysis**, <u>RA Pugoy</u>, VY Mariano, *11th Philippine Computing Science Congress (PCSC 2011), Naga City, Philippines*
-20. **Register Allocation Problem: Study on its NP-hard nature and Implementation of Known Heuristics in C**, <u>RA Pugoy</u>, JM Samaniego, *3rd UPLB College of Arts and Sciences Student-Faculty Research Conference, Los Banos, Philippines*
-21. **ARLENADDE: Automated Rice Leaf Nutrient Assessment and Disease Detection Using Digital Image Analysis**, <u>RA Pugoy</u>, VY Mariano, *10th Philippine Computing Science Congress (PCSC 2011), Davao City, Philippines*
+1. **ACES: Automated Academic Essay Scoring Using a Natural Language Processing-Based Regression Mechanism**, <u>RAD Pugoy</u>, *35th Annual Conference of the Asian Association of Open Universities (AAOU 2022), Jeju, Korea*
+2. **Unsupervised Extractive Summarization-Based Representations for Accurate and Explainable Collaborative Filtering**, <u>RAD Pugoy</u>, HY Kao, *59th Annual Meeting of the Association for Computational Linguistics (ACL 2021), Bangkok, Thailand*
+3. **BERT-Based Neural Collaborative Filtering and Fixed-Length Contiguous Tokens Explanation**, <u>RAD Pugoy</u>, HY Kao, *1st Conference of the Asia-Pacific Chapter of the Association for Computational Linguistics (AACL 2020), Suzhou, China*
+4. **Software Implementation of a Platform to Ensure Credibility of Online Assessment for the ASEAN Studies Graduate Program**, MAL Crisanto, <u>RAD Pugoy</u>, JD Sta Rita, MAD Saludadez, *3rd International Conference on Open and Distance e-Learning (ICODeL 2018), Kaohsiung, Taiwan*
+5.  **Usability Evaluation of the UP Open University Massive Open Distance e-Learning Platform**, <u>RAD Pugoy</u>, JP Banares, *MoodleMoot Philippines 2018, Manila, Philippines*
+6. **Technical Support and System Administration for the UP Open University Massive Open Distance e-Learning Platform**, <u>RAD Pugoy</u>, VT Banasihan, *5th National Conference on Open and Distance eLearning (NCODeL 2017), Manila, Philippines*
+7. **Badge Enrolment and Digital Certificates: Technical Considerations in Customizing the UP Open University Massive Open Distance e-Learning Platform**, <u>RAD Pugoy</u>, *31st Asian Association of Open Universities Conference (AAOU 2017), Jogjakarta, Indonesia*
+8. **Creating a Platform to Ensure Credibility of Online Assessment: A Study on the Systems Requirement for the ASEAN Studies Graduate Program**, JA Saludadez, K Jeotee, <u>RAD Pugoy</u>, MAL Crisanto, DL Piamonte, MA Saludadez, JD Sta. Rita, *31st Asian Association of Open Universities Conference (AAOU 2017), Jogjakarta, Indonesia*
+9. **Gender Differences in Augmented Reality Perceptions Among Students of Advanced Computer Systems in the UP Open University**, <u>RAD Pugoy</u>, *International Conference on Open and Innovative Education (ICOIE 2017), Hong Kong, China*
+10. **Usability Evaluation of Augmented Reality Applications for English Communication in Nursing: Philippines and Thailand Perspectives**, <u>RAD Pugoy</u>, RC Ramos, RB Figueroa, B Siritarungsri, A Cheevakasemsook, P Noimuenwai, P Kaewsarn, *3rd International Conference on Open and Flexible Education (ICOFE 2016), Hong Kong, China*
+11. **Mobile Solutions for Synchronized and Offline Version of Open Educational Resources**, <u>RAD Pugoy</u>, *29th Annual Conference of the Asian Open Universities (AAOU 2015), Kuala Lumpur, Malaysia*
+12. **Applying the Multiple Paths Framework for Philippine Biodiversity Open Education Resources**, RB Figueroa, CDL Habito, <u>RAD Pugoy</u>, *29th Annual Conference of the Asian Open Universities (AAOU 2015), Kuala Lumpur, Malaysia*
+13. **Free and Sustainable Organizing Approaches for Open Education Resources in Android Devices**, RB Figueroa, <u>RAD Pugoy</u>, *12th International Conference for Media in Education (ICoME 2014), Seoul, Korea*
+14. **A Report Generation Extension for an Open Source Human Resource Management System**, RB Figueroa, <u>RAD Pugoy</u>, MB Mendoza, B Whitney, CR Discipulo, EN Gonzalez, M Trinidad, *International Small and Medium Enterprises Conference (ISMEC 2014), Kuala Lumpur, Malaysia*
+15. **WeBook Mobilization Solutions for Web-Based Learning Resources**, <u>RAD Pugoy</u>, RB Figueroa, *26th Annual Conference of the Asian Open Universities (AAOU 2012), Chiba, Japan*
+16. **An Interpreter for TROBOL: TROBOL-Oriented Language, Implemented in an Undergraduate Course**, MBY De Robles, AFO Faminial, MD Queliste, <u>RAD Pugoy</u>, *4th UPLB College of Arts and Sciences Student-Faculty Research Conference, Los Banos, Philippines*
+17. **Spatio-Spectral Feature Extaction in Digital Images for Object Classification**, <u>RAD Pugoy</u>, VY Mariano, *9th National Conference of Information Technology Educators (NCITE 2011), Puerto Princesa City, Philippines*
+18. **Automated Rice Leaf Disease Detection Using Color Image Analysis**, <u>RAD Pugoy</u>, VY Mariano, *2011 3rd International Conference on Digital Image Processing (ICDIP 2011), Chengdu, China*
+19. **Automated Rice Leaf Disease Detection Using Shape Image Analysis**, <u>RAD Pugoy</u>, VY Mariano, *11th Philippine Computing Science Congress (PCSC 2011), Naga City, Philippines*
+20. **Register Allocation Problem: Study on its NP-hard nature and Implementation of Known Heuristics in C**, <u>RAD Pugoy</u>, JM Samaniego, *3rd UPLB College of Arts and Sciences Student-Faculty Research Conference, Los Banos, Philippines*
+21. **ARLENADDE: Automated Rice Leaf Nutrient Assessment and Disease Detection Using Digital Image Analysis**, <u>RAD Pugoy</u>, VY Mariano, *10th Philippine Computing Science Congress (PCSC 2011), Davao City, Philippines*
 
 <br />
 
 ### Journal Articles (2) 
-1. **Hybrid Online/Offline Mobile Solutions for Accessing Open Educational Resources in Areas with Poor Internet Connectivity**, RA Pugoy, CDL Habito, RB Figueroa, *Asian Association of Open Universities Journal (AAOUJ) Vol. 11, No. 2, 2016*
-2. **Augmented Reality in Nursing Education: Addressing the Limitations of Developing a Learning Material for Nurses in the Philippines and Thailand**, <u>RA Pugoy</u>, RC Ramos, RB Figueroa, MHC Rivera, B Siritarungsri, A Cheevakasemsook, P Noimuenwai, P Kaewsarn, *International  Journal on Open and Distance e-Learning (IJODeL) Vol. 2, No. 1, 2016*
+1. **Hybrid Online/Offline Mobile Solutions for Accessing Open Educational Resources in Areas with Poor Internet Connectivity**, <u>RAD Pugoy</u>, CDL Habito, RB Figueroa, *Asian Association of Open Universities Journal (AAOUJ) Vol. 11, No. 2, 2016*
+2. **Augmented Reality in Nursing Education: Addressing the Limitations of Developing a Learning Material for Nurses in the Philippines and Thailand**, <u>RAD Pugoy</u>, RC Ramos, RB Figueroa, MHC Rivera, B Siritarungsri, A Cheevakasemsook, P Noimuenwai, P Kaewsarn, *International  Journal on Open and Distance e-Learning (IJODeL) Vol. 2, No. 1, 2016*
 
 <br />
 
 ### Book Chapter (1)
-1. **The Talking Comic Strip: Technology-Enhanced Learning for English Communication**, <u>RA Pugoy</u>, RC Ramos, RB Figueroa, B Siritarungsri, A Cheevakasemsook, P Noimuenwai, P Kaewsarn, *Innovating Education in Technology-Supported Environments (Springer)*
+1. **The Talking Comic Strip: Technology-Enhanced Learning for English Communication**, <u>RAD Pugoy</u>, RC Ramos, RB Figueroa, B Siritarungsri, A Cheevakasemsook, P Noimuenwai, P Kaewsarn, *Innovating Education in Technology-Supported Environments (Springer)*
 
 <br />
 
 ### Accepted Abstracts (6)
-1. **System Design and Architecture of the ASEAN Studies Graduate Program Online Assessment Platform**, <u>RA Pugoy</u>, MAL Crisanto, JA Saludadez, K Jeotee, MA Saludadez, JD Sta. Rita, DL Piamonte, *World Conference on Online Learning (ICDE 2017), Toronto, Canada*
-2. **Customizing Certificates of Completion for the UP Open University MOOCs**, <u>RA Pugoy</u>, *MoodleMoot Japan 2017, Tochigi, Japan*
-3. **Podcasting as a Mobile Solution for Accessing Open Educational Resources in Bandwidth-Challenged Areas**, <u>RA Pugoy</u>, *14th International Conference for Media in Education (ICoME 2016), Kyoto, Japan*
-4. **Mobile Solutions for Synchronized and Offline Version of Audio-Based Open Educational Resources**, <u>RA Pugoy</u>, *International Mobile Learning Festival (IMLF 2016), Bangkok, Thailand*
-5. **Augmented Reality in Nursing Education: A Collaborative Approach in ASEAN Integration**, <u>RA Pugoy</u>, RC Ramos, RB Figueroa, MHC Rivera, B Siritarungsri, A Cheevakasemsook, P Noimuenwai, P Kaewsarn, *Asian Symposium on Education, Equity and Social Justice (EQUIS 2015), Hiroshima, Japan*
-6. **An Exploration of Augmented Reality Applications on English Communication for Nursing in ASEAN**,  RB Figueroa, RC Ramos, <u>RA Pugoy</u>, MHC Rivera, B Siritarungsri, A Cheevakasemsook, P Noimuenwai, P Kaewsarn, *Globalization and Localization in Computer-Assisted Language Learning 2015 Conference (GLoCALL 2015), Daejeon, Korea*
+1. **System Design and Architecture of the ASEAN Studies Graduate Program Online Assessment Platform**, <u>RAD Pugoy</u>, MAL Crisanto, JA Saludadez, K Jeotee, MA Saludadez, JD Sta. Rita, DL Piamonte, *World Conference on Online Learning (ICDE 2017), Toronto, Canada*
+2. **Customizing Certificates of Completion for the UP Open University MOOCs**, <u>RAD Pugoy</u>, *MoodleMoot Japan 2017, Tochigi, Japan*
+3. **Podcasting as a Mobile Solution for Accessing Open Educational Resources in Bandwidth-Challenged Areas**, <u>RAD Pugoy</u>, *14th International Conference for Media in Education (ICoME 2016), Kyoto, Japan*
+4. **Mobile Solutions for Synchronized and Offline Version of Audio-Based Open Educational Resources**, <u>RAD Pugoy</u>, *International Mobile Learning Festival (IMLF 2016), Bangkok, Thailand*
+5. **Augmented Reality in Nursing Education: A Collaborative Approach in ASEAN Integration**, <u>RAD Pugoy</u>, RC Ramos, RB Figueroa, MHC Rivera, B Siritarungsri, A Cheevakasemsook, P Noimuenwai, P Kaewsarn, *Asian Symposium on Education, Equity and Social Justice (EQUIS 2015), Hiroshima, Japan*
+6. **An Exploration of Augmented Reality Applications on English Communication for Nursing in ASEAN**,  RB Figueroa, RC Ramos, <u>RAD Pugoy</u>, MHC Rivera, B Siritarungsri, A Cheevakasemsook, P Noimuenwai, P Kaewsarn, *Globalization and Localization in Computer-Assisted Language Learning 2015 Conference (GLoCALL 2015), Daejeon, Korea*
 
 <br />
