@@ -32,7 +32,7 @@ Nice to meet you!
 ----
 
 #### Natural Language Processing / Recommender Systems
-- **NEAR: Non-supervised Explainability Architecture for Accurate Review-Based Collaborative Filtering**, 
+- **NEAR: Non-supervised Explainability Architecture for Accurate Review-Based Collaborative Filtering**, <br />
 **Reinald Adrian Pugoy**, Hung-Yu Kao <br />
 *IEEE Transactions on Knowledge and Data Engineering (Q1, IF=9.235)* - accepted for publication
 - **Unsupervised Extractive Summarization-Based Representations for Accurate and Explainable Collaborative Filtering** [[PDF]](https://aclanthology.org/2021.acl-long.232/) <br />
