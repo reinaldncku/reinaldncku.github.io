@@ -32,10 +32,12 @@ Nice to meet you!
 ----
 
 #### Natural Language Processing / Recommender Systems
+- **NEAR: Non-supervised Explainability Architecture for Accurate Review-Based Collaborative Filtering**, 
+**Reinald Adrian Pugoy**, Hung-Yu Kao <br />
+*IEEE Transactions on Knowledge and Data Engineering (Q1, IF=9.235)* - accepted for publication
 - **Unsupervised Extractive Summarization-Based Representations for Accurate and Explainable Collaborative Filtering** [[PDF]](https://aclanthology.org/2021.acl-long.232/) <br />
 **Reinald Adrian Pugoy**, Hung-Yu Kao <br />
 *Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics (ACL 2021)* (Acceptance Rate: 21.3%) <br />
-
 - **BERT-Based Neural Collaborative Filtering and Fixed-Length Contiguous Tokens Explanation** [[PDF]](https://www.aclweb.org/anthology/2020.aacl-main.18/) <br />
 **Reinald Adrian Pugoy**, Hung-Yu Kao <br />
 *Proceedings of the 1st Conference of the Asia-Pacific Chapter of the Association for Computational Linguistics (AACL 2020)* (Acceptance Rate: 28.3%) <br /> <br />
@@ -79,7 +81,7 @@ Nice to meet you!
 <i> From latest to oldest </i>
 
 ### Journal Articles (3) 
-1. **NEAR: Non-supervised Explainability Architecture for Accurate Review-Based Collaborative Filtering**, <u>RAD Pugoy</u>, HY Kao, * IEEE Transactions on Knowledge and Data Engineering (Q1, IF=9.235)* - accepted for publication
+1. **NEAR: Non-supervised Explainability Architecture for Accurate Review-Based Collaborative Filtering**, <u>RAD Pugoy</u>, HY Kao, *IEEE Transactions on Knowledge and Data Engineering (Q1, IF=9.235)* - accepted for publication
 2. **Hybrid Online/Offline Mobile Solutions for Accessing Open Educational Resources in Areas with Poor Internet Connectivity**, <u>RAD Pugoy</u>, CDL Habito, RB Figueroa, *Asian Association of Open Universities Journal (AAOUJ) Vol. 11, No. 2, 2016*
 3. **Augmented Reality in Nursing Education: Addressing the Limitations of Developing a Learning Material for Nurses in the Philippines and Thailand**, <u>RAD Pugoy</u>, RC Ramos, RB Figueroa, MHC Rivera, B Siritarungsri, A Cheevakasemsook, P Noimuenwai, P Kaewsarn, *International  Journal on Open and Distance e-Learning (IJODeL) Vol. 2, No. 1, 2016*
 
