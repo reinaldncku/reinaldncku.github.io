@@ -78,6 +78,12 @@ Nice to meet you!
 ----
 <i> From latest to oldest </i>
 
+### Journal Articles (3) 
+1. **NEAR: Non-supervised Explainability Architecture for Accurate Review-Based Collaborative Filtering**, <u>RAD Pugoy</u>, HY Kao, * IEEE Transactions on Knowledge and Data Engineering (Q1, IF=9.235)* - accepted for publication
+2. **Hybrid Online/Offline Mobile Solutions for Accessing Open Educational Resources in Areas with Poor Internet Connectivity**, <u>RAD Pugoy</u>, CDL Habito, RB Figueroa, *Asian Association of Open Universities Journal (AAOUJ) Vol. 11, No. 2, 2016*
+3. **Augmented Reality in Nursing Education: Addressing the Limitations of Developing a Learning Material for Nurses in the Philippines and Thailand**, <u>RAD Pugoy</u>, RC Ramos, RB Figueroa, MHC Rivera, B Siritarungsri, A Cheevakasemsook, P Noimuenwai, P Kaewsarn, *International  Journal on Open and Distance e-Learning (IJODeL) Vol. 2, No. 1, 2016*
+
+
 ### Conference Papers (20)
 1. **ACES: Automated Academic Essay Scoring Using a Natural Language Processing-Based Regression Mechanism**, <u>RAD Pugoy</u>, *35th Annual Conference of the Asian Association of Open Universities (AAOU 2022), Jeju, Korea*
 2. **Unsupervised Extractive Summarization-Based Representations for Accurate and Explainable Collaborative Filtering**, <u>RAD Pugoy</u>, HY Kao, *59th Annual Meeting of the Association for Computational Linguistics (ACL 2021), Bangkok, Thailand*
@@ -99,12 +105,6 @@ Nice to meet you!
 18. **Automated Rice Leaf Disease Detection Using Shape Image Analysis**, <u>RAD Pugoy</u>, VY Mariano, *11th Philippine Computing Science Congress (PCSC 2011), Naga City, Philippines*
 19. **Register Allocation Problem: Study on its NP-hard nature and Implementation of Known Heuristics in C**, <u>RAD Pugoy</u>, JM Samaniego, *3rd UPLB College of Arts and Sciences Student-Faculty Research Conference, Los Banos, Philippines*
 20. **ARLENADDE: Automated Rice Leaf Nutrient Assessment and Disease Detection Using Digital Image Analysis**, <u>RAD Pugoy</u>, VY Mariano, *10th Philippine Computing Science Congress (PCSC 2011), Davao City, Philippines*
-
-<br />
-
-### Journal Articles (2) 
-1. **Hybrid Online/Offline Mobile Solutions for Accessing Open Educational Resources in Areas with Poor Internet Connectivity**, <u>RAD Pugoy</u>, CDL Habito, RB Figueroa, *Asian Association of Open Universities Journal (AAOUJ) Vol. 11, No. 2, 2016*
-2. **Augmented Reality in Nursing Education: Addressing the Limitations of Developing a Learning Material for Nurses in the Philippines and Thailand**, <u>RAD Pugoy</u>, RC Ramos, RB Figueroa, MHC Rivera, B Siritarungsri, A Cheevakasemsook, P Noimuenwai, P Kaewsarn, *International  Journal on Open and Distance e-Learning (IJODeL) Vol. 2, No. 1, 2016*
 
 <br />
 
