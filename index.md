@@ -57,7 +57,8 @@ Nice to meet you!
 **Reinald Adrian Pugoy**, Vladimir Y. Mariano <br />
 *Proceedings of the 3rd International Conference on Digital Image Processing (ICDIP 2011)* <br /><br />
 
-#### Theses
+#### Theses and Dissertation
+- PhD Dissertation: **Accurate and Explainable Neural Review-Based Collaborative Filtering** [[Link]](https://thesis.lib.ncku.edu.tw/thesis/detail/e1db7ee77d71351433c38728d02ffe3d/?seq=1)
 - Master's Thesis: **Spatio-Spectral Feature Extraction in Digital Images for Object Classification**
 - Undergraduate Special Problem: **Smart Predictive Algorithm, Dialer, and Evaluation**
 
