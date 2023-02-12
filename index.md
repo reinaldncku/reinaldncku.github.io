@@ -34,7 +34,7 @@ Nice to meet you!
 #### Theses and Dissertation
 - PhD Dissertation: **Accurate and Explainable Neural Review-Based Collaborative Filtering** [[Link]](https://thesis.lib.ncku.edu.tw/thesis/detail/e1db7ee77d71351433c38728d02ffe3d/?seq=1)
 - Master's Thesis: **Spatio-Spectral Feature Extraction in Digital Images for Object Classification**
-- Undergraduate Special Problem: **Smart Predictive Algorithm, Dialer, and Evaluation** <br />
+- Undergraduate Special Problem: **Smart Predictive Algorithm, Dialer, and Evaluation** <br /><br />
 
 #### Natural Language Processing / Recommender Systems
 - **NEAR: Non-supervised Explainability Architecture for Accurate Review-Based Collaborative Filtering**  [[PDF]](https://ieeexplore.ieee.org/document/9969140?fbclid=IwAR1ZcAWwDXAdqXhiXA_I8T7TyFD5FgJiBkQ0SnTd2rFaMqk2tP4FliWcOdY) <br />
