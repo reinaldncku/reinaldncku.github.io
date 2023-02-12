@@ -31,6 +31,11 @@ Nice to meet you!
 ## Select Publications
 ----
 
+#### Theses and Dissertation
+- PhD Dissertation: **Accurate and Explainable Neural Review-Based Collaborative Filtering** [[Link]](https://thesis.lib.ncku.edu.tw/thesis/detail/e1db7ee77d71351433c38728d02ffe3d/?seq=1)
+- Master's Thesis: **Spatio-Spectral Feature Extraction in Digital Images for Object Classification**
+- Undergraduate Special Problem: **Smart Predictive Algorithm, Dialer, and Evaluation**
+
 #### Natural Language Processing / Recommender Systems
 - **NEAR: Non-supervised Explainability Architecture for Accurate Review-Based Collaborative Filtering**  [[PDF]](https://ieeexplore.ieee.org/document/9969140?fbclid=IwAR1ZcAWwDXAdqXhiXA_I8T7TyFD5FgJiBkQ0SnTd2rFaMqk2tP4FliWcOdY) <br />
 **Reinald Adrian Pugoy**, Hung-Yu Kao <br />
@@ -56,11 +61,6 @@ Nice to meet you!
 - **Automated Rice Leaf Disease Detection Using Color Image Analysis** [[PDF]](https://www.spiedigitallibrary.org/conference-proceedings-of-spie/8009/80090F/Automated-rice-leaf-disease-detection-using-color-image-analysis/10.1117/12.896494.short) <br />
 **Reinald Adrian Pugoy**, Vladimir Y. Mariano <br />
 *Proceedings of the 3rd International Conference on Digital Image Processing (ICDIP 2011)* <br /><br />
-
-#### Theses and Dissertation
-- PhD Dissertation: **Accurate and Explainable Neural Review-Based Collaborative Filtering** [[Link]](https://thesis.lib.ncku.edu.tw/thesis/detail/e1db7ee77d71351433c38728d02ffe3d/?seq=1)
-- Master's Thesis: **Spatio-Spectral Feature Extraction in Digital Images for Object Classification**
-- Undergraduate Special Problem: **Smart Predictive Algorithm, Dialer, and Evaluation**
 
 <br />
 
