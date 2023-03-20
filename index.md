@@ -1,4 +1,4 @@
-#### This is the research lab (an informal grouping of my advisees - BAMS & MIS) that I'm leading at UPOU: [Intelligent Development of Apps & Systems Virtual Lab](https://ideas.upou.edu.ph/)
+#### This is the research lab (an informal grouping of my advisees - BAMS & MIS) that I'm leading at UPOU: [IDEAS (Intelligent Development of Apps & Systems) Virtual Lab](https://ideas.upou.edu.ph/)
 <br />
 ## About
 ----
