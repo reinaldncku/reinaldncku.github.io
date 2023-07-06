@@ -20,6 +20,7 @@ Nice to meet you!
 - Artificial Intelligence in Education
 - Recommender Systems
 - Data Mining
+  
 <br />
 
 ## Select Publications
@@ -44,7 +45,7 @@ Nice to meet you!
 #### AI in Education
 - **Navigating the Pre- and Post-AI Landscape: Insights into the Needs of the UPOU MyPortal Platform Users** <br />
 **Reinald Adrian Pugoy** <br />
-*MoodleMoot Philippines 2023* <br />
+*MoodleMoot Philippines 2023* <br /><br />
 
 #### e-Learning Technologies
 - **Hybrid Online/Offline Mobile Solutions for Accessing Open Educational Resources in Areas with Poor Internet Connectivity** [[PDF]](http://dx.doi.org/10.1108/AAOUJ-09-2016-0030) <br />
@@ -82,6 +83,8 @@ Nice to meet you!
 1. **NEAR: Non-supervised Explainability Architecture for Accurate Review-Based Collaborative Filtering**, <u>RAD Pugoy</u>, HY Kao, *IEEE Transactions on Knowledge and Data Engineering* (Q1, IF=9.235)
 2. **Hybrid Online/Offline Mobile Solutions for Accessing Open Educational Resources in Areas with Poor Internet Connectivity**, <u>RAD Pugoy</u>, CDL Habito, RB Figueroa, *Asian Association of Open Universities Journal (AAOUJ) Vol. 11, No. 2, 2016*
 3. **Augmented Reality in Nursing Education: Addressing the Limitations of Developing a Learning Material for Nurses in the Philippines and Thailand**, <u>RAD Pugoy</u>, RC Ramos, RB Figueroa, MHC Rivera, B Siritarungsri, A Cheevakasemsook, P Noimuenwai, P Kaewsarn, *International  Journal on Open and Distance e-Learning (IJODeL) Vol. 2, No. 1, 2016*
+   
+<br />
 
 ### MoodleMoot Presentations (8)
 1. **Navigating the Pre- and Post-AI Landscape: Insights into the Needs of the UPOU MyPortal Platform Users**, <u>RAD Pugoy</u>, MoodleMoot Philippines 2023, Manila, Philippines
@@ -92,6 +95,7 @@ Nice to meet you!
 6. **Use of User Tour, Contact Form, and Accessibility Plugins in Enhancing a Moodle-Based Virtual Conference Experience**, VT Banasihan, <u>RAD Pugoy</u>, MNS Paras, RJG Magsino, EJE Roxas, MoodleMoot Japan 2023, Ibaraki, Japan
 7. **Usability Evaluation of the UP Open University Massive Open Distance e-Learning Platform**, <u>RAD Pugoy</u>, JP Banares, *MoodleMoot Philippines 2018, Manila, Philippines*
 8. **Customizing Certificates of Completion for the UP Open University MOOCs**, <u>RAD Pugoy</u>, *MoodleMoot Japan 2017, Tochigi, Japan*
+
 <br />
 
 ### Conference Papers (20)
