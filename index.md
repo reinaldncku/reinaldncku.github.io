@@ -83,7 +83,7 @@ Nice to meet you!
 2. **Hybrid Online/Offline Mobile Solutions for Accessing Open Educational Resources in Areas with Poor Internet Connectivity**, <u>RAD Pugoy</u>, CDL Habito, RB Figueroa, *Asian Association of Open Universities Journal (AAOUJ) Vol. 11, No. 2, 2016*
 3. **Augmented Reality in Nursing Education: Addressing the Limitations of Developing a Learning Material for Nurses in the Philippines and Thailand**, <u>RAD Pugoy</u>, RC Ramos, RB Figueroa, MHC Rivera, B Siritarungsri, A Cheevakasemsook, P Noimuenwai, P Kaewsarn, *International  Journal on Open and Distance e-Learning (IJODeL) Vol. 2, No. 1, 2016*
 
-### MoodleMoot Presentations
+### MoodleMoot Presentations (8)
 1. **Navigating the Pre- and Post-AI Landscape: Insights into the Needs of the UPOU MyPortal Platform Users**, <u>RAD Pugoy</u>, MoodleMoot Philippines 2023, Manila, Philippines
 2. **Anytime, Anywhere, Anyone: Usability Evaluation of the 2023 UPOU Massive Open Distance eLearning Platform**, DZL Pulmano, <u>RAD Pugoy</u>, MoodleMoot Philippines 2023, Manila, Philippines
 3. **Taking Moodle Forums to the Next Level: A Plugin for Limiting Words in a Forum**, MNS Paras, <u>RAD Pugoy</u>, MoodleMoot Philippines 2023, Manila, Philippines
