@@ -1,5 +1,6 @@
 #### This is the research lab (an informal grouping of my advisees - BAMS & MIS) that I'm leading at UPOU: [IDEAS (Intelligent Development of Apps & Systems) Virtual Lab](https://ideas.upou.edu.ph/)
 <br />
+
 ## About
 ----
 Hello! 大家好! I am Reinald Adrian Pugoy (李仁傑), an Assistant Professor at the [University of the Philippines - Open University (UPOU)](https://fics.upou.edu.ph), which pioneered Open and Distance e-Learning in the Philippines. Courses I teach include Programming Languages, Object-Oriented Programming, and Artificial Intelligence, and I handle mostly graduate students. Furthermore, I happen to be the current Director of our university's [ICT Development Office](https://ictdo.upou.edu.ph/).
