@@ -123,7 +123,7 @@ const PROJECTS = [
     "project": "PIVOT",
     "description": null,
     "office": "UPOU",
-    "priority": "High",
+    "priority": "Medium",
     "status": "Development",
     "progress": null,
     "developers": "Renz Magsino",
