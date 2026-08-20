@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICTDO Portfolio · Priority vs Effort</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .matgrid{
+    display:grid;
+    grid-template-columns: 130px repeat(4, 1fr);
+    grid-template-rows: 34px repeat(4, minmax(96px,auto));
+    gap:6px;
+  }
+  .mat-corner{ }
+  .mat-colhead, .mat-rowhead{
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:var(--text-faint);
+  }
+  .mat-rowhead{ justify-content:flex-start; padding-left:6px; flex-direction:column; align-items:flex-start; gap:2px; }
+  .mat-rowhead b{ font-family:var(--font-display); font-size:13px; color:var(--text); letter-spacing:0; text-transform:none; }
+  .mat-cell{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:8px;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    position:relative;
+  }
+  .mat-cell.zone-win{ border-color:rgba(27,122,77,0.3); background:linear-gradient(180deg, rgba(27,122,77,0.05), var(--panel)); }
+  .mat-cell.zone-bet{ border-color:rgba(154,107,18,0.3); background:linear-gradient(180deg, rgba(154,107,18,0.05), var(--panel)); }
+  .mat-cell.zone-fill{ border-color:var(--border); }
+  .mat-cell.zone-reconsider{ border-color:rgba(179,38,30,0.28); background:linear-gradient(180deg, rgba(179,38,30,0.04), var(--panel)); }
+  .mat-zone-tag{
+    position:absolute; top:5px; right:6px;
+    font-family:var(--font-mono); font-size:8px; letter-spacing:0.5px;
+    color:var(--text-faint); text-transform:uppercase;
+  }
+  .chip{
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    background:var(--panel-3);
+    border:1px solid var(--border);
+    border-left:3px solid var(--accent);
+    padding:5px 8px;
+    border-radius:2px;
+    line-height:1.35;
+  }
+  .chip .off{ display:block; color:var(--text-faint); font-size:9px; margin-top:2px; }
+</style>
+</head>
+<body data-page="priority-effort.html">
+
+<div class="topband">
+  <div class="topband-inner">
+    <div class="callsign">
+      <div class="callsign-text">
+        <h1>ICTDO Master Project Portfolio</h1>
+        <div class="sub">Information &amp; Communications Technology Development Office</div>
+      </div>
+    </div>
+    <div class="clock" id="clock"></div>
+  </div>
+  <div class="pulse">
+    <div class="pulse-rail" id="pulseRail"></div>
+    <div class="pulse-legend" id="pulseLegend"></div>
+  </div>
+  <div class="switchboard" id="switchboard"></div>
+</div>
+
+<div class="wrap">
+
+  <div class="pagehead">
+    <div>
+      <div class="tag">Panel 05 · Sequencing</div>
+      <h2>Priority vs. Effort Matrix</h2>
+      <p>Every project placed by requested priority (rows) against effort size (columns). Use it to sequence work: high priority + low effort clears fast, high priority + high effort needs dedicated staffing, low priority + high effort is worth challenging.</p>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head"><span class="panel-title">Fig. 08 · <b>Priority × Effort Grid</b></span></div>
+    <div class="matgrid" id="matGrid"></div>
+  </div>
+
+  <div class="panel" style="margin-top:14px;" id="unsizedPanel">
+    <div class="panel-head"><span class="panel-title">Panel · <b>Effort Not Sized</b></span></div>
+    <div class="note" id="unsizedNote"></div>
+  </div>
+
+  <div class="foot">
+    <span>ICTDO PORTFOLIO CONTROL · PRIORITY × EFFORT</span>
+    <span>SNAPSHOT AS OF 20 AUG 2026</span>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+(function(){
+
+  const sized = PROJECTS.filter(p => p.effort);
+  const unsized = PROJECTS.filter(p => !p.effort);
+
+  function zoneFor(priority, effort){
+    const highPri = priority === "Critical" || priority === "High";
+    const bigEffort = effort === "L" || effort === "XL";
+    if(highPri && !bigEffort) return "zone-win";
+    if(highPri && bigEffort) return "zone-bet";
+    if(!highPri && bigEffort) return "zone-reconsider";
+    return "zone-fill";
+  }
+  function zoneLabel(priority, effort){
+    const highPri = priority === "Critical" || priority === "High";
+    const bigEffort = effort === "L" || effort === "XL";
+    if(highPri && !bigEffort) return "quick win";
+    if(highPri && bigEffort) return "big bet";
+    if(!highPri && bigEffort) return "reconsider";
+    return "fill-in";
+  }
+
+  let html = `<div class="mat-corner"></div>`;
+  EFFORT_ORDER.forEach(e => html += `<div class="mat-colhead">${EFFORT_LABEL[e]} (${e})</div>`);
+
+  PRIORITY_ORDER.forEach(pri => {
+    html += `<div class="mat-rowhead"><b>${pri}</b>${pri==='Critical'||pri==='High'?'high priority':'lower priority'}</div>`;
+    EFFORT_ORDER.forEach(eff => {
+      const projs = sized.filter(p => p.priority === pri && p.effort === eff);
+      const zc = zoneFor(pri, eff);
+      html += `<div class="mat-cell ${zc}">
+        <span class="mat-zone-tag">${zoneLabel(pri,eff)}</span>
+        ${projs.length ? projs.map(p => `<div class="chip">${p.project}<span class="off">${p.office}</span></div>`).join("") : `<span style="color:var(--text-faint); font-family:var(--font-mono); font-size:10px;">—</span>`}
+      </div>`;
+    });
+  });
+
+  document.getElementById("matGrid").innerHTML = html;
+
+  if(unsized.length){
+    document.getElementById("unsizedNote").innerHTML = unsized.map(p => `<b>${p.project}</b> — ${p.office} · ${priorityBadgeHTML(p.priority)} priority, no effort size on file<br><br>`).join("");
+  } else {
+    document.getElementById("unsizedPanel").style.display = "none";
+  }
+
+})();
+</script>
+</body>
+</html>

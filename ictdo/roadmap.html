@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICTDO Portfolio · Roadmap</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .ganttscroll{ overflow-x:auto; }
+  .gantt{ min-width:920px; }
+  .gantt-months{
+    display:grid;
+    margin-left:220px;
+    border-bottom:1px solid var(--border);
+    padding-bottom:6px;
+    margin-bottom:4px;
+  }
+  .gantt-month{
+    font-family:var(--font-mono);
+    font-size:10px;
+    letter-spacing:1px;
+    color:var(--text-faint);
+    text-transform:uppercase;
+    border-left:1px solid var(--border-soft);
+    padding-left:6px;
+  }
+  .gantt-row{
+    display:flex;
+    align-items:center;
+    height:38px;
+    border-bottom:1px solid var(--border-soft);
+    position:relative;
+  }
+  .gantt-label{
+    width:220px;
+    flex:0 0 220px;
+    padding-right:12px;
+    font-size:12px;
+    font-weight:600;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display:flex;
+    align-items:center;
+    gap:7px;
+  }
+  .gantt-track{
+    position:relative;
+    flex:1;
+    height:100%;
+  }
+  .gantt-grid{
+    position:absolute; inset:0;
+    display:grid;
+  }
+  .gantt-grid div{ border-left:1px solid var(--border-soft); }
+  .gantt-bar{
+    position:absolute;
+    top:9px; height:20px;
+    border-radius:3px;
+    display:flex; align-items:center;
+    font-family:var(--font-mono);
+    font-size:9.5px;
+    color:#FFFFFF;
+    padding:0 8px;
+    white-space:nowrap;
+    overflow:hidden;
+    font-weight:600;
+    letter-spacing:0.3px;
+  }
+  .gantt-bar.flex{ border:1px dashed rgba(255,255,255,0.5); }
+  .gantt-bar .anchor{
+    position:absolute; right:-4px; top:50%; transform:translateY(-50%) rotate(45deg);
+    width:8px; height:8px; background:inherit; border:1px solid rgba(255,255,255,0.7);
+  }
+  .gantt-bar.recurring{
+    background-image: repeating-linear-gradient(135deg, rgba(255,255,255,0.22) 0 6px, transparent 6px 12px);
+  }
+  .today-line{
+    position:absolute; top:-4px; bottom:-4px; width:1px;
+    background:var(--danger);
+    z-index:2;
+    pointer-events:none;
+  }
+  .today-line.labeled::after{
+    content:"TODAY";
+    position:absolute; top:-15px; left:4px;
+    font-family:var(--font-mono); font-size:9px; color:var(--danger); letter-spacing:0.5px;
+    white-space:nowrap;
+  }
+  .backlog-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:9px 4px; border-bottom:1px solid var(--border-soft);
+    font-size:12.5px;
+  }
+  .backlog-row:last-child{ border-bottom:none; }
+</style>
+</head>
+<body data-page="roadmap.html">
+
+<div class="topband">
+  <div class="topband-inner">
+    <div class="callsign">
+      <div class="callsign-text">
+        <h1>ICTDO Master Project Portfolio</h1>
+        <div class="sub">Information &amp; Communications Technology Development Office</div>
+      </div>
+    </div>
+    <div class="clock" id="clock"></div>
+  </div>
+  <div class="pulse">
+    <div class="pulse-rail" id="pulseRail"></div>
+    <div class="pulse-legend" id="pulseLegend"></div>
+  </div>
+  <div class="switchboard" id="switchboard"></div>
+</div>
+
+<div class="wrap">
+
+  <div class="pagehead">
+    <div>
+      <div class="tag">Panel 02 · Timeline</div>
+      <h2>Project Roadmap / Gantt</h2>
+      <p>Scheduled work plotted against target dates. The source register records no start dates for most systems, so bar starts below are <b style="color:var(--text-dim)">estimated backward from the target date using effort size</b> — treat as directional, not committed.</p>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">
+      <span class="panel-title">Fig. 05 · <b>Scheduled Timeline — Aug 2026 to Feb 2027</b></span>
+      <span class="note note-sm">■ Bar length ≈ effort-derived duration &nbsp; ⧫ fixed deadline &nbsp; ▤ recurring / ongoing</span>
+    </div>
+    <div class="ganttscroll">
+      <div class="gantt" id="ganttChart"></div>
+    </div>
+  </div>
+
+  <div class="grid grid-2" style="margin-top:14px;">
+    <div class="panel">
+      <div class="panel-head"><span class="panel-title">Panel · <b>Unscheduled</b></span></div>
+      <div class="note" style="margin-bottom:8px;">No target date on file — cannot be placed on the timeline until one is set.</div>
+      <div id="backlogList"></div>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><span class="panel-title">Panel · <b>Completed (Awaiting Updates)</b></span></div>
+      <div class="note" style="margin-bottom:8px;">Marked complete in the register, with no close-out date recorded yet.</div>
+      <div id="completedList"></div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:14px;">
+    <div class="panel-head"><span class="panel-title">Panel · <b>Assumptions</b></span></div>
+    <div class="note">
+      <b>Duration by effort size</b> (used only when a start date is missing):<br>
+      S → 4 weeks &nbsp;·&nbsp; M → 8 weeks &nbsp;·&nbsp; L → 12 weeks &nbsp;·&nbsp; XL → 20 weeks<br><br>
+      A bar clipped at today's line means the effort-derived start fell in the past — the system is treated as already underway.<br><br>
+      <b>Recurring</b> systems (AIMS, PIVOT) carry no end date in the register and are shown as continuous, ongoing operations across the visible window.
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>ICTDO PORTFOLIO CONTROL · ROADMAP DERIVED FROM TARGET DATES + EFFORT SIZE</span>
+    <span>SNAPSHOT AS OF 20 AUG 2026</span>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+(function(){
+
+  const RANGE_START = new Date("2026-08-01T00:00:00");
+  const RANGE_END   = new Date("2027-02-28T00:00:00");
+  const TOTAL_MS = RANGE_END - RANGE_START;
+  const TODAY_D = new Date(TODAY + "T00:00:00");
+
+  const DURATION_WEEKS = { S:4, M:8, L:12, XL:20 };
+  const PRI_COLOR = { Critical:"#B3261E", High:"#9A6B12", Medium:"#1E4B8F", Low:"#6B7280" };
+
+  const months = ["AUG 2026","SEP","OCT","NOV","DEC","JAN 2027","FEB"];
+
+  function pct(date){
+    return Math.max(0, Math.min(100, (date - RANGE_START) / TOTAL_MS * 100));
+  }
+
+  const scheduled = [];
+  const backlog = [];
+  const completed = [];
+
+  PROJECTS.forEach(p => {
+    if(p.status === "Completed"){
+      completed.push(p);
+      return;
+    }
+    if(p.start_date === "Recurring"){
+      scheduled.push({ p, recurring:true, startPct:0, endPct:100 });
+      return;
+    }
+    if(!p.target_date){
+      backlog.push(p);
+      return;
+    }
+    const end = new Date(p.target_date + "T00:00:00");
+    const weeks = DURATION_WEEKS[p.effort] || 6;
+    let start = new Date(end.getTime() - weeks*7*86400000);
+    let clipped = false;
+    if(start < TODAY_D){ start = TODAY_D; clipped = true; }
+    scheduled.push({ p, recurring:false, start, end, clipped });
+  });
+
+  // ---- render month header ----
+  document.getElementById("ganttChart").innerHTML = `
+    <div class="gantt-months" style="grid-template-columns:repeat(${months.length},1fr)">
+      ${months.map(m=>`<div class="gantt-month">${m}</div>`).join("")}
+    </div>
+    <div id="ganttRows"></div>
+  `;
+
+  const todayPct = pct(TODAY_D);
+
+  const sortedRows = scheduled.sort((a,b) => {
+      if(a.recurring) return -1;
+      if(b.recurring) return 1;
+      return a.start - b.start;
+    });
+
+  const rowsHTML = sortedRows
+    .map((row, idx) => {
+      const p = row.p;
+      const color = PRI_COLOR[p.priority];
+      let barHTML;
+      if(row.recurring){
+        barHTML = `<div class="gantt-bar recurring" style="left:0%; width:100%; background:${color}; opacity:0.55;">
+          ${p.project} — recurring
+        </div>`;
+      } else {
+        const l = pct(row.start), r = pct(row.end);
+        const w = Math.max(r - l, 1.2);
+        const flexClass = p.deadline_fixed === "No" ? "flex" : "";
+        barHTML = `<div class="gantt-bar ${flexClass}" style="left:${l}%; width:${w}%; background:${color};" title="${p.project}: ${fmtDate(row.clipped?TODAY:row.start.toISOString().slice(0,10))} → ${fmtDate(p.target_date)}${row.clipped?' (est. start pulled to today)':''}">
+          ${p.project}
+          ${p.deadline_fixed === "Yes" ? '<span class="anchor"></span>' : ''}
+        </div>`;
+      }
+      return `
+        <div class="gantt-row">
+          <div class="gantt-label">${priorityBadgeHTML(p.priority)} ${p.project}</div>
+          <div class="gantt-track">
+            <div class="gantt-grid" style="grid-template-columns:repeat(${months.length},1fr)">${months.map(()=>"<div></div>").join("")}</div>
+            <div class="today-line ${idx===0?'labeled':''}" style="left:${todayPct}%"></div>
+            ${barHTML}
+          </div>
+        </div>
+      `;
+    }).join("");
+
+  document.getElementById("ganttRows").innerHTML = rowsHTML;
+
+  document.getElementById("backlogList").innerHTML = backlog.length ? backlog.map(p => `
+    <div class="backlog-row">
+      <span>${p.project}</span>
+      <span style="display:flex;gap:8px;align-items:center;">${priorityBadgeHTML(p.priority)}<span class="pill">${p.effort||"—"}</span></span>
+    </div>
+  `).join("") : `<div class="note">Every project has a target date on file.</div>`;
+
+  document.getElementById("completedList").innerHTML = completed.length ? completed.map(p => `
+    <div class="backlog-row">
+      <span>${p.project}</span>
+      <span style="display:flex;gap:8px;align-items:center;">${priorityBadgeHTML(p.priority)}<span class="pill" style="color:var(--ok); border-color:rgba(27,122,77,0.3); background:var(--ok-bg);">COMPLETED</span></span>
+    </div>
+  `).join("") : `<div class="note">No projects currently marked complete.</div>`;
+
+})();
+</script>
+</body>
+</html>

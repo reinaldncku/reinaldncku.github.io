@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICTDO Portfolio · Executive Dashboard</title>
+<link rel="stylesheet" href="style.css">
+<script src="chart.umd.js"></script>
+</head>
+<body data-page="index.html">
+
+<div class="topband">
+  <div class="topband-inner">
+    <div class="callsign">
+      <div class="callsign-text">
+        <h1>ICTDO Master Project Portfolio</h1>
+        <div class="sub">Information &amp; Communications Technology Development Office</div>
+      </div>
+    </div>
+    <div class="clock" id="clock"></div>
+  </div>
+  <div class="pulse">
+    <div class="pulse-rail" id="pulseRail"></div>
+    <div class="pulse-legend" id="pulseLegend"></div>
+  </div>
+  <div class="switchboard" id="switchboard"></div>
+</div>
+
+<div class="wrap">
+
+  <div class="pagehead">
+    <div>
+      <div class="tag">Panel 01 · Overview</div>
+      <h2>Executive Portfolio Dashboard</h2>
+      <p>Portfolio-wide health at a glance — active systems, staffing exposure, and near-term deadlines across every office ICTDO serves.</p>
+    </div>
+  </div>
+
+  <div class="grid grid-4" id="kpiGrid"></div>
+
+  <div class="hr"></div>
+
+  <div class="grid grid-3">
+    <div class="panel">
+      <div class="panel-head"><span class="panel-title">Fig. 01 · <b>Status Distribution</b></span></div>
+      <canvas id="chartStatus" height="220"></canvas>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><span class="panel-title">Fig. 02 · <b>Priority Mix</b></span></div>
+      <canvas id="chartPriority" height="220"></canvas>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><span class="panel-title">Fig. 03 · <b>Effort / Size Mix</b></span></div>
+      <canvas id="chartEffort" height="220"></canvas>
+    </div>
+  </div>
+
+  <div class="grid" style="grid-template-columns: 2fr 1fr; margin-top:14px;">
+    <div class="panel">
+      <div class="panel-head"><span class="panel-title">Fig. 04 · <b>Requesting Offices — Project Count</b></span></div>
+      <canvas id="chartOffice" height="150"></canvas>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><span class="panel-title">Panel · <b>Staffing Risk</b></span></div>
+      <div id="riskList" style="display:flex;flex-direction:column;gap:10px;"></div>
+    </div>
+  </div>
+
+  <div class="pagehead" style="margin-top:36px;">
+    <div>
+      <div class="tag">Register</div>
+      <h2 style="font-size:16px;">Full Project Register</h2>
+    </div>
+  </div>
+
+  <div class="panel table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Project / System</th>
+          <th>Requesting Office</th>
+          <th>Priority</th>
+          <th>Stage</th>
+          <th>Effort</th>
+          <th>Developers</th>
+          <th>Target Date</th>
+        </tr>
+      </thead>
+      <tbody id="registerBody"></tbody>
+    </table>
+  </div>
+
+  <div class="foot">
+    <span>ICTDO PORTFOLIO CONTROL · SOURCE: ICTDO_MASTER_PROJECT_PORTFOLIO.XLSX</span>
+    <span>SNAPSHOT AS OF 20 AUG 2026 · 14 PROJECTS TRACKED</span>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+(function(){
+
+  // ---- KPI computation ----
+  const total = PROJECTS.length;
+  const critical = PROJECTS.filter(p => p.priority === "Critical").length;
+  const manpower = buildManpower();
+  const peopleCount = Object.keys(manpower).length;
+  const unassigned = PROJECTS.filter(p => !p.developers).length;
+
+  const upcoming = PROJECTS
+    .filter(p => p.target_date && p.target_date !== "Recurring")
+    .map(p => ({ p, d: daysUntil(p.target_date) }))
+    .filter(x => x.d !== null && x.d <= 60)
+    .sort((a,b) => a.d - b.d);
+
+  const kpis = [
+    { label:"Active Systems", value: total, cls:"", delta:`${PROJECTS.filter(p=>p.status!=="Not Started").length} in motion · ${PROJECTS.filter(p=>p.status==="Not Started").length} not started` },
+    { label:"Critical Priority", value: critical, cls:"danger", delta: PROJECTS.filter(p=>p.priority==="Critical").map(p=>p.project).join(" · ") },
+    { label:"Deadlines ≤ 60 Days", value: upcoming.length, cls: upcoming.length ? "warn":"ok", delta: upcoming.length ? upcoming.map(x=>x.p.project.split(" ")[0]).join(" · ") : "Nothing imminent" },
+    { label:"Unstaffed Projects", value: unassigned, cls: unassigned ? "danger":"ok", delta:`${peopleCount} people carrying the portfolio` }
+  ];
+
+  document.getElementById("kpiGrid").innerHTML = kpis.map(k => `
+    <div class="panel kpi">
+      <div class="panel-title">${k.label}</div>
+      <div class="value ${k.cls}">${k.value}</div>
+      <div class="delta">${k.delta || "&nbsp;"}</div>
+    </div>
+  `).join("");
+
+  // ---- Staffing risk panel ----
+  const unassignedProjects = PROJECTS.filter(p => !p.developers);
+  const loads = Object.entries(manpower).map(([name,ps]) => ({ name, ps, w: weightedLoad(ps) })).sort((a,b)=>b.w-a.w).slice(0,3);
+
+  let riskHTML = "";
+  if(unassignedProjects.length){
+    riskHTML += `<div class="note"><b>NO DEVELOPER ASSIGNED (${unassignedProjects.length})</b><br>${unassignedProjects.map(p=>p.project).join("<br>")}</div><div class="hr"></div>`;
+  }
+  riskHTML += `<div class="note"><b>HEAVIEST LOADS</b><br>` + loads.map(l => {
+    const tier = loadTier(l.w);
+    return `${l.name} — ${l.ps.length} projects <span class="badge badge-${tier.cls==='danger'?'critical':tier.cls==='warn'?'high':'low'}" style="margin-left:4px;">${tier.label}</span>`;
+  }).join("<br>") + `</div>`;
+  document.getElementById("riskList").innerHTML = riskHTML;
+
+  // ---- Register table ----
+  document.getElementById("registerBody").innerHTML = PROJECTS.map(p => `
+    <tr>
+      <td class="proj">${p.project}</td>
+      <td class="dim">${p.office}</td>
+      <td>${priorityBadgeHTML(p.priority)}</td>
+      <td>${stageRailHTML(p.status)}</td>
+      <td class="mono">${p.effort || "—"}</td>
+      <td class="mono">${p.developers ? p.developers : '<span style="color:var(--danger)">UNASSIGNED</span>'}</td>
+      <td class="mono">${fmtDate(p.target_date)}</td>
+    </tr>
+  `).join("");
+
+  // ---- Charts ----
+  Chart.defaults.font.family = "'IBM Plex Mono', monospace";
+  Chart.defaults.font.size = 10.5;
+  Chart.defaults.color = "#5B6673";
+
+  const count = (arr, key) => {
+    const m = {};
+    arr.forEach(x => { const k = x[key] || "—"; m[k] = (m[k]||0)+1; });
+    return m;
+  };
+
+  const statusColorsFlat = { "Not Started":"#A7AFBA", "Requirements":"#8B94A1", "Development":"#1E4B8F", "Testing":"#9A6B12", "Completed":"#1B7A4D" };
+
+  const statusCounts = count(PROJECTS, "status");
+  new Chart(document.getElementById("chartStatus"), {
+    type:"doughnut",
+    data:{
+      labels: STAGE_ORDER.filter(s=>statusCounts[s]),
+      datasets:[{
+        data: STAGE_ORDER.filter(s=>statusCounts[s]).map(s=>statusCounts[s]),
+        backgroundColor: STAGE_ORDER.filter(s=>statusCounts[s]).map(s=>statusColorsFlat[s]),
+        borderColor:"#FFFFFF", borderWidth:2
+      }]
+    },
+    options:{ plugins:{ legend:{ position:"bottom", labels:{ boxWidth:8, padding:12 } } }, cutout:"62%" }
+  });
+
+  const priorityCounts = count(PROJECTS, "priority");
+  const priColors = { Critical:"#B3261E", High:"#9A6B12", Medium:"#1E4B8F", Low:"#6B7280" };
+  new Chart(document.getElementById("chartPriority"), {
+    type:"bar",
+    data:{
+      labels: PRIORITY_ORDER.filter(p=>priorityCounts[p]),
+      datasets:[{ data: PRIORITY_ORDER.filter(p=>priorityCounts[p]).map(p=>priorityCounts[p]),
+        backgroundColor: PRIORITY_ORDER.filter(p=>priorityCounts[p]).map(p=>priColors[p]), borderRadius:2, maxBarThickness:36 }]
+    },
+    options:{ plugins:{legend:{display:false}}, scales:{ x:{grid:{display:false}}, y:{ grid:{color:"#EBEDF0"}, ticks:{precision:0} } } }
+  });
+
+  const effortCounts = count(PROJECTS, "effort");
+  new Chart(document.getElementById("chartEffort"), {
+    type:"bar",
+    data:{
+      labels: EFFORT_ORDER.filter(e=>effortCounts[e]),
+      datasets:[{ data: EFFORT_ORDER.filter(e=>effortCounts[e]).map(e=>effortCounts[e]),
+        backgroundColor:"#1E4B8F", borderRadius:2, maxBarThickness:36 }]
+    },
+    options:{ plugins:{legend:{display:false}}, scales:{ x:{grid:{display:false}}, y:{ grid:{color:"#EBEDF0"}, ticks:{precision:0} } } }
+  });
+
+  const officeCounts = count(PROJECTS, "office");
+  const officeEntries = Object.entries(officeCounts).sort((a,b)=>b[1]-a[1]);
+  new Chart(document.getElementById("chartOffice"), {
+    type:"bar",
+    data:{
+      labels: officeEntries.map(e=>e[0]),
+      datasets:[{ data: officeEntries.map(e=>e[1]), backgroundColor:"#4472AC", borderRadius:2, maxBarThickness:22 }]
+    },
+    options:{ indexAxis:"y", plugins:{legend:{display:false}}, scales:{ x:{ grid:{color:"#EBEDF0"}, ticks:{precision:0} }, y:{grid:{display:false}} } }
+  });
+
+})();
+</script>
+</body>
+</html>

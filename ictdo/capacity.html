@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICTDO Portfolio · Capacity</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .cap-row{
+    display:grid;
+    grid-template-columns:160px 1fr 90px;
+    align-items:center;
+    gap:14px;
+    height:44px;
+    border-bottom:1px solid var(--border-soft);
+  }
+  .cap-name{ font-size:12.5px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .cap-name .n{ display:block; font-family:var(--font-mono); font-size:9.5px; color:var(--text-faint); font-weight:400; margin-top:2px; }
+  .cap-track{ position:relative; height:16px; background:var(--panel-2); border-radius:2px; overflow:visible; }
+  .cap-fill{ position:absolute; top:0; left:0; height:100%; border-radius:2px; }
+  .cap-threshold{ position:absolute; top:-4px; bottom:-4px; width:1px; border-left:1px dashed var(--text-faint); }
+  .cap-threshold span{ position:absolute; top:-13px; left:3px; font-family:var(--font-mono); font-size:8.5px; color:var(--text-faint); white-space:nowrap; }
+  .cap-value{ font-family:var(--font-mono); font-size:11px; text-align:right; }
+  .legend-row{ display:flex; gap:18px; margin-bottom:14px; flex-wrap:wrap; }
+  .legend-row span{ display:flex; align-items:center; gap:6px; font-family:var(--font-mono); font-size:10.5px; color:var(--text-dim); }
+  .legend-row i{ width:9px; height:9px; border-radius:2px; display:inline-block; }
+</style>
+</head>
+<body data-page="capacity.html">
+
+<div class="topband">
+  <div class="topband-inner">
+    <div class="callsign">
+      <div class="callsign-text">
+        <h1>ICTDO Master Project Portfolio</h1>
+        <div class="sub">Information &amp; Communications Technology Development Office</div>
+      </div>
+    </div>
+    <div class="clock" id="clock"></div>
+  </div>
+  <div class="pulse">
+    <div class="pulse-rail" id="pulseRail"></div>
+    <div class="pulse-legend" id="pulseLegend"></div>
+  </div>
+  <div class="switchboard" id="switchboard"></div>
+</div>
+
+<div class="wrap">
+
+  <div class="pagehead">
+    <div>
+      <div class="tag">Panel 04 · Load</div>
+      <h2>Capacity / Overload View</h2>
+      <p>Load weights each person's projects by effort size (S=1 · M=2 · L=3 · XL=5) and sums them — a truer read of pressure than a raw project count, since one XL system can outweigh three small ones.</p>
+    </div>
+  </div>
+
+  <div class="grid grid-4" id="kpiGrid"></div>
+
+  <div class="panel" style="margin-top:14px;">
+    <div class="panel-head">
+      <span class="panel-title">Fig. 07 · <b>Weighted Load by Person</b></span>
+    </div>
+    <div class="legend-row">
+      <span><i style="background:#1B7A4D"></i>Available (&lt; 4)</span>
+      <span><i style="background:#9A6B12"></i>At Capacity (4–6)</span>
+      <span><i style="background:#B3261E"></i>Overloaded (≥ 7)</span>
+    </div>
+    <div id="capList"></div>
+  </div>
+
+  <div class="grid grid-2" style="margin-top:14px;">
+    <div class="panel">
+      <div class="panel-head"><span class="panel-title">Panel · <b>Overloaded — Detail</b></span></div>
+      <div id="overloadDetail" class="note"></div>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><span class="panel-title">Panel · <b>Unstaffed Work Waiting on Capacity</b></span></div>
+      <div id="unstaffedDetail" class="note"></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>ICTDO PORTFOLIO CONTROL · CAPACITY MODEL: EFFORT-WEIGHTED LOAD</span>
+    <span>SNAPSHOT AS OF 20 AUG 2026</span>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+(function(){
+
+  const manpower = buildManpower();
+  const people = Object.entries(manpower)
+    .map(([name,ps]) => ({ name, ps, w: weightedLoad(ps) }))
+    .sort((a,b) => b.w - a.w);
+
+  const maxW = Math.max(10, ...people.map(p=>p.w));
+  const TIER_COLOR = { ok:"#1B7A4D", warn:"#9A6B12", danger:"#B3261E" };
+
+  const overloaded = people.filter(p => loadTier(p.w).cls === "danger");
+  const atCapacity = people.filter(p => loadTier(p.w).cls === "warn");
+  const unassignedProjects = PROJECTS.filter(p => !p.developers);
+
+  const kpis = [
+    { label:"Overloaded", value: overloaded.length, cls: overloaded.length ? "danger":"ok" },
+    { label:"At Capacity", value: atCapacity.length, cls: atCapacity.length ? "warn":"ok" },
+    { label:"Peak Load", value: people[0] ? people[0].w : 0, cls:"", delta: people[0] ? people[0].name : "" },
+    { label:"Unstaffed Backlog", value: unassignedProjects.length, cls: unassignedProjects.length ? "danger":"ok" }
+  ];
+  document.getElementById("kpiGrid").innerHTML = kpis.map(k => `
+    <div class="panel kpi">
+      <div class="panel-title">${k.label}</div>
+      <div class="value ${k.cls}">${k.value}</div>
+      <div class="delta">${k.delta || "&nbsp;"}</div>
+    </div>
+  `).join("");
+
+  document.getElementById("capList").innerHTML = people.map(p => {
+    const tier = loadTier(p.w);
+    const w = (p.w / maxW * 100).toFixed(1);
+    const t4 = (4 / maxW * 100).toFixed(1);
+    const t7 = (7 / maxW * 100).toFixed(1);
+    return `
+      <div class="cap-row">
+        <div class="cap-name">${p.name}<span class="n">${p.ps.length} project${p.ps.length>1?'s':''}</span></div>
+        <div class="cap-track">
+          <div class="cap-threshold" style="left:${t4}%"></div>
+          <div class="cap-threshold" style="left:${t7}%"></div>
+          <div class="cap-fill" style="width:${w}%; background:${TIER_COLOR[tier.cls]}"></div>
+        </div>
+        <div class="cap-value">${p.w} <span style="color:var(--text-faint)">pts</span></div>
+      </div>
+    `;
+  }).join("");
+
+  document.getElementById("overloadDetail").innerHTML = overloaded.length ? overloaded.map(p => `
+    <b>${p.name}</b> — ${p.w} pts across ${p.ps.length} project(s): ${p.ps.map(x=>x.project).join(", ")}<br><br>
+  `).join("") : "No one currently crosses the overload threshold.";
+
+  document.getElementById("unstaffedDetail").innerHTML = unassignedProjects.length ? unassignedProjects.map(p => `
+    <b>${p.project}</b> — ${p.office} · ${p.priority} priority · effort ${p.effort||"unset"}<br><br>
+  `).join("") : "Every project has at least one developer assigned.";
+
+})();
+</script>
+</body>
+</html>

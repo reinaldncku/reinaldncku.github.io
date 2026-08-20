@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICTDO Portfolio · Manpower Matrix</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .matrix-wrap{ overflow-x:auto; }
+  .matrix{ border-collapse:collapse; font-size:11px; }
+  .matrix th, .matrix td{ border-bottom:1px solid var(--border-soft); text-align:center; padding:0; }
+  .matrix thead th{
+    height:150px; width:40px; min-width:40px;
+    vertical-align:bottom;
+    padding-bottom:8px;
+    border-bottom:1px solid var(--border);
+  }
+  .matrix thead th .rot{
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    font-weight:600;
+    color:var(--text-dim);
+    letter-spacing:0.3px;
+    white-space:nowrap;
+    display:inline-block;
+  }
+  .matrix thead th.corner{ vertical-align:bottom; text-align:left; padding-left:4px; }
+  .matrix tbody th{
+    text-align:left;
+    font-size:12px;
+    font-weight:600;
+    padding:8px 14px 8px 4px;
+    white-space:nowrap;
+    position:sticky; left:0;
+    background:var(--panel);
+  }
+  .matrix tbody td{ width:40px; min-width:40px; height:38px; }
+  .cell-dot{
+    width:11px; height:11px; border-radius:50%;
+    margin:0 auto;
+    display:block;
+  }
+  .row-total{
+    font-family:var(--font-mono);
+    color:var(--text-faint);
+    font-size:10.5px;
+    padding-right:4px !important;
+  }
+  .col-total-row td{
+    font-family:var(--font-mono);
+    font-size:10px;
+    color:var(--text-faint);
+    padding-top:8px;
+  }
+  .unassigned-row td.proj-cell{ color:var(--danger); }
+</style>
+</head>
+<body data-page="manpower.html">
+
+<div class="topband">
+  <div class="topband-inner">
+    <div class="callsign">
+      <div class="callsign-text">
+        <h1>ICTDO Master Project Portfolio</h1>
+        <div class="sub">Information &amp; Communications Technology Development Office</div>
+      </div>
+    </div>
+    <div class="clock" id="clock"></div>
+  </div>
+  <div class="pulse">
+    <div class="pulse-rail" id="pulseRail"></div>
+    <div class="pulse-legend" id="pulseLegend"></div>
+  </div>
+  <div class="switchboard" id="switchboard"></div>
+</div>
+
+<div class="wrap">
+
+  <div class="pagehead">
+    <div>
+      <div class="tag">Panel 03 · Staffing</div>
+      <h2>Manpower Allocation — Person × Project</h2>
+      <p>Every developer named in the register, cross-referenced against every project. Dot color marks the project's priority; row order runs from most to least concurrently staffed.</p>
+    </div>
+  </div>
+
+  <div class="grid grid-4" id="kpiGrid"></div>
+
+  <div class="panel" style="margin-top:14px;">
+    <div class="panel-head">
+      <span class="panel-title">Fig. 06 · <b>Assignment Matrix</b></span>
+      <span class="note note-sm">● assigned &nbsp;·&nbsp; colored by project priority</span>
+    </div>
+    <div class="matrix-wrap">
+      <table class="matrix" id="matrixTable"></table>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>ICTDO PORTFOLIO CONTROL · MANPOWER MATRIX</span>
+    <span>SNAPSHOT AS OF 20 AUG 2026</span>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+(function(){
+
+  const PRI_COLOR = { Critical:"#B3261E", High:"#9A6B12", Medium:"#1E4B8F", Low:"#6B7280" };
+  const manpower = buildManpower();
+  const people = Object.entries(manpower).map(([name,ps]) => ({ name, ps })).sort((a,b) => b.ps.length - a.ps.length);
+  const unassignedProjects = PROJECTS.filter(p => !p.developers);
+
+  // KPIs
+  const kpis = [
+    { label:"People Deployed", value: people.length, cls:"" },
+    { label:"Projects Staffed", value: PROJECTS.length - unassignedProjects.length, cls:"" },
+    { label:"Unstaffed Projects", value: unassignedProjects.length, cls: unassignedProjects.length ? "danger":"ok" },
+    { label:"Avg Projects / Person", value: (PROJECTS.reduce((s,p)=>s+people1(p),0) / people.length).toFixed(1), cls:"" }
+  ];
+  function people1(p){ return (p.developers ? p.developers.split(",").length : 0); }
+
+  document.getElementById("kpiGrid").innerHTML = kpis.map(k => `
+    <div class="panel kpi">
+      <div class="panel-title">${k.label}</div>
+      <div class="value ${k.cls}">${k.value}</div>
+    </div>
+  `).join("");
+
+  // Matrix
+  const cols = PROJECTS; // keep register order
+  let thead = `<thead><tr><th class="corner"></th>` +
+    cols.map(p => `<th><span class="rot">${p.project}</span></th>`).join("") +
+    `<th></th></tr></thead>`;
+
+  let tbody = "<tbody>";
+  people.forEach(person => {
+    tbody += `<tr><th>${person.name}</th>`;
+    cols.forEach(proj => {
+      const assigned = proj.developers && proj.developers.split(",").map(s=>s.trim()).includes(person.name);
+      tbody += `<td>${assigned ? `<span class="cell-dot" style="background:${PRI_COLOR[proj.priority]}" title="${proj.project} — ${proj.priority}"></span>` : ""}</td>`;
+    });
+    tbody += `<td class="row-total">${person.ps.length}</td></tr>`;
+  });
+
+  // unassigned row
+  if(unassignedProjects.length){
+    tbody += `<tr class="unassigned-row"><th style="color:var(--danger)">— unassigned —</th>`;
+    cols.forEach(proj => {
+      const isUnassigned = !proj.developers;
+      tbody += `<td>${isUnassigned ? `<span class="cell-dot" style="background:var(--danger)" title="No developer assigned"></span>` : ""}</td>`;
+    });
+    tbody += `<td class="row-total">${unassignedProjects.length}</td></tr>`;
+  }
+
+  tbody += "</tbody>";
+  document.getElementById("matrixTable").innerHTML = thead + tbody;
+
+})();
+</script>
+</body>
+</html>
