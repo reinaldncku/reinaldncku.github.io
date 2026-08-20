@@ -14,7 +14,7 @@
     <div class="callsign">
       <div class="callsign-text">
         <h1>ICTDO Systems Development Portfolio</h1>
-        <div class="sub">Information &amp; Communications Technology Development Office</div>
+        <div class="sub">A portfolio-wide view of all systems ICTDO is currently developing or has been requested to develop, including their status, staffing, priorities, and timelines.</div>
       </div>
     </div>
     <div class="clock" id="clock"></div>
@@ -32,7 +32,6 @@
     <div>
       <div class="tag">Panel 01 · Overview</div>
       <h2>Executive Portfolio Dashboard</h2>
-      <p>Portfolio-wide health at a glance — active systems, staffing exposure, and near-term deadlines across every office ICTDO serves.</p>
     </div>
   </div>
 
@@ -115,7 +114,7 @@
     .sort((a,b) => a.d - b.d);
 
   const kpis = [
-    { label:"Active Systems", value: total, cls:"", delta:`${PROJECTS.filter(p=>p.status!=="Not Started").length} in motion · ${PROJECTS.filter(p=>p.status==="Not Started").length} not started` },
+    { label:"Systems Development Workload", value: total, cls:"", delta:`${PROJECTS.filter(p=>p.status!=="Not Started").length} in motion · ${PROJECTS.filter(p=>p.status==="Not Started").length} not started` },
     { label:"Critical Priority", value: critical, cls:"danger", delta: PROJECTS.filter(p=>p.priority==="Critical").map(p=>p.project).join(" · ") },
     { label:"Deadlines ≤ 60 Days", value: upcoming.length, cls: upcoming.length ? "warn":"ok", delta: upcoming.length ? upcoming.map(x=>x.p.project.split(" ")[0]).join(" · ") : "Nothing imminent" },
     { label:"Unstaffed Projects", value: unassigned, cls: unassigned ? "danger":"ok", delta:`${peopleCount} people carrying the portfolio` }

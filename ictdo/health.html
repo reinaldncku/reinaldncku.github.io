@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICTDO Portfolio · Health</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .rag-row{
+    display:grid;
+    grid-template-columns: 14px 1.6fr 0.9fr 0.7fr 1fr 1.8fr 0.9fr;
+    gap:14px;
+    align-items:center;
+    padding:13px 6px;
+    border-bottom:1px solid var(--border-soft);
+  }
+  .rag-row:last-child{ border-bottom:none; }
+  .rag-row .head{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.7px;
+    text-transform:uppercase;
+    color:var(--text-faint);
+    padding-bottom:11px;
+    border-bottom:1px solid var(--border);
+  }
+  .rag-dot{
+    width:12px; height:12px;
+    border-radius:50%;
+    display:block;
+  }
+  .rag-proj{ font-weight:600; font-size:13.5px; }
+  .rag-proj .off{ display:block; font-family:var(--font-mono); font-size:11px; color:var(--text-faint); font-weight:400; margin-top:2px; }
+  .rag-label{
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:var(--font-mono); font-size:11px; letter-spacing:0.4px; text-transform:uppercase; font-weight:600;
+  }
+  .factor-chip{
+    display:inline-block;
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    color:var(--text-dim);
+    background:var(--panel-3);
+    border:1px solid var(--border);
+    padding:3px 7px;
+    border-radius:3px;
+    margin:2px 4px 2px 0;
+    white-space:nowrap;
+  }
+  .rag-staff{ font-family:var(--font-mono); font-size:12px; color:var(--text-dim); }
+  .rag-staff.un{ color:var(--danger); }
+  .rag-date{ font-family:var(--font-mono); font-size:12px; color:var(--text-dim); }
+  .legend-row{ display:flex; gap:20px; margin-bottom:14px; flex-wrap:wrap; }
+  .legend-row span{ display:flex; align-items:center; gap:7px; font-family:var(--font-mono); font-size:11.5px; color:var(--text-dim); }
+  .legend-row i{ width:10px; height:10px; border-radius:50%; display:inline-block; }
+</style>
+</head>
+<body data-page="health.html">
+
+<div class="topband">
+  <div class="topband-inner">
+    <div class="callsign">
+      <div class="callsign-text">
+        <h1>ICTDO Systems Development Portfolio</h1>
+        <div class="sub">A portfolio-wide view of all systems ICTDO is currently developing or has been requested to develop, including their status, staffing, priorities, and timelines.</div>
+      </div>
+    </div>
+    <div class="clock" id="clock"></div>
+  </div>
+  <div class="pulse">
+    <div class="pulse-rail" id="pulseRail"></div>
+    <div class="pulse-legend" id="pulseLegend"></div>
+  </div>
+  <div class="switchboard" id="switchboard"></div>
+</div>
+
+<div class="wrap">
+
+  <div class="pagehead">
+    <div>
+      <div class="tag">Panel 06 · Health</div>
+      <h2>Portfolio Health / RAG Board</h2>
+      <p>Every project rolled up into a single Red / Amber / Green rating, built from four visible factors — staffing, priority, stage-versus-priority, and fixed-deadline proximity. Nothing is hidden inside the score; the factors that drove each rating are listed alongside it.</p>
+    </div>
+  </div>
+
+  <div class="grid grid-4" id="kpiGrid"></div>
+
+  <div class="panel" style="margin-top:14px;">
+    <div class="panel-head"><span class="panel-title">Fig. 09 · <b>Portfolio Health Board</b></span></div>
+    <div class="legend-row">
+      <span><i style="background:#B3261E"></i>At Risk — act now</span>
+      <span><i style="background:#9A6B12"></i>Needs Attention — watch closely</span>
+      <span><i style="background:#1B7A4D"></i>On Track</span>
+    </div>
+
+    <div class="rag-row" style="border-bottom:1px solid var(--border);">
+      <span></span>
+      <span class="head">Project / System</span>
+      <span class="head">Priority</span>
+      <span class="head">Stage</span>
+      <span class="head">Staffing</span>
+      <span class="head">Why This Rating</span>
+      <span class="head">Target Date</span>
+    </div>
+
+    <div id="ragList"></div>
+  </div>
+
+  <div class="panel" style="margin-top:14px;">
+    <div class="panel-head"><span class="panel-title">Panel · <b>How This Is Scored</b></span></div>
+    <div class="note">
+      Each project starts at zero and picks up points only for factors that are actually true of it. <b>Completed</b> projects are always Green.<br><br>
+      <b>Staffing</b> — no developer on file: +3<br>
+      <b>Priority</b> — Critical: +2 · High: +1<br>
+      <b>Stage vs. priority</b> — Critical or High priority still at Not Started or Requirements: +1<br>
+      <b>Fixed-deadline proximity</b> — only applies when Deadline Fixed = Yes: past due: +3 · due within 30 days: +2 · due within 60 days: +1 · deadline is fixed but no date is on file: +1<br><br>
+      <b>Rating</b> — 5 points or more is <span style="color:var(--danger); font-weight:600;">At Risk</span>, 2–4 is <span style="color:var(--warn); font-weight:600;">Needs Attention</span>, under 2 is <span style="color:var(--ok); font-weight:600;">On Track</span>.
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>ICTDO PORTFOLIO CONTROL · HEALTH MODEL: STAFFING + PRIORITY + STAGE + DEADLINE</span>
+    <span>SNAPSHOT AS OF 20 AUG 2026</span>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+(function(){
+
+  const rated = PROJECTS.map(p => ({ p, h: computeHealth(p) }));
+  const order = { red:0, amber:1, green:2 };
+  rated.sort((a,b) => {
+    if(order[a.h.rag] !== order[b.h.rag]) return order[a.h.rag] - order[b.h.rag];
+    return b.h.score - a.h.score;
+  });
+
+  const counts = { red:0, amber:0, green:0 };
+  rated.forEach(r => counts[r.h.rag]++);
+
+  const kpis = [
+    { label:"At Risk", value: counts.red, cls: counts.red ? "danger":"ok" },
+    { label:"Needs Attention", value: counts.amber, cls: counts.amber ? "warn":"ok" },
+    { label:"On Track", value: counts.green, cls:"ok" },
+    { label:"Portfolio Size", value: PROJECTS.length, cls:"" }
+  ];
+  document.getElementById("kpiGrid").innerHTML = kpis.map(k => `
+    <div class="panel kpi">
+      <div class="panel-title">${k.label}</div>
+      <div class="value ${k.cls}">${k.value}</div>
+    </div>
+  `).join("");
+
+  document.getElementById("ragList").innerHTML = rated.map(r => {
+    const p = r.p, h = r.h;
+    const color = RAG_COLOR[h.rag];
+    const factorsHTML = h.factors.length
+      ? h.factors.map(f => `<span class="factor-chip">${f.label}</span>`).join("")
+      : `<span class="factor-chip">No risk factors on file</span>`;
+    const staffHTML = p.developers
+      ? `<span class="rag-staff">${p.developers.split(",").length} assigned</span>`
+      : `<span class="rag-staff un">Unassigned</span>`;
+    return `
+      <div class="rag-row">
+        <span class="rag-dot" style="background:${color}" title="${RAG_LABEL[h.rag]}"></span>
+        <span class="rag-proj">${p.project}<span class="off">${p.office}</span></span>
+        <span>${priorityBadgeHTML(p.priority)}</span>
+        <span>${stageRailHTML(p.status)}</span>
+        <span>${staffHTML}</span>
+        <span>${factorsHTML}</span>
+        <span class="rag-date">${fmtDate(p.target_date)}</span>
+      </div>
+    `;
+  }).join("");
+
+})();
+</script>
+</body>
+</html>

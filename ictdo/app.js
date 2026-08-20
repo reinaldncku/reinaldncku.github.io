@@ -62,19 +62,60 @@ function weightedLoad(projects){
 }
 
 function loadTier(weight){
-  if(weight >= 7) return { label:"Overloaded", cls:"danger" };
-  if(weight >= 4) return { label:"At Capacity", cls:"warn" };
+  if(weight >= 11) return { label:"Overloaded", cls:"danger" };
+  if(weight >= 7) return { label:"At Capacity", cls:"warn" };
   return { label:"Available", cls:"ok" };
 }
+
+/* ---------- Portfolio health / RAG scoring ---------- */
+/* Transparent point model — every point traces to a labeled factor,
+   shown alongside the rating rather than hidden inside a black-box score. */
+
+function computeHealth(p){
+  if(p.status === "Completed"){
+    return { score:0, rag:"green", factors:[{ label:"Complete", pts:0 }] };
+  }
+
+  const factors = [];
+  const staffed = !!p.developers;
+  if(!staffed) factors.push({ label:"No developer assigned", pts:3 });
+
+  if(p.priority === "Critical") factors.push({ label:"Critical priority", pts:2 });
+  else if(p.priority === "High") factors.push({ label:"High priority", pts:1 });
+
+  const earlyStage = (p.status === "Not Started" || p.status === "Requirements");
+  if(earlyStage && (p.priority === "Critical" || p.priority === "High")){
+    factors.push({ label:"Early stage for its priority", pts:1 });
+  }
+
+  if(p.deadline_fixed === "Yes"){
+    if(!p.target_date){
+      factors.push({ label:"Fixed deadline, no date on file", pts:1 });
+    } else {
+      const d = daysUntil(p.target_date);
+      if(d !== null && d < 0) factors.push({ label:"Past target date", pts:3 });
+      else if(d !== null && d <= 30) factors.push({ label:"Fixed deadline within 30 days", pts:2 });
+      else if(d !== null && d <= 60) factors.push({ label:"Fixed deadline within 60 days", pts:1 });
+    }
+  }
+
+  const score = factors.reduce((s,f) => s + f.pts, 0);
+  const rag = score >= 5 ? "red" : score >= 2 ? "amber" : "green";
+  return { score, rag, factors };
+}
+
+const RAG_COLOR = { red:"var(--danger)", amber:"var(--warn)", green:"var(--ok)" };
+const RAG_LABEL = { red:"At Risk", amber:"Needs Attention", green:"On Track" };
 
 /* ---------- Chrome: topband, pulse strip, switchboard, clock ---------- */
 
 const NAV_ITEMS = [
-  { href:"index.html",            code:"DASH",     label:"Executive Dashboard" },
-  { href:"roadmap.html",          code:"ROADMAP",  label:"Roadmap / Gantt" },
-  { href:"manpower.html",         code:"CREW",     label:"Manpower Matrix" },
-  { href:"capacity.html",         code:"LOAD",     label:"Capacity / Overload" },
-  { href:"priority-effort.html",  code:"MATRIX",   label:"Priority vs Effort" }
+  { href:"index.html",            code:"HOME",                     label:"Executive Dashboard" },
+  { href:"roadmap.html",          code:"GANTT CHART",              label:"Roadmap / Gantt" },
+  { href:"manpower.html",         code:"MANPOWER",                 label:"Manpower Matrix" },
+  { href:"capacity.html",         code:"CAPACITY",                 label:"Capacity / Overload" },
+  { href:"priority-effort.html",  code:"PRIORITY-EFFORT MATRIX",   label:"Priority vs Effort" },
+  { href:"health.html",           code:"HEALTH",                   label:"Portfolio Health / RAG" }
 ];
 
 function renderSwitchboard(activeHref){
