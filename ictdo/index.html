@@ -24,6 +24,7 @@
     <div class="pulse-legend" id="pulseLegend"></div>
   </div>
   <div class="switchboard" id="switchboard"></div>
+  <div class="filterbar" id="filterBar"></div>
 </div>
 
 <div class="wrap">
@@ -100,22 +101,24 @@
 <script>
 (function(){
 
-  // ---- KPI computation ----
-  const total = PROJECTS.length;
-  const critical = PROJECTS.filter(p => p.priority === "Critical").length;
-  const manpower = buildManpower();
-  const peopleCount = Object.keys(manpower).length;
-  const unassigned = PROJECTS.filter(p => !p.developers).length;
+  const DATA = filteredProjects();
 
-  const upcoming = PROJECTS
+  // ---- KPI computation ----
+  const total = DATA.length;
+  const critical = DATA.filter(p => p.priority === "Critical").length;
+  const manpower = buildManpower(DATA);
+  const peopleCount = Object.keys(manpower).length;
+  const unassigned = DATA.filter(p => !p.developers).length;
+
+  const upcoming = DATA
     .filter(p => p.target_date && p.target_date !== "Recurring")
     .map(p => ({ p, d: daysUntil(p.target_date) }))
     .filter(x => x.d !== null && x.d <= 60)
     .sort((a,b) => a.d - b.d);
 
   const kpis = [
-    { label:"Systems Development Workload", value: total, cls:"", delta:`${PROJECTS.filter(p=>p.status!=="Not Started").length} in motion · ${PROJECTS.filter(p=>p.status==="Not Started").length} not started` },
-    { label:"Critical Priority", value: critical, cls:"danger", delta: PROJECTS.filter(p=>p.priority==="Critical").map(p=>p.project).join(" · ") },
+    { label:"Systems Development Workload", value: total, cls:"", delta:`${DATA.filter(p=>p.status!=="Not Started").length} in motion · ${DATA.filter(p=>p.status==="Not Started").length} not started` },
+    { label:"Critical Priority", value: critical, cls:"danger", delta: DATA.filter(p=>p.priority==="Critical").map(p=>p.project).join(" · ") },
     { label:"Deadlines ≤ 60 Days", value: upcoming.length, cls: upcoming.length ? "warn":"ok", delta: upcoming.length ? upcoming.map(x=>x.p.project.split(" ")[0]).join(" · ") : "Nothing imminent" },
     { label:"Unstaffed Projects", value: unassigned, cls: unassigned ? "danger":"ok", delta:`${peopleCount} people carrying the portfolio` }
   ];
@@ -129,7 +132,7 @@
   `).join("");
 
   // ---- Staffing risk panel ----
-  const unassignedProjects = PROJECTS.filter(p => !p.developers);
+  const unassignedProjects = DATA.filter(p => !p.developers);
   const loads = Object.entries(manpower).map(([name,ps]) => ({ name, ps, w: weightedLoad(ps) })).sort((a,b)=>b.w-a.w).slice(0,3);
 
   let riskHTML = "";
@@ -143,7 +146,7 @@
   document.getElementById("riskList").innerHTML = riskHTML;
 
   // ---- Register table ----
-  document.getElementById("registerBody").innerHTML = PROJECTS.map(p => `
+  document.getElementById("registerBody").innerHTML = DATA.length ? DATA.map(p => `
     <tr>
       <td class="proj">${p.project}</td>
       <td class="dim">${p.office}</td>
@@ -153,7 +156,9 @@
       <td class="mono">${p.developers ? p.developers : '<span style="color:var(--danger)">UNASSIGNED</span>'}</td>
       <td class="mono">${fmtDate(p.target_date)}</td>
     </tr>
-  `).join("");
+  `).join("") : `<tr><td colspan="7" class="dim" style="text-align:center; padding:24px;">No projects match the current filters.</td></tr>`;
+
+  updateFilterCount(DATA.length, PROJECTS.length);
 
   // ---- Charts ----
   Chart.defaults.font.family = "'IBM Plex Mono', monospace";
@@ -168,7 +173,7 @@
 
   const statusColorsFlat = { "Not Started":"#A7AFBA", "Requirements":"#8B94A1", "Development":"#1E4B8F", "Testing":"#9A6B12", "Completed":"#1B7A4D" };
 
-  const statusCounts = count(PROJECTS, "status");
+  const statusCounts = count(DATA, "status");
   new Chart(document.getElementById("chartStatus"), {
     type:"doughnut",
     data:{
@@ -182,7 +187,7 @@
     options:{ plugins:{ legend:{ position:"bottom", labels:{ boxWidth:8, padding:12 } } }, cutout:"62%" }
   });
 
-  const priorityCounts = count(PROJECTS, "priority");
+  const priorityCounts = count(DATA, "priority");
   const priColors = { Critical:"#B3261E", High:"#9A6B12", Medium:"#1E4B8F", Low:"#6B7280" };
   new Chart(document.getElementById("chartPriority"), {
     type:"bar",
@@ -194,7 +199,7 @@
     options:{ plugins:{legend:{display:false}}, scales:{ x:{grid:{display:false}}, y:{ grid:{color:"#EBEDF0"}, ticks:{precision:0} } } }
   });
 
-  const effortCounts = count(PROJECTS, "effort");
+  const effortCounts = count(DATA, "effort");
   new Chart(document.getElementById("chartEffort"), {
     type:"bar",
     data:{
@@ -205,7 +210,7 @@
     options:{ plugins:{legend:{display:false}}, scales:{ x:{grid:{display:false}}, y:{ grid:{color:"#EBEDF0"}, ticks:{precision:0} } } }
   });
 
-  const officeCounts = count(PROJECTS, "office");
+  const officeCounts = count(DATA, "office");
   const officeEntries = Object.entries(officeCounts).sort((a,b)=>b[1]-a[1]);
   new Chart(document.getElementById("chartOffice"), {
     type:"bar",

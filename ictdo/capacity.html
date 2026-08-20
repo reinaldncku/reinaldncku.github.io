@@ -43,6 +43,7 @@
     <div class="pulse-legend" id="pulseLegend"></div>
   </div>
   <div class="switchboard" id="switchboard"></div>
+  <div class="filterbar" id="filterBar"></div>
 </div>
 
 <div class="wrap">
@@ -91,17 +92,18 @@
 <script>
 (function(){
 
-  const manpower = buildManpower();
+  const DATA = filteredProjects();
+  const manpower = buildManpower(DATA);
   const people = Object.entries(manpower)
     .map(([name,ps]) => ({ name, ps, w: weightedLoad(ps) }))
     .sort((a,b) => b.w - a.w);
 
-  const maxW = Math.max(10, ...people.map(p=>p.w));
+  const maxW = Math.max(10, ...people.map(p=>p.w), 1);
   const TIER_COLOR = { ok:"#1B7A4D", warn:"#9A6B12", danger:"#B3261E" };
 
   const overloaded = people.filter(p => loadTier(p.w).cls === "danger");
   const atCapacity = people.filter(p => loadTier(p.w).cls === "warn");
-  const unassignedProjects = PROJECTS.filter(p => !p.developers);
+  const unassignedProjects = DATA.filter(p => !p.developers);
 
   const kpis = [
     { label:"Overloaded", value: overloaded.length, cls: overloaded.length ? "danger":"ok" },
@@ -117,7 +119,7 @@
     </div>
   `).join("");
 
-  document.getElementById("capList").innerHTML = people.map(p => {
+  document.getElementById("capList").innerHTML = people.length ? people.map(p => {
     const tier = loadTier(p.w);
     const w = (p.w / maxW * 100).toFixed(1);
     const t7 = (7 / maxW * 100).toFixed(1);
@@ -133,7 +135,7 @@
         <div class="cap-value">${p.w} <span style="color:var(--text-faint)">pts</span></div>
       </div>
     `;
-  }).join("");
+  }).join("") : `<div class="note" style="padding:16px 4px;">No staffed projects match the current filters.</div>`;
 
   document.getElementById("overloadDetail").innerHTML = overloaded.length ? overloaded.map(p => `
     <b>${p.name}</b> — ${p.w} pts across ${p.ps.length} project(s): ${p.ps.map(x=>x.project).join(", ")}<br><br>
@@ -142,6 +144,8 @@
   document.getElementById("unstaffedDetail").innerHTML = unassignedProjects.length ? unassignedProjects.map(p => `
     <b>${p.project}</b> — ${p.office} · ${p.priority} priority · effort ${p.effort||"unset"}<br><br>
   `).join("") : "Every project has at least one developer assigned.";
+
+  updateFilterCount(DATA.length, PROJECTS.length);
 
 })();
 </script>

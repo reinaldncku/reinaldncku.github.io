@@ -72,6 +72,7 @@
     <div class="pulse-legend" id="pulseLegend"></div>
   </div>
   <div class="switchboard" id="switchboard"></div>
+  <div class="filterbar" id="filterBar"></div>
 </div>
 
 <div class="wrap">
@@ -105,8 +106,9 @@
 <script>
 (function(){
 
-  const sized = PROJECTS.filter(p => p.effort);
-  const unsized = PROJECTS.filter(p => !p.effort);
+  const DATA = filteredProjects();
+  const sized = DATA.filter(p => p.effort);
+  const unsized = DATA.filter(p => !p.effort);
 
   function zoneFor(priority, effort){
     const highPri = priority === "Critical" || priority === "High";
@@ -147,6 +149,8 @@
   } else {
     document.getElementById("unsizedPanel").style.display = "none";
   }
+
+  updateFilterCount(DATA.length, PROJECTS.length);
 
 })();
 </script>

@@ -204,6 +204,57 @@ a:focus-visible, button:focus-visible, .switch:focus-visible{
 }
 
 /* ==========================================================================
+   FILTER BAR — persists across pages via the URL query string
+   ========================================================================== */
+
+.filterbar{
+  max-width:1400px;
+  margin:0 auto;
+  padding:12px 30px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  background:var(--panel-2);
+  border-bottom:1px solid var(--border);
+}
+
+.fb-input, .fb-select{
+  font-family:var(--font-body);
+  font-size:12.5px;
+  color:var(--text);
+  background:var(--panel);
+  border:1px solid var(--border-strong);
+  border-radius:5px;
+  padding:7px 10px;
+}
+.fb-input{ min-width:180px; flex:1 1 180px; max-width:280px; }
+.fb-select{ min-width:128px; cursor:pointer; }
+.fb-input:focus, .fb-select:focus{ outline:2px solid var(--accent); outline-offset:1px; }
+
+.fb-count{
+  font-family:var(--font-mono);
+  font-size:11.5px;
+  color:var(--text-faint);
+  margin-left:auto;
+  white-space:nowrap;
+}
+
+.fb-clear{
+  font-family:var(--font-mono);
+  font-size:11.5px;
+  font-weight:600;
+  color:var(--accent);
+  background:var(--panel);
+  border:1px solid var(--accent-dim);
+  border-radius:5px;
+  padding:7px 11px;
+  white-space:nowrap;
+  display:inline-flex;
+}
+.fb-clear:hover{ background:var(--accent-soft); }
+
+/* ==========================================================================
    PAGE HEAD
    ========================================================================== */
 

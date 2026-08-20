@@ -46,9 +46,10 @@ function people(project){
   return project.developers.split(",").map(s => s.trim()).filter(Boolean);
 }
 
-function buildManpower(){
+function buildManpower(list){
+  list = list || PROJECTS;
   const map = {};
-  PROJECTS.forEach(p => {
+  list.forEach(p => {
     people(p).forEach(name => {
       if(!map[name]) map[name] = [];
       map[name].push(p);
@@ -107,6 +108,110 @@ function computeHealth(p){
 const RAG_COLOR = { red:"var(--danger)", amber:"var(--warn)", green:"var(--ok)" };
 const RAG_LABEL = { red:"At Risk", amber:"Needs Attention", green:"On Track" };
 
+/* ---------- Global filter bar ---------- */
+/* Filter state lives in the URL query string, so it survives tab
+   navigation (the switchboard re-appends it to every link) and is
+   shareable/bookmarkable. Every page reads it via filteredProjects()
+   and renders from that instead of the raw PROJECTS array. */
+
+function getFilterState(){
+  const params = new URLSearchParams(window.location.search);
+  return {
+    q: params.get("q") || "",
+    office: params.get("office") || "",
+    priority: params.get("priority") || "",
+    status: params.get("status") || "",
+    person: params.get("person") || ""
+  };
+}
+
+function filterQueryString(state){
+  const params = new URLSearchParams();
+  if(state.q) params.set("q", state.q);
+  if(state.office) params.set("office", state.office);
+  if(state.priority) params.set("priority", state.priority);
+  if(state.status) params.set("status", state.status);
+  if(state.person) params.set("person", state.person);
+  const s = params.toString();
+  return s ? "?" + s : "";
+}
+
+function filteredProjects(){
+  const f = getFilterState();
+  return PROJECTS.filter(p => {
+    if(f.office && p.office !== f.office) return false;
+    if(f.priority && p.priority !== f.priority) return false;
+    if(f.status && p.status !== f.status) return false;
+    if(f.person){
+      const names = p.developers ? p.developers.split(",").map(s=>s.trim()) : [];
+      if(!names.includes(f.person)) return false;
+    }
+    if(f.q){
+      const hay = (p.project + " " + (p.office||"") + " " + (p.developers||"")).toLowerCase();
+      if(!hay.includes(f.q.toLowerCase())) return false;
+    }
+    return true;
+  });
+}
+
+function renderFilterBar(){
+  const el = document.getElementById("filterBar");
+  if(!el) return;
+  const f = getFilterState();
+  const offices = [...new Set(PROJECTS.map(p=>p.office))].sort();
+  const people = Object.keys(buildManpower()).sort();
+  const esc = s => String(s).replace(/"/g,"&quot;");
+
+  el.innerHTML = `
+    <input type="text" id="fbSearch" class="fb-input" placeholder="Search projects…" value="${esc(f.q)}">
+    <select id="fbOffice" class="fb-select">
+      <option value="">All Offices</option>
+      ${offices.map(o=>`<option value="${esc(o)}" ${f.office===o?'selected':''}>${o}</option>`).join("")}
+    </select>
+    <select id="fbPriority" class="fb-select">
+      <option value="">All Priorities</option>
+      ${PRIORITY_ORDER.map(o=>`<option value="${o}" ${f.priority===o?'selected':''}>${o}</option>`).join("")}
+    </select>
+    <select id="fbStatus" class="fb-select">
+      <option value="">All Stages</option>
+      ${STAGE_ORDER.map(o=>`<option value="${o}" ${f.status===o?'selected':''}>${o}</option>`).join("")}
+    </select>
+    <select id="fbPerson" class="fb-select">
+      <option value="">All People</option>
+      ${people.map(o=>`<option value="${esc(o)}" ${f.person===o?'selected':''}>${o}</option>`).join("")}
+    </select>
+    <span id="filterCount" class="fb-count"></span>
+    <a href="${window.location.pathname}" class="fb-clear" id="fbClear">Clear filters</a>
+  `;
+
+  function apply(){
+    const state = {
+      q: document.getElementById("fbSearch").value.trim(),
+      office: document.getElementById("fbOffice").value,
+      priority: document.getElementById("fbPriority").value,
+      status: document.getElementById("fbStatus").value,
+      person: document.getElementById("fbPerson").value
+    };
+    window.location.href = window.location.pathname + filterQueryString(state);
+  }
+
+  ["fbOffice","fbPriority","fbStatus","fbPerson"].forEach(id => {
+    document.getElementById(id).addEventListener("change", apply);
+  });
+  const search = document.getElementById("fbSearch");
+  search.addEventListener("keydown", e => { if(e.key === "Enter") apply(); });
+  search.addEventListener("blur", apply);
+
+  const anyActive = f.q || f.office || f.priority || f.status || f.person;
+  document.getElementById("fbClear").style.display = anyActive ? "inline-flex" : "none";
+}
+
+function updateFilterCount(shown, total){
+  const el = document.getElementById("filterCount");
+  if(!el) return;
+  el.textContent = shown === total ? `${total} projects` : `Showing ${shown} of ${total} projects`;
+}
+
 /* ---------- Chrome: topband, pulse strip, switchboard, clock ---------- */
 
 const NAV_ITEMS = [
@@ -121,8 +226,9 @@ const NAV_ITEMS = [
 function renderSwitchboard(activeHref){
   const el = document.getElementById("switchboard");
   if(!el) return;
+  const qs = window.location.search;
   el.innerHTML = NAV_ITEMS.map(item => `
-    <a class="switch ${item.href===activeHref ? 'active':''}" href="${item.href}" title="${item.label}">
+    <a class="switch ${item.href===activeHref ? 'active':''}" href="${item.href}${qs}" title="${item.label}">
       <span class="dot"></span>${item.code}
     </a>
   `).join("");
@@ -170,8 +276,13 @@ function priorityBadgeHTML(priority){
   return `<span class="badge badge-${cls}">${priority}</span>`;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  renderSwitchboard(document.body.getAttribute("data-page"));
-  renderPulse();
-  renderClock();
-});
+/* Called immediately (not on DOMContentLoaded): app.js is a blocking
+   script placed after the topband/switchboard/filterbar markup, so
+   those elements already exist in the DOM by the time this file runs.
+   Each page's own inline script executes right after this one and
+   calls updateFilterCount() well before DOMContentLoaded would fire,
+   so the chrome must be built synchronously here. */
+renderSwitchboard(document.body.getAttribute("data-page"));
+renderPulse();
+renderClock();
+renderFilterBar();

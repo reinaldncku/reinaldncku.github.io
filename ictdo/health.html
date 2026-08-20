@@ -72,6 +72,7 @@
     <div class="pulse-legend" id="pulseLegend"></div>
   </div>
   <div class="switchboard" id="switchboard"></div>
+  <div class="filterbar" id="filterBar"></div>
 </div>
 
 <div class="wrap">
@@ -130,7 +131,8 @@
 <script>
 (function(){
 
-  const rated = PROJECTS.map(p => ({ p, h: computeHealth(p) }));
+  const DATA = filteredProjects();
+  const rated = DATA.map(p => ({ p, h: computeHealth(p) }));
   const order = { red:0, amber:1, green:2 };
   rated.sort((a,b) => {
     if(order[a.h.rag] !== order[b.h.rag]) return order[a.h.rag] - order[b.h.rag];
@@ -144,7 +146,7 @@
     { label:"At Risk", value: counts.red, cls: counts.red ? "danger":"ok" },
     { label:"Needs Attention", value: counts.amber, cls: counts.amber ? "warn":"ok" },
     { label:"On Track", value: counts.green, cls:"ok" },
-    { label:"Portfolio Size", value: PROJECTS.length, cls:"" }
+    { label:"Portfolio Size", value: DATA.length, cls:"" }
   ];
   document.getElementById("kpiGrid").innerHTML = kpis.map(k => `
     <div class="panel kpi">
@@ -153,7 +155,7 @@
     </div>
   `).join("");
 
-  document.getElementById("ragList").innerHTML = rated.map(r => {
+  document.getElementById("ragList").innerHTML = rated.length ? rated.map(r => {
     const p = r.p, h = r.h;
     const color = RAG_COLOR[h.rag];
     const factorsHTML = h.factors.length
@@ -173,7 +175,9 @@
         <span class="rag-date">${fmtDate(p.target_date)}</span>
       </div>
     `;
-  }).join("");
+  }).join("") : `<div class="note" style="padding:16px 4px;">No projects match the current filters.</div>`;
+
+  updateFilterCount(DATA.length, PROJECTS.length);
 
 })();
 </script>

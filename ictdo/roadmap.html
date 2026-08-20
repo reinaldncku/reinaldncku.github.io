@@ -113,6 +113,7 @@
     <div class="pulse-legend" id="pulseLegend"></div>
   </div>
   <div class="switchboard" id="switchboard"></div>
+  <div class="filterbar" id="filterBar"></div>
 </div>
 
 <div class="wrap">
@@ -169,6 +170,8 @@
 <script>
 (function(){
 
+  const DATA = filteredProjects();
+
   const RANGE_START = new Date("2026-08-01T00:00:00");
   const RANGE_END   = new Date("2027-02-28T00:00:00");
   const TOTAL_MS = RANGE_END - RANGE_START;
@@ -187,7 +190,7 @@
   const backlog = [];
   const completed = [];
 
-  PROJECTS.forEach(p => {
+  DATA.forEach(p => {
     if(p.status === "Completed"){
       completed.push(p);
       return;
@@ -254,21 +257,25 @@
       `;
     }).join("");
 
-  document.getElementById("ganttRows").innerHTML = rowsHTML;
+  document.getElementById("ganttRows").innerHTML = rowsHTML || `<div class="note" style="padding:24px 4px;">No scheduled projects match the current filters.</div>`;
+
+  const filtersActive = Object.values(getFilterState()).some(Boolean);
 
   document.getElementById("backlogList").innerHTML = backlog.length ? backlog.map(p => `
     <div class="backlog-row">
       <span>${p.project}</span>
       <span style="display:flex;gap:8px;align-items:center;">${priorityBadgeHTML(p.priority)}<span class="pill">${p.effort||"—"}</span></span>
     </div>
-  `).join("") : `<div class="note">Every project has a target date on file.</div>`;
+  `).join("") : `<div class="note">${filtersActive ? "No unscheduled projects match the current filters." : "Every project has a target date on file."}</div>`;
 
   document.getElementById("completedList").innerHTML = completed.length ? completed.map(p => `
     <div class="backlog-row">
       <span>${p.project}</span>
       <span style="display:flex;gap:8px;align-items:center;">${priorityBadgeHTML(p.priority)}<span class="pill" style="color:var(--ok); border-color:rgba(27,122,77,0.3); background:var(--ok-bg);">COMPLETED</span></span>
     </div>
-  `).join("") : `<div class="note">No projects currently marked complete.</div>`;
+  `).join("") : `<div class="note">${filtersActive ? "No completed projects match the current filters." : "No projects currently marked complete."}</div>`;
+
+  updateFilterCount(DATA.length, PROJECTS.length);
 
 })();
 </script>

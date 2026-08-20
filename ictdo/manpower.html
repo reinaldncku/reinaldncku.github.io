@@ -74,6 +74,7 @@
     <div class="pulse-legend" id="pulseLegend"></div>
   </div>
   <div class="switchboard" id="switchboard"></div>
+  <div class="filterbar" id="filterBar"></div>
 </div>
 
 <div class="wrap">
@@ -110,16 +111,17 @@
 (function(){
 
   const PRI_COLOR = { Critical:"#B3261E", High:"#9A6B12", Medium:"#1E4B8F", Low:"#6B7280" };
-  const manpower = buildManpower();
+  const DATA = filteredProjects();
+  const manpower = buildManpower(DATA);
   const people = Object.entries(manpower).map(([name,ps]) => ({ name, ps })).sort((a,b) => b.ps.length - a.ps.length);
-  const unassignedProjects = PROJECTS.filter(p => !p.developers);
+  const unassignedProjects = DATA.filter(p => !p.developers);
 
   // KPIs
   const kpis = [
     { label:"People Deployed", value: people.length, cls:"" },
-    { label:"Projects Staffed", value: PROJECTS.length - unassignedProjects.length, cls:"" },
+    { label:"Projects Staffed", value: DATA.length - unassignedProjects.length, cls:"" },
     { label:"Unstaffed Projects", value: unassignedProjects.length, cls: unassignedProjects.length ? "danger":"ok" },
-    { label:"Avg Projects / Person", value: (PROJECTS.reduce((s,p)=>s+people1(p),0) / people.length).toFixed(1), cls:"" }
+    { label:"Avg Projects / Person", value: people.length ? (DATA.reduce((s,p)=>s+people1(p),0) / people.length).toFixed(1) : "—", cls:"" }
   ];
   function people1(p){ return (p.developers ? p.developers.split(",").length : 0); }
 
@@ -131,7 +133,7 @@
   `).join("");
 
   // Matrix
-  const cols = PROJECTS; // keep register order
+  const cols = DATA; // keep register order
   let thead = `<thead><tr><th class="corner"></th>` +
     cols.map(p => `<th><span class="rot">${p.project}</span></th>`).join("") +
     `<th></th></tr></thead>`;
@@ -157,7 +159,11 @@
   }
 
   tbody += "</tbody>";
-  document.getElementById("matrixTable").innerHTML = thead + tbody;
+  document.getElementById("matrixTable").innerHTML = (cols.length && people.length)
+    ? thead + tbody
+    : `<tbody><tr><td style="padding:24px 4px; color:var(--text-faint); font-family:var(--font-mono); font-size:12px;">No matching projects or staffing to display for the current filters.</td></tr></tbody>`;
+
+  updateFilterCount(DATA.length, PROJECTS.length);
 
 })();
 </script>
