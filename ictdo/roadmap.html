@@ -94,6 +94,13 @@
     font-size:12.5px;
   }
   .backlog-row:last-child{ border-bottom:none; }
+  .backlog-note{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    color:var(--text-faint);
+    margin-top:2px;
+  }
 </style>
 </head>
 <body data-page="roadmap.html">
@@ -139,7 +146,7 @@
   <div class="grid grid-2" style="margin-top:14px;">
     <div class="panel">
       <div class="panel-head"><span class="panel-title">Panel · <b>Unscheduled</b></span></div>
-      <div class="note" style="margin-bottom:8px;">No target date on file — cannot be placed on the timeline until one is set.</div>
+      <div class="note" style="margin-bottom:8px;">No target date on file, or the date on file isn't a specific calendar date — cannot be placed on the timeline as-is.</div>
       <div id="backlogList"></div>
     </div>
     <div class="panel">
@@ -199,7 +206,7 @@
       scheduled.push({ p, recurring:true, startPct:0, endPct:100 });
       return;
     }
-    if(!p.target_date){
+    if(!p.target_date || !isISODate(p.target_date)){
       backlog.push(p);
       return;
     }
@@ -263,14 +270,14 @@
 
   document.getElementById("backlogList").innerHTML = backlog.length ? backlog.map(p => `
     <div class="backlog-row">
-      <span>${p.project}</span>
+      <span>${p.project}${p.target_date ? `<span class="backlog-note">on file: ${p.target_date}</span>` : `<span class="backlog-note">no target date on file</span>`}</span>
       <span style="display:flex;gap:8px;align-items:center;">${priorityBadgeHTML(p.priority)}<span class="pill">${p.effort||"—"}</span></span>
     </div>
-  `).join("") : `<div class="note">${filtersActive ? "No unscheduled projects match the current filters." : "Every project has a target date on file."}</div>`;
+  `).join("") : `<div class="note">${filtersActive ? "No unscheduled projects match the current filters." : "Every project has a plottable target date on file."}</div>`;
 
   document.getElementById("completedList").innerHTML = completed.length ? completed.map(p => `
     <div class="backlog-row">
-      <span>${p.project}</span>
+      <span>${p.project}${p.target_date ? `<span class="backlog-note">${p.target_date}</span>` : ""}</span>
       <span style="display:flex;gap:8px;align-items:center;">${priorityBadgeHTML(p.priority)}<span class="pill" style="color:var(--ok); border-color:rgba(27,122,77,0.3); background:var(--ok-bg);">COMPLETED</span></span>
     </div>
   `).join("") : `<div class="note">${filtersActive ? "No completed projects match the current filters." : "No projects currently marked complete."}</div>`;

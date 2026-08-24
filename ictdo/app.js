@@ -25,15 +25,20 @@ function stageIndex(status){
   return i === -1 ? 0 : i;
 }
 
+function isISODate(d){
+  return typeof d === "string" && /^\d{4}-\d{2}-\d{2}$/.test(d);
+}
+
 function fmtDate(d){
   if(!d) return "—";
   if(d === "Recurring") return "Recurring";
+  if(!isISODate(d)) return d; // free-text estimate (e.g. "Est: November 2027") — show as-is
   const dt = new Date(d + "T00:00:00");
   return dt.toLocaleDateString("en-US", { year:"numeric", month:"short", day:"2-digit" });
 }
 
 function daysUntil(d){
-  if(!d || d === "Recurring") return null;
+  if(!isISODate(d)) return null; // no precise date to compute against
   const today = new Date(TODAY + "T00:00:00");
   const dt = new Date(d + "T00:00:00");
   return Math.round((dt - today) / 86400000);
@@ -92,6 +97,8 @@ function computeHealth(p){
   if(p.deadline_fixed === "Yes"){
     if(!p.target_date){
       factors.push({ label:"Fixed deadline, no date on file", pts:1 });
+    } else if(!isISODate(p.target_date)){
+      factors.push({ label:`Fixed deadline, date on file isn't a specific day (${p.target_date})`, pts:1 });
     } else {
       const d = daysUntil(p.target_date);
       if(d !== null && d < 0) factors.push({ label:"Past target date", pts:3 });
