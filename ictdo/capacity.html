@@ -36,12 +36,14 @@
         <div class="sub">A portfolio-wide view of all systems ICTDO is currently developing or has been requested to develop, including their status, staffing, priorities, and timelines.</div>
       </div>
     </div>
-    <div class="clock" id="clock"></div>
   </div>
   <div class="pulse">
     <div class="pulse-rail" id="pulseRail"></div>
     <div class="pulse-legend" id="pulseLegend"></div>
   </div>
+</div>
+
+<div class="stickynav">
   <div class="switchboard" id="switchboard"></div>
   <div class="filterbar" id="filterBar"></div>
 </div>
@@ -63,9 +65,9 @@
       <span class="panel-title">Fig. 07 · <b>Weighted Load by Person</b></span>
     </div>
     <div class="legend-row">
-      <span><i style="background:#1B7A4D"></i>Available (&lt; 7)</span>
-      <span><i style="background:#9A6B12"></i>At Capacity (7–10)</span>
-      <span><i style="background:#B3261E"></i>Overloaded (≥ 11)</span>
+      <span><i style="background:#236B5F"></i>Available (&lt; 7)</span>
+      <span><i style="background:#8A6D14"></i>At Capacity (7–10)</span>
+      <span><i style="background:#9C3148"></i>Overloaded (≥ 11)</span>
     </div>
     <div id="capList"></div>
   </div>
@@ -83,7 +85,6 @@
 
   <div class="foot">
     <span>ICTDO PORTFOLIO CONTROL · CAPACITY MODEL: EFFORT-WEIGHTED LOAD</span>
-    <span>SNAPSHOT AS OF 20 AUG 2026</span>
   </div>
 </div>
 
@@ -99,7 +100,7 @@
     .sort((a,b) => b.w - a.w);
 
   const maxW = Math.max(10, ...people.map(p=>p.w), 1);
-  const TIER_COLOR = { ok:"#1B7A4D", warn:"#9A6B12", danger:"#B3261E" };
+  const TIER_COLOR = { ok:"#236B5F", warn:"#8A6D14", danger:"#9C3148" };
 
   const overloaded = people.filter(p => loadTier(p.w).cls === "danger");
   const atCapacity = people.filter(p => loadTier(p.w).cls === "warn");

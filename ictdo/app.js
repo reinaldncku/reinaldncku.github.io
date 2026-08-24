@@ -12,8 +12,8 @@ const EFFORT_LABEL = { "S":"Small", "M":"Medium", "L":"Large", "XL":"X-Large" };
 
 const STATUS_COLOR = {
   "Not Started": "var(--idle)",
-  "Requirements": "#8B94A1",
-  "Development": "var(--accent)",
+  "Requirements": "#7C8798",
+  "Development": "var(--accent-dim)",
   "Testing": "var(--warn)",
   "Completed": "var(--ok)"
 };
@@ -261,14 +261,6 @@ function renderPulse(){
   }
 }
 
-function renderClock(){
-  const el = document.getElementById("clock");
-  if(!el) return;
-  const d = new Date(TODAY + "T00:00:00");
-  const dateStr = d.toLocaleDateString("en-US", { weekday:"long", year:"numeric", month:"long", day:"numeric" });
-  el.innerHTML = `<span class="big">${dateStr}</span>SNAPSHOT · AS-OF DATE`;
-}
-
 function stageRailHTML(status){
   const idx = stageIndex(status);
   return `<span class="stagerail">` + STAGE_ORDER.map((s,i) => {
@@ -291,5 +283,4 @@ function priorityBadgeHTML(priority){
    so the chrome must be built synchronously here. */
 renderSwitchboard(document.body.getAttribute("data-page"));
 renderPulse();
-renderClock();
 renderFilterBar();

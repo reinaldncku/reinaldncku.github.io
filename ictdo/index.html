@@ -17,12 +17,14 @@
         <div class="sub">A portfolio-wide view of all systems ICTDO is currently developing or has been requested to develop, including their status, staffing, priorities, and timelines.</div>
       </div>
     </div>
-    <div class="clock" id="clock"></div>
   </div>
   <div class="pulse">
     <div class="pulse-rail" id="pulseRail"></div>
     <div class="pulse-legend" id="pulseLegend"></div>
   </div>
+</div>
+
+<div class="stickynav">
   <div class="switchboard" id="switchboard"></div>
   <div class="filterbar" id="filterBar"></div>
 </div>
@@ -92,7 +94,7 @@
 
   <div class="foot">
     <span>ICTDO PORTFOLIO CONTROL · SOURCE: ICTDO_MASTER_PROJECT_PORTFOLIO.XLSX</span>
-    <span>SNAPSHOT AS OF 20 AUG 2026 · 14 PROJECTS TRACKED</span>
+    <span>14 PROJECTS TRACKED</span>
   </div>
 </div>
 
@@ -163,7 +165,7 @@
   // ---- Charts ----
   Chart.defaults.font.family = "'IBM Plex Mono', monospace";
   Chart.defaults.font.size = 10.5;
-  Chart.defaults.color = "#5B6673";
+  Chart.defaults.color = "#5B6472";
 
   const count = (arr, key) => {
     const m = {};
@@ -171,7 +173,7 @@
     return m;
   };
 
-  const statusColorsFlat = { "Not Started":"#A7AFBA", "Requirements":"#8B94A1", "Development":"#1E4B8F", "Testing":"#9A6B12", "Completed":"#1B7A4D" };
+  const statusColorsFlat = { "Not Started":"#B7BEC8", "Requirements":"#7C8798", "Development":"#3E5C86", "Testing":"#8A6D14", "Completed":"#236B5F" };
 
   const statusCounts = count(DATA, "status");
   new Chart(document.getElementById("chartStatus"), {
@@ -188,7 +190,7 @@
   });
 
   const priorityCounts = count(DATA, "priority");
-  const priColors = { Critical:"#B3261E", High:"#9A6B12", Medium:"#1E4B8F", Low:"#6B7280" };
+  const priColors = { Critical:"#9C3148", High:"#8A6D14", Medium:"#3E5C86", Low:"#5B6472" };
   new Chart(document.getElementById("chartPriority"), {
     type:"bar",
     data:{
@@ -196,7 +198,7 @@
       datasets:[{ data: PRIORITY_ORDER.filter(p=>priorityCounts[p]).map(p=>priorityCounts[p]),
         backgroundColor: PRIORITY_ORDER.filter(p=>priorityCounts[p]).map(p=>priColors[p]), borderRadius:2, maxBarThickness:36 }]
     },
-    options:{ plugins:{legend:{display:false}}, scales:{ x:{grid:{display:false}}, y:{ grid:{color:"#EBEDF0"}, ticks:{precision:0} } } }
+    options:{ plugins:{legend:{display:false}}, scales:{ x:{grid:{display:false}}, y:{ grid:{color:"#E1E5EA"}, ticks:{precision:0} } } }
   });
 
   const effortCounts = count(DATA, "effort");
@@ -205,9 +207,9 @@
     data:{
       labels: EFFORT_ORDER.filter(e=>effortCounts[e]),
       datasets:[{ data: EFFORT_ORDER.filter(e=>effortCounts[e]).map(e=>effortCounts[e]),
-        backgroundColor:"#1E4B8F", borderRadius:2, maxBarThickness:36 }]
+        backgroundColor:"#3E5C86", borderRadius:2, maxBarThickness:36 }]
     },
-    options:{ plugins:{legend:{display:false}}, scales:{ x:{grid:{display:false}}, y:{ grid:{color:"#EBEDF0"}, ticks:{precision:0} } } }
+    options:{ plugins:{legend:{display:false}}, scales:{ x:{grid:{display:false}}, y:{ grid:{color:"#E1E5EA"}, ticks:{precision:0} } } }
   });
 
   const officeCounts = count(DATA, "office");
@@ -216,9 +218,9 @@
     type:"bar",
     data:{
       labels: officeEntries.map(e=>e[0]),
-      datasets:[{ data: officeEntries.map(e=>e[1]), backgroundColor:"#4472AC", borderRadius:2, maxBarThickness:22 }]
+      datasets:[{ data: officeEntries.map(e=>e[1]), backgroundColor:"#4C6FA5", borderRadius:2, maxBarThickness:22 }]
     },
-    options:{ indexAxis:"y", plugins:{legend:{display:false}}, scales:{ x:{ grid:{color:"#EBEDF0"}, ticks:{precision:0} }, y:{grid:{display:false}} } }
+    options:{ indexAxis:"y", plugins:{legend:{display:false}}, scales:{ x:{ grid:{color:"#E1E5EA"}, ticks:{precision:0} }, y:{grid:{display:false}} } }
   });
 
 })();

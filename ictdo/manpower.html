@@ -67,12 +67,14 @@
         <div class="sub">A portfolio-wide view of all systems ICTDO is currently developing or has been requested to develop, including their status, staffing, priorities, and timelines.</div>
       </div>
     </div>
-    <div class="clock" id="clock"></div>
   </div>
   <div class="pulse">
     <div class="pulse-rail" id="pulseRail"></div>
     <div class="pulse-legend" id="pulseLegend"></div>
   </div>
+</div>
+
+<div class="stickynav">
   <div class="switchboard" id="switchboard"></div>
   <div class="filterbar" id="filterBar"></div>
 </div>
@@ -101,7 +103,6 @@
 
   <div class="foot">
     <span>ICTDO PORTFOLIO CONTROL · MANPOWER MATRIX</span>
-    <span>SNAPSHOT AS OF 20 AUG 2026</span>
   </div>
 </div>
 
@@ -110,7 +111,7 @@
 <script>
 (function(){
 
-  const PRI_COLOR = { Critical:"#B3261E", High:"#9A6B12", Medium:"#1E4B8F", Low:"#6B7280" };
+  const PRI_COLOR = { Critical:"#9C3148", High:"#8A6D14", Medium:"#3E5C86", Low:"#5B6472" };
   const DATA = filteredProjects();
   const manpower = buildManpower(DATA);
   const people = Object.entries(manpower).map(([name,ps]) => ({ name, ps })).sort((a,b) => b.ps.length - a.ps.length);

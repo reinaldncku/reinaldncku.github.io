@@ -113,12 +113,14 @@
         <div class="sub">A portfolio-wide view of all systems ICTDO is currently developing or has been requested to develop, including their status, staffing, priorities, and timelines.</div>
       </div>
     </div>
-    <div class="clock" id="clock"></div>
   </div>
   <div class="pulse">
     <div class="pulse-rail" id="pulseRail"></div>
     <div class="pulse-legend" id="pulseLegend"></div>
   </div>
+</div>
+
+<div class="stickynav">
   <div class="switchboard" id="switchboard"></div>
   <div class="filterbar" id="filterBar"></div>
 </div>
@@ -168,7 +170,6 @@
 
   <div class="foot">
     <span>ICTDO PORTFOLIO CONTROL · ROADMAP DERIVED FROM TARGET DATES + EFFORT SIZE</span>
-    <span>SNAPSHOT AS OF 20 AUG 2026</span>
   </div>
 </div>
 
@@ -185,7 +186,7 @@
   const TODAY_D = new Date(TODAY + "T00:00:00");
 
   const DURATION_WEEKS = { S:4, M:8, L:12, XL:20 };
-  const PRI_COLOR = { Critical:"#B3261E", High:"#9A6B12", Medium:"#1E4B8F", Low:"#6B7280" };
+  const PRI_COLOR = { Critical:"#9C3148", High:"#8A6D14", Medium:"#3E5C86", Low:"#5B6472" };
 
   const months = ["AUG 2026","SEP","OCT","NOV","DEC","JAN 2027","FEB"];
 
@@ -278,7 +279,7 @@
   document.getElementById("completedList").innerHTML = completed.length ? completed.map(p => `
     <div class="backlog-row">
       <span>${p.project}${p.target_date ? `<span class="backlog-note">${p.target_date}</span>` : ""}</span>
-      <span style="display:flex;gap:8px;align-items:center;">${priorityBadgeHTML(p.priority)}<span class="pill" style="color:var(--ok); border-color:rgba(27,122,77,0.3); background:var(--ok-bg);">COMPLETED</span></span>
+      <span style="display:flex;gap:8px;align-items:center;">${priorityBadgeHTML(p.priority)}<span class="pill" style="color:var(--ok); border-color:rgba(35,107,95,0.3); background:var(--ok-bg);">COMPLETED</span></span>
     </div>
   `).join("") : `<div class="note">${filtersActive ? "No completed projects match the current filters." : "No projects currently marked complete."}</div>`;
 
