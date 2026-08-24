@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ICTDO Technical Services Portfolio</title>
+<title>ICTDO Technical Support Portfolio</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
@@ -45,14 +45,6 @@ header.masthead{
   margin-bottom:56px;
 }
 .masthead-inner{max-width:1180px;margin:0 auto;}
-.eyebrow{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:12.5px;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:var(--gold);
-  margin:0 0 14px;
-}
 h1.title{
   font-family:'Fraunces',serif;
   font-weight:600;
@@ -62,9 +54,10 @@ h1.title{
   letter-spacing:-.01em;
 }
 .masthead p.desc{
-  max-width:640px;
+  max-width:680px;
   color:#B9C2D2;
-  font-size:15.5px;
+  font-size:18px;
+  line-height:1.5;
   margin:0 0 26px;
 }
 .masthead-stats{display:flex;gap:36px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.14);padding-top:22px;}
@@ -76,19 +69,20 @@ h1.title{
 .jumpnav{
   position:sticky;top:0;z-index:100;
   display:flex;flex-wrap:wrap;gap:0;
-  background:var(--navy);
-  border-bottom:1px solid rgba(255,255,255,.12);
+  background:linear-gradient(100deg,#1E3F73 0%,#152C52 100%);
+  border-bottom:3px solid var(--gold);
+  box-shadow:0 2px 10px rgba(0,0,0,.25);
   padding:0 32px;
 }
 .jumpnav-inner{max-width:1180px;margin:0 auto;width:100%;display:flex;flex-wrap:wrap;}
 .jumpnav a{
-  color:#C7CEDB;text-decoration:none;
-  font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.02em;
-  padding:15px 18px;border-bottom:2px solid transparent;
+  color:#DCE3EF;text-decoration:none;
+  font-family:'IBM Plex Sans',sans-serif;font-size:14.5px;font-weight:600;letter-spacing:.01em;
+  padding:17px 20px;border-bottom:3px solid transparent;
   white-space:nowrap;transition:color .15s,border-color .15s;
 }
 .jumpnav a:hover, .jumpnav a:focus-visible{color:#fff;border-bottom-color:var(--gold);}
-section{scroll-margin-top:54px;}
+section{scroll-margin-top:58px;}
 
 /* ---------- Section shell ---------- */
 section{margin-bottom:64px;}
@@ -127,6 +121,12 @@ h2.section-title{
 .area-card ul.tasks li{
   font-size:11.5px;background:rgba(var(--clr),.09);color:rgb(var(--clr));
   padding:4px 9px;border-radius:20px;font-family:'IBM Plex Mono',monospace;
+  display:inline-flex;align-items:center;gap:5px;
+}
+.area-card ul.tasks li .n{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:15px;height:15px;padding:0 4px;border-radius:50%;
+  background:rgb(var(--clr));color:#fff;font-size:9.5px;font-weight:700;
 }
 .area-card .staff-line{font-size:12.5px;color:var(--sub);border-top:1px solid var(--line);padding-top:11px;}
 .area-card .staff-line b{color:var(--ink);font-weight:600;}
@@ -187,13 +187,70 @@ table.matrix tfoot td.name{color:var(--navy);}
 
 footer{color:var(--sub);font-size:12px;text-align:center;padding-top:10px;}
 
+/* ---------- Specific tasks table ---------- */
+.task-table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:4px;background:var(--card);}
+table.task-table{border-collapse:collapse;width:100%;min-width:680px;font-size:13px;table-layout:fixed;}
+table.task-table th{
+  text-align:left;padding:12px 16px;
+  font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--sub);border-bottom:1px solid var(--line);
+}
+table.task-table td{padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:middle;}
+table.task-table tr:last-child td{border-bottom:none;}
+table.task-table td.task-name{font-weight:600;color:var(--ink);}
+table.task-table td.task-name .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:9px;vertical-align:middle;}
+table.task-table td.category{font-size:12px;color:var(--sub);}
+table.task-table td.count{font-family:'IBM Plex Mono',monospace;text-align:center;}
+table.task-table td.count span{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:22px;height:22px;padding:0 6px;border-radius:50%;
+  font-size:12px;font-weight:700;
+}
+table.task-table td.people{color:var(--sub);font-size:12.5px;}
+
+/* ---------- Task filters ---------- */
+.task-filters{display:flex;flex-direction:column;gap:12px;margin-bottom:16px;}
+.task-search{
+  font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;
+  padding:10px 14px;border:1px solid var(--line);border-radius:4px;
+  background:var(--card);color:var(--ink);max-width:320px;width:100%;
+}
+.task-search:focus{outline:none;border-color:var(--navy);}
+.task-pills{display:flex;flex-wrap:wrap;gap:8px;}
+.pill{
+  font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.02em;
+  padding:6px 12px;border-radius:20px;border:1px solid var(--line);background:var(--card);
+  color:var(--sub);cursor:pointer;transition:all .15s;
+}
+.pill[data-cat]:not([data-cat="all"]){border-color:rgba(var(--pc),.35);color:rgb(var(--pc));background:rgba(var(--pc),.07);}
+.pill.active{background:var(--navy);border-color:var(--navy);color:#fff;}
+.pill[data-cat]:not([data-cat="all"]).active{background:rgb(var(--pc));border-color:rgb(var(--pc));color:#fff;}
+.task-count-note{font-size:12px;color:var(--sub);margin-bottom:10px;}
+.no-results td{text-align:center;color:var(--sub);padding:24px 16px;font-size:13px;}
+
+/* ---------- Single point of failure flag ---------- */
+
+/* ---------- Cross-functional badge ---------- */
+.xf-badge{
+  display:inline-block;margin-top:5px;
+  font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.03em;text-transform:uppercase;
+  padding:2px 7px;border-radius:3px;border:1px solid rgba(62,92,134,.35);color:#3E5C86;background:rgba(62,92,134,.08);
+}
+
+/* ---------- Developer badge ---------- */
+.dev-badge{
+  display:inline-block;margin-top:5px;margin-left:6px;
+  font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.03em;text-transform:uppercase;
+  padding:2px 7px;border-radius:3px;border:1px solid rgba(201,162,39,.4);color:#8A6D14;background:rgba(201,162,39,.12);
+}
+
 @media(max-width:860px){
   .card-grid{grid-template-columns:1fr;}
   h1.title{font-size:32px;}
   .cap-card-top{grid-template-columns:110px 1fr 60px 64px;gap:8px;}
   .staff-task-list{padding-left:0;margin-top:4px;}
   table.matrix{min-width:680px;}
-  .jumpnav a{padding:12px 12px;font-size:11.5px;}
+  .jumpnav a{padding:14px 14px;font-size:13px;}
 }
 </style>
 </head>
@@ -204,18 +261,18 @@ footer{color:var(--sub);font-size:12px;text-align:center;padding-top:10px;}
     <a href="#areas">Functional Areas</a>
     <a href="#matrix">Manpower Allocation</a>
     <a href="#capacity">Capacity &amp; Assignments</a>
+    <a href="#tasks">Specific Tasks</a>
   </div>
 </nav>
 
 <header class="masthead">
   <div class="masthead-inner">
-    <p class="eyebrow">ICT Development Office — Operations Overview</p>
-    <h1 class="title">Technical Services Portfolio</h1>
-    <p class="desc">A functional map of ICTDO's technical service lines, current manpower allocation across staff, and each team member's operational and project load.</p>
+    <h1 class="title">ICTDO Technical Support Portfolio</h1>
+    <p class="desc">A functional map of ICTDO's technical service lines, current manpower allocation, and each team member's operational load.</p>
     <div class="masthead-stats">
       <div class="mstat"><b>5</b><span>Functional Areas</span></div>
       <div class="mstat"><b>7</b><span>Staff Members</span></div>
-      <div class="mstat"><b>28</b><span>Assigned Tasks</span></div>
+      <div class="mstat"><b>29</b><span>Assigned Tasks</span></div>
     </div>
   </div>
 </header>
@@ -235,8 +292,8 @@ footer{color:var(--sub);font-size:12px;text-align:center;padding-top:10px;}
         <div class="num-label">Tasks assigned</div>
         <h3>Systems &amp; Application Support</h3>
         <ul class="tasks">
-          <li>Freshdesk Mgmt</li><li>MyPortal LMS</li><li>AIMS</li><li>ASCEND LMS</li>
-          <li>DERM LMS</li><li>Exam Portal</li><li>Tagpuan LMS</li><li>MyPortal Support</li>
+          <li>Freshdesk Mgmt<span class="n">2</span></li><li>MyPortal LMS<span class="n">1</span></li><li>AIMS<span class="n">1</span></li><li>ASCEND LMS<span class="n">1</span></li>
+          <li>DERM LMS<span class="n">1</span></li><li>Exam Portal<span class="n">1</span></li><li>Tagpuan LMS<span class="n">1</span></li><li>MyPortal Support<span class="n">2</span></li>
         </ul>
         <div class="staff-line"><b>4 staff</b> — Zak Pulmano (6), Nikko Racelis (2), Joseph Platon (1), RJ Magsino (1)</div>
       </div>
@@ -246,8 +303,8 @@ footer{color:var(--sub);font-size:12px;text-align:center;padding-top:10px;}
         <div class="num-label">Tasks assigned</div>
         <h3>Server &amp; Systems Administration</h3>
         <ul class="tasks">
-          <li>SMTP</li><li>HDD Corruption</li><li>NAS Integrity</li>
-          <li>Server Config</li><li>Server Health</li><li>Sys Admin</li><li>Dev Support</li>
+          <li>SMTP<span class="n">1</span></li><li>HDD Corruption<span class="n">1</span></li><li>NAS Integrity<span class="n">1</span></li>
+          <li>Server Config<span class="n">1</span></li><li>Server Health<span class="n">1</span></li><li>Sys Admin<span class="n">1</span></li><li>Dev Support<span class="n">1</span></li>
         </ul>
         <div class="staff-line"><b>2 staff</b> — Jay Roxas (5), Nestor Arcebuche (2)</div>
       </div>
@@ -257,20 +314,20 @@ footer{color:var(--sub);font-size:12px;text-align:center;padding-top:10px;}
         <div class="num-label">Tasks assigned</div>
         <h3>Hardware, Network, &amp; Connectivity</h3>
         <ul class="tasks">
-          <li>Traffic Monitoring</li><li>Eduroam Deployment</li><li>HQ/Diliman Internet</li>
-          <li>Equipment Recommendation</li><li>Delivery Inspection</li><li>HW/Network Troubleshooting</li>
+          <li>Traffic Monitoring<span class="n">1</span></li><li>Eduroam Deployment<span class="n">1</span></li><li>HQ/Diliman Internet<span class="n">1</span></li>
+          <li>Equipment Recommendation<span class="n">1</span></li><li>Delivery Inspection<span class="n">1</span></li><li>HW/Network Troubleshooting<span class="n">2</span></li>
         </ul>
         <div class="staff-line"><b>2 staff</b> — Nikko Racelis (4), Joseph Platon (3)</div>
       </div>
 
       <div class="area-card" style="--clr:var(--ads)">
-        <div class="num">2</div>
+        <div class="num">3</div>
         <div class="num-label">Tasks assigned</div>
         <h3>Accounts &amp; Digital Services</h3>
         <ul class="tasks">
-          <li>UP/UPOU Email Accounts</li>
+          <li>UP/UPOU Email Accounts<span class="n">3</span></li>
         </ul>
-        <div class="staff-line"><b>2 staff</b> — Nikko Racelis (1), Joseph Platon (1)</div>
+        <div class="staff-line"><b>3 staff</b> — Nikko Racelis (1), Joseph Platon (1), Zak Pulmano (1)</div>
       </div>
 
       <div class="area-card" style="--clr:var(--crm)">
@@ -278,7 +335,7 @@ footer{color:var(--sub);font-size:12px;text-align:center;padding-top:10px;}
         <div class="num-label">Tasks assigned</div>
         <h3>Cybersecurity &amp; Repository Management</h3>
         <ul class="tasks">
-          <li>Cybersecurity Awareness</li><li>Repository Mgmt</li>
+          <li>Cybersecurity Awareness<span class="n">1</span></li><li>Repository Mgmt<span class="n">1</span></li>
         </ul>
         <div class="staff-line"><b>1 staff</b> — Bernard Secreto (2)</div>
       </div>
@@ -311,9 +368,9 @@ footer{color:var(--sub);font-size:12px;text-align:center;padding-top:10px;}
             <td class="cell" style="background:rgba(201,162,39,.55)">6</td>
             <td class="cell zero">–</td>
             <td class="cell zero">–</td>
+            <td class="cell" style="background:rgba(124,82,149,.55)">1</td>
             <td class="cell zero">–</td>
-            <td class="cell zero">–</td>
-            <td class="total">6</td>
+            <td class="total">7</td>
           </tr>
           <tr>
             <td class="name">Jay Roxas<span class="role-purely-text">Purely Technical Support</span></td>
@@ -373,8 +430,8 @@ footer{color:var(--sub);font-size:12px;text-align:center;padding-top:10px;}
         <tfoot>
           <tr>
             <td class="name">Total</td>
-            <td>10</td><td>7</td><td>7</td><td>2</td><td>2</td>
-            <td class="total">28</td>
+            <td>10</td><td>7</td><td>7</td><td>3</td><td>2</td>
+            <td class="total">29</td>
           </tr>
         </tfoot>
       </table>
@@ -389,18 +446,18 @@ footer{color:var(--sub);font-size:12px;text-align:center;padding-top:10px;}
     </div>
 
     <div class="capacity-legend">
-      <div class="leg-item"><span class="leg-swatch" style="background:rgb(201,162,39)"></span>Sys &amp; App Support</div>
-      <div class="leg-item"><span class="leg-swatch" style="background:rgb(76,111,165)"></span>Server &amp; Sys Admin</div>
-      <div class="leg-item"><span class="leg-swatch" style="background:rgb(47,133,119)"></span>Hardware, Network &amp; Connectivity</div>
-      <div class="leg-item"><span class="leg-swatch" style="background:rgb(124,82,149)"></span>Accounts &amp; Digital</div>
-      <div class="leg-item"><span class="leg-swatch" style="background:rgb(156,49,72)"></span>Cybersecurity &amp; Repo</div>
+      <div class="leg-item"><span class="leg-swatch" style="background:rgb(201,162,39)"></span>Systems &amp; Application Support</div>
+      <div class="leg-item"><span class="leg-swatch" style="background:rgb(76,111,165)"></span>Server &amp; Systems Administration</div>
+      <div class="leg-item"><span class="leg-swatch" style="background:rgb(47,133,119)"></span>Hardware, Network, &amp; Connectivity</div>
+      <div class="leg-item"><span class="leg-swatch" style="background:rgb(124,82,149)"></span>Accounts &amp; Digital Services</div>
+      <div class="leg-item"><span class="leg-swatch" style="background:rgb(156,49,72)"></span>Cybersecurity &amp; Repository Management</div>
     </div>
 
     <div class="cap-list">
 
       <div class="cap-card">
         <div class="cap-card-top">
-          <div class="cap-name">Nikko Racelis<span>3 areas</span></div>
+          <div class="cap-name">Nikko Racelis<span>3 areas</span><span class="xf-badge">Cross-functional</span></div>
           <div class="cap-track">
             <div class="cap-grid-marks"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
             <div class="cap-seg" style="width:28.57%;background:rgb(201,162,39)"></div>
@@ -423,12 +480,13 @@ footer{color:var(--sub);font-size:12px;text-align:center;padding-top:10px;}
 
       <div class="cap-card">
         <div class="cap-card-top">
-          <div class="cap-name">Zak Pulmano<span>1 area</span></div>
+          <div class="cap-name">Zak Pulmano<span>2 areas</span><span class="xf-badge">Cross-functional</span></div>
           <div class="cap-track">
             <div class="cap-grid-marks"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
             <div class="cap-seg" style="width:85.71%;background:rgb(201,162,39)"></div>
+            <div class="cap-seg" style="width:14.29%;background:rgb(124,82,149)"></div>
           </div>
-          <div class="cap-total">6 tasks</div>
+          <div class="cap-total">7 tasks</div>
           <div class="cap-band band-high">High</div>
         </div>
         <ul class="staff-task-list">
@@ -438,6 +496,7 @@ footer{color:var(--sub);font-size:12px;text-align:center;padding-top:10px;}
           <li><span class="dot" style="background:rgb(201,162,39)"></span>ASCEND LMS Support</li>
           <li><span class="dot" style="background:rgb(201,162,39)"></span>DERM LMS Support</li>
           <li><span class="dot" style="background:rgb(201,162,39)"></span>Exam Portal Support</li>
+          <li><span class="dot" style="background:rgb(124,82,149)"></span>UP and UPOU Email Accounts</li>
         </ul>
       </div>
 
@@ -462,7 +521,7 @@ footer{color:var(--sub);font-size:12px;text-align:center;padding-top:10px;}
 
       <div class="cap-card">
         <div class="cap-card-top">
-          <div class="cap-name">Joseph Platon<span>3 areas</span></div>
+          <div class="cap-name">Joseph Platon<span>3 areas</span><span class="xf-badge">Cross-functional</span></div>
           <div class="cap-track">
             <div class="cap-grid-marks"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
             <div class="cap-seg" style="width:14.29%;background:rgb(201,162,39)"></div>
@@ -499,7 +558,7 @@ footer{color:var(--sub);font-size:12px;text-align:center;padding-top:10px;}
 
       <div class="cap-card">
         <div class="cap-card-top">
-          <div class="cap-name">Bernard Secreto<span>1 area</span></div>
+          <div class="cap-name">Bernard Secreto<span>1 area</span><span class="dev-badge">Developer</span></div>
           <div class="cap-track">
             <div class="cap-grid-marks"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
             <div class="cap-seg" style="width:28.57%;background:rgb(156,49,72)"></div>
@@ -515,7 +574,7 @@ footer{color:var(--sub);font-size:12px;text-align:center;padding-top:10px;}
 
       <div class="cap-card">
         <div class="cap-card-top">
-          <div class="cap-name">RJ Magsino<span>1 area</span></div>
+          <div class="cap-name">RJ Magsino<span>1 area</span><span class="dev-badge">Developer</span></div>
           <div class="cap-track">
             <div class="cap-grid-marks"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
             <div class="cap-seg" style="width:14.29%;background:rgb(201,162,39)"></div>
@@ -531,8 +590,233 @@ footer{color:var(--sub);font-size:12px;text-align:center;padding-top:10px;}
     </div>
   </section>
 
-  <footer>ICTDO Technical Services Portfolio — compiled from current task assignment records.</footer>
+  <!-- ============ SPECIFIC TASKS ============ -->
+  <section id="tasks">
+    <div class="section-head">
+      <h2 class="section-title">Specific Tasks</h2>
+      <p class="section-note">Every task across all functional areas, how many people cover it, and who they are.</p>
+    </div>
+
+    <div class="task-filters">
+      <input type="text" id="taskSearch" class="task-search" placeholder="Search task or person…" aria-label="Search tasks or people">
+      <div class="task-pills" id="taskPills">
+        <button type="button" class="pill active" data-cat="all">All</button>
+        <button type="button" class="pill" data-cat="Systems &amp; Application Support" style="--pc:201,162,39">Sys &amp; App</button>
+        <button type="button" class="pill" data-cat="Server &amp; Systems Administration" style="--pc:76,111,165">Server &amp; Sys Admin</button>
+        <button type="button" class="pill" data-cat="Hardware, Network, &amp; Connectivity" style="--pc:47,133,119">Hardware, Network &amp; Conn.</button>
+        <button type="button" class="pill" data-cat="Accounts &amp; Digital Services" style="--pc:124,82,149">Accounts &amp; Digital</button>
+        <button type="button" class="pill" data-cat="Cybersecurity &amp; Repository Management" style="--pc:156,49,72">Cybersecurity &amp; Repo</button>
+      </div>
+    </div>
+
+    <p class="task-count-note" id="taskCountNote">Showing 24 of 24 tasks</p>
+
+    <div class="task-table-scroll">
+      <table class="task-table">
+        <colgroup>
+          <col style="width:30%;"><col style="width:20%;"><col style="width:12%;"><col style="width:38%;">
+        </colgroup>
+        <thead>
+          <tr><th>Task</th><th>Category</th><th style="text-align:center;">People</th><th>Assigned To</th></tr>
+        </thead>
+        <tbody>
+          <tr data-cat="Systems &amp; Application Support" data-people="zak pulmano">
+            <td class="task-name"><span class="dot" style="background:rgb(201,162,39)"></span>AIMS Support</td>
+            <td class="category">Systems &amp; Application Support</td>
+            <td class="count"><span style="background:#F2F3F5;color:var(--sub);">1</span></td>
+            <td class="people">Zak Pulmano</td>
+          </tr>
+          <tr data-cat="Systems &amp; Application Support" data-people="zak pulmano">
+            <td class="task-name"><span class="dot" style="background:rgb(201,162,39)"></span>ASCEND LMS Support</td>
+            <td class="category">Systems &amp; Application Support</td>
+            <td class="count"><span style="background:#F2F3F5;color:var(--sub);">1</span></td>
+            <td class="people">Zak Pulmano</td>
+          </tr>
+          <tr data-cat="Systems &amp; Application Support" data-people="zak pulmano">
+            <td class="task-name"><span class="dot" style="background:rgb(201,162,39)"></span>DERM LMS Support</td>
+            <td class="category">Systems &amp; Application Support</td>
+            <td class="count"><span style="background:#F2F3F5;color:var(--sub);">1</span></td>
+            <td class="people">Zak Pulmano</td>
+          </tr>
+          <tr data-cat="Systems &amp; Application Support" data-people="zak pulmano">
+            <td class="task-name"><span class="dot" style="background:rgb(201,162,39)"></span>Exam Portal Support</td>
+            <td class="category">Systems &amp; Application Support</td>
+            <td class="count"><span style="background:#F2F3F5;color:var(--sub);">1</span></td>
+            <td class="people">Zak Pulmano</td>
+          </tr>
+          <tr data-cat="Systems &amp; Application Support" data-people="joseph platon, zak pulmano">
+            <td class="task-name"><span class="dot" style="background:rgb(201,162,39)"></span>Freshdesk Management</td>
+            <td class="category">Systems &amp; Application Support</td>
+            <td class="count"><span style="background:rgba(201,162,39,.16);color:#8A6D14;">2</span></td>
+            <td class="people">Joseph Platon, Zak Pulmano</td>
+          </tr>
+          <tr data-cat="Systems &amp; Application Support" data-people="zak pulmano">
+            <td class="task-name"><span class="dot" style="background:rgb(201,162,39)"></span>MyPortal LMS Support</td>
+            <td class="category">Systems &amp; Application Support</td>
+            <td class="count"><span style="background:#F2F3F5;color:var(--sub);">1</span></td>
+            <td class="people">Zak Pulmano</td>
+          </tr>
+          <tr data-cat="Systems &amp; Application Support" data-people="nikko racelis, rj magsino">
+            <td class="task-name"><span class="dot" style="background:rgb(201,162,39)"></span>MyPortal Support</td>
+            <td class="category">Systems &amp; Application Support</td>
+            <td class="count"><span style="background:rgba(201,162,39,.16);color:#8A6D14;">2</span></td>
+            <td class="people">Nikko Racelis, RJ Magsino</td>
+          </tr>
+          <tr data-cat="Systems &amp; Application Support" data-people="nikko racelis">
+            <td class="task-name"><span class="dot" style="background:rgb(201,162,39)"></span>Tagpuan LMS Support</td>
+            <td class="category">Systems &amp; Application Support</td>
+            <td class="count"><span style="background:#F2F3F5;color:var(--sub);">1</span></td>
+            <td class="people">Nikko Racelis</td>
+          </tr>
+          <tr data-cat="Server &amp; Systems Administration" data-people="jay roxas">
+            <td class="task-name"><span class="dot" style="background:rgb(76,111,165)"></span>Comprehensive Server Configuration</td>
+            <td class="category">Server &amp; Systems Administration</td>
+            <td class="count"><span style="background:#F2F3F5;color:var(--sub);">1</span></td>
+            <td class="people">Jay Roxas</td>
+          </tr>
+          <tr data-cat="Server &amp; Systems Administration" data-people="nestor arcebuche">
+            <td class="task-name"><span class="dot" style="background:rgb(76,111,165)"></span>Developer Support</td>
+            <td class="category">Server &amp; Systems Administration</td>
+            <td class="count"><span style="background:#F2F3F5;color:var(--sub);">1</span></td>
+            <td class="people">Nestor Arcebuche</td>
+          </tr>
+          <tr data-cat="Server &amp; Systems Administration" data-people="jay roxas">
+            <td class="task-name"><span class="dot" style="background:rgb(76,111,165)"></span>Hard Drive Corruption</td>
+            <td class="category">Server &amp; Systems Administration</td>
+            <td class="count"><span style="background:#F2F3F5;color:var(--sub);">1</span></td>
+            <td class="people">Jay Roxas</td>
+          </tr>
+          <tr data-cat="Server &amp; Systems Administration" data-people="jay roxas">
+            <td class="task-name"><span class="dot" style="background:rgb(76,111,165)"></span>Network Access Server Integrity</td>
+            <td class="category">Server &amp; Systems Administration</td>
+            <td class="count"><span style="background:#F2F3F5;color:var(--sub);">1</span></td>
+            <td class="people">Jay Roxas</td>
+          </tr>
+          <tr data-cat="Server &amp; Systems Administration" data-people="jay roxas">
+            <td class="task-name"><span class="dot" style="background:rgb(76,111,165)"></span>Server Health and Maintenance</td>
+            <td class="category">Server &amp; Systems Administration</td>
+            <td class="count"><span style="background:#F2F3F5;color:var(--sub);">1</span></td>
+            <td class="people">Jay Roxas</td>
+          </tr>
+          <tr data-cat="Server &amp; Systems Administration" data-people="jay roxas">
+            <td class="task-name"><span class="dot" style="background:rgb(76,111,165)"></span>SMTP</td>
+            <td class="category">Server &amp; Systems Administration</td>
+            <td class="count"><span style="background:#F2F3F5;color:var(--sub);">1</span></td>
+            <td class="people">Jay Roxas</td>
+          </tr>
+          <tr data-cat="Server &amp; Systems Administration" data-people="nestor arcebuche">
+            <td class="task-name"><span class="dot" style="background:rgb(76,111,165)"></span>Systems Administration</td>
+            <td class="category">Server &amp; Systems Administration</td>
+            <td class="count"><span style="background:#F2F3F5;color:var(--sub);">1</span></td>
+            <td class="people">Nestor Arcebuche</td>
+          </tr>
+          <tr data-cat="Hardware, Network, &amp; Connectivity" data-people="nikko racelis">
+            <td class="task-name"><span class="dot" style="background:rgb(47,133,119)"></span>Eduroam Deployment</td>
+            <td class="category">Hardware, Network, &amp; Connectivity</td>
+            <td class="count"><span style="background:#F2F3F5;color:var(--sub);">1</span></td>
+            <td class="people">Nikko Racelis</td>
+          </tr>
+          <tr data-cat="Hardware, Network, &amp; Connectivity" data-people="joseph platon, nikko racelis">
+            <td class="task-name"><span class="dot" style="background:rgb(47,133,119)"></span>Hardware and Network Troubleshooting</td>
+            <td class="category">Hardware, Network, &amp; Connectivity</td>
+            <td class="count"><span style="background:rgba(201,162,39,.16);color:#8A6D14;">2</span></td>
+            <td class="people">Joseph Platon, Nikko Racelis</td>
+          </tr>
+          <tr data-cat="Hardware, Network, &amp; Connectivity" data-people="joseph platon">
+            <td class="task-name"><span class="dot" style="background:rgb(47,133,119)"></span>ICT Delivery Inspection</td>
+            <td class="category">Hardware, Network, &amp; Connectivity</td>
+            <td class="count"><span style="background:#F2F3F5;color:var(--sub);">1</span></td>
+            <td class="people">Joseph Platon</td>
+          </tr>
+          <tr data-cat="Hardware, Network, &amp; Connectivity" data-people="joseph platon">
+            <td class="task-name"><span class="dot" style="background:rgb(47,133,119)"></span>ICT Equipment Recommendation</td>
+            <td class="category">Hardware, Network, &amp; Connectivity</td>
+            <td class="count"><span style="background:#F2F3F5;color:var(--sub);">1</span></td>
+            <td class="people">Joseph Platon</td>
+          </tr>
+          <tr data-cat="Hardware, Network, &amp; Connectivity" data-people="nikko racelis">
+            <td class="task-name"><span class="dot" style="background:rgb(47,133,119)"></span>Internet Deployment in HQ and Diliman</td>
+            <td class="category">Hardware, Network, &amp; Connectivity</td>
+            <td class="count"><span style="background:#F2F3F5;color:var(--sub);">1</span></td>
+            <td class="people">Nikko Racelis</td>
+          </tr>
+          <tr data-cat="Hardware, Network, &amp; Connectivity" data-people="nikko racelis">
+            <td class="task-name"><span class="dot" style="background:rgb(47,133,119)"></span>Network Health and Traffic Monitoring</td>
+            <td class="category">Hardware, Network, &amp; Connectivity</td>
+            <td class="count"><span style="background:#F2F3F5;color:var(--sub);">1</span></td>
+            <td class="people">Nikko Racelis</td>
+          </tr>
+          <tr data-cat="Accounts &amp; Digital Services" data-people="joseph platon, nikko racelis, zak pulmano">
+            <td class="task-name"><span class="dot" style="background:rgb(124,82,149)"></span>UP and UPOU Email Accounts</td>
+            <td class="category">Accounts &amp; Digital Services</td>
+            <td class="count"><span style="background:rgba(156,49,72,.14);color:#9C3148;">3</span></td>
+            <td class="people">Joseph Platon, Nikko Racelis, Zak Pulmano</td>
+          </tr>
+          <tr data-cat="Cybersecurity &amp; Repository Management" data-people="bernard secreto">
+            <td class="task-name"><span class="dot" style="background:rgb(156,49,72)"></span>Cybersecurity Awareness</td>
+            <td class="category">Cybersecurity &amp; Repository Management</td>
+            <td class="count"><span style="background:#F2F3F5;color:var(--sub);">1</span></td>
+            <td class="people">Bernard Secreto</td>
+          </tr>
+          <tr data-cat="Cybersecurity &amp; Repository Management" data-people="bernard secreto">
+            <td class="task-name"><span class="dot" style="background:rgb(156,49,72)"></span>Repository Management</td>
+            <td class="category">Cybersecurity &amp; Repository Management</td>
+            <td class="count"><span style="background:#F2F3F5;color:var(--sub);">1</span></td>
+            <td class="people">Bernard Secreto</td>
+          </tr>
+          <tr class="no-results" id="noResultsRow" hidden>
+            <td colspan="4">No tasks match your search.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>ICTDO Technical Support Portfolio — compiled from current task assignment records.</footer>
 
 </div>
+
+<script>
+(function(){
+  var searchInput = document.getElementById('taskSearch');
+  var pillsWrap = document.getElementById('taskPills');
+  var countNote = document.getElementById('taskCountNote');
+  var noResultsRow = document.getElementById('noResultsRow');
+  var rows = Array.prototype.slice.call(
+    document.querySelectorAll('#tasks tbody tr:not(.no-results)')
+  );
+  var totalCount = rows.length;
+  var activeCat = 'all';
+
+  function applyFilters(){
+    var query = searchInput.value.trim().toLowerCase();
+    var visible = 0;
+    rows.forEach(function(row){
+      var cat = row.getAttribute('data-cat');
+      var people = row.getAttribute('data-people') || '';
+      var taskText = row.querySelector('.task-name').textContent.toLowerCase();
+      var matchesCat = (activeCat === 'all' || cat === activeCat);
+      var matchesQuery = (query === '' || taskText.indexOf(query) !== -1 || people.indexOf(query) !== -1);
+      var show = matchesCat && matchesQuery;
+      row.hidden = !show;
+      if (show) visible++;
+    });
+    noResultsRow.hidden = visible !== 0;
+    countNote.textContent = 'Showing ' + visible + ' of ' + totalCount + ' tasks';
+  }
+
+  searchInput.addEventListener('input', applyFilters);
+
+  pillsWrap.addEventListener('click', function(e){
+    var btn = e.target.closest('.pill');
+    if (!btn) return;
+    pillsWrap.querySelectorAll('.pill').forEach(function(p){ p.classList.remove('active'); });
+    btn.classList.add('active');
+    activeCat = btn.getAttribute('data-cat');
+    applyFilters();
+  });
+})();
+</script>
+
 </body>
 </html>
