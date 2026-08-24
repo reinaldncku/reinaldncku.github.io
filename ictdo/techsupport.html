@@ -144,6 +144,9 @@ table.matrix thead th .swatch{
 }
 table.matrix td.name{text-align:left;font-weight:600;color:var(--ink);white-space:nowrap;}
 table.matrix td.name span{display:block;font-weight:400;font-size:11px;color:var(--sub);font-family:'IBM Plex Mono',monospace;margin-top:2px;}
+table.matrix td.name span.role-dev-text{color:var(--gold);font-weight:600;}
+table.matrix td.name span.role-mainly-text{color:#3E5C86;font-weight:600;}
+table.matrix td.name span.role-purely-text{color:#B5502C;font-weight:600;}
 table.matrix td.cell{font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--ink);}
 table.matrix td.zero{color:#B7BEC8;font-weight:400;}
 table.matrix td.total, table.matrix th.total{font-family:'IBM Plex Mono',monospace;font-weight:700;background:#F7F8FA;color:var(--navy);}
@@ -154,11 +157,18 @@ table.matrix tfoot td.name{color:var(--navy);}
 .capacity-legend{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:22px;}
 .leg-item{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--sub);}
 .leg-swatch{width:10px;height:10px;border-radius:2px;}
-.cap-list{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:24px 26px 8px;}
-.cap-row{display:grid;grid-template-columns:150px 1fr 78px 74px;align-items:center;gap:14px;padding:13px 0;border-bottom:1px solid var(--line);}
-.cap-row:last-child{border-bottom:none;}
+.cap-list{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:6px 26px;}
+.cap-card{padding:18px 0;border-bottom:1px solid var(--line);}
+.cap-card:last-child{border-bottom:none;}
+.cap-card-top{display:grid;grid-template-columns:150px 1fr 78px 74px;align-items:center;gap:14px;margin-bottom:14px;}
 .cap-name{font-size:13.5px;font-weight:600;color:var(--ink);}
 .cap-name span{display:block;font-size:11px;font-weight:400;color:var(--sub);}
+.role-badge{
+  display:inline-block;margin-top:5px;
+  font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.03em;text-transform:uppercase;
+  padding:2px 7px;border-radius:3px;border:1px solid var(--line);color:var(--sub);background:#F7F8FA;
+}
+.role-badge.role-dev{color:#8A6D14;border-color:rgba(201,162,39,.4);background:rgba(201,162,39,.1);}
 .cap-track{position:relative;height:16px;background:#EEF0F3;border-radius:3px;overflow:hidden;display:flex;}
 .cap-seg{height:100%;}
 .cap-grid-marks{position:absolute;inset:0;display:flex;pointer-events:none;}
@@ -170,23 +180,18 @@ table.matrix tfoot td.name{color:var(--navy);}
 .band-mod{background:rgba(201,162,39,.16);color:#8A6D14;}
 .band-light{background:rgba(47,133,119,.12);color:#236B5F;}
 
-/* ---------- Staff task assignments ---------- */
-.staff-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
-.staff-card{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:20px 22px;}
-.staff-card-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px;border-bottom:1px solid var(--line);padding-bottom:12px;}
-.staff-card-head h3{font-family:'Fraunces',serif;font-weight:600;font-size:19px;margin:0;color:var(--navy);}
-.staff-card-head .count{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--sub);}
-.staff-task-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;}
-.staff-task-list li{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--ink);}
-.staff-task-list .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+/* ---------- Staff task list (nested inside capacity cards) ---------- */
+.staff-task-list{list-style:none;margin:0;padding:0 0 0 164px;display:flex;flex-wrap:wrap;gap:7px 16px;}
+.staff-task-list li{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--sub);}
+.staff-task-list .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
 
 footer{color:var(--sub);font-size:12px;text-align:center;padding-top:10px;}
 
 @media(max-width:860px){
   .card-grid{grid-template-columns:1fr;}
-  .staff-grid{grid-template-columns:1fr;}
   h1.title{font-size:32px;}
-  .cap-row{grid-template-columns:110px 1fr 60px 64px;gap:8px;}
+  .cap-card-top{grid-template-columns:110px 1fr 60px 64px;gap:8px;}
+  .staff-task-list{padding-left:0;margin-top:4px;}
   table.matrix{min-width:680px;}
   .jumpnav a{padding:12px 12px;font-size:11.5px;}
 }
@@ -198,8 +203,7 @@ footer{color:var(--sub);font-size:12px;text-align:center;padding-top:10px;}
   <div class="jumpnav-inner">
     <a href="#areas">Functional Areas</a>
     <a href="#matrix">Manpower Allocation</a>
-    <a href="#capacity">Capacity &amp; Overload</a>
-    <a href="#assignments">Staff Assignments</a>
+    <a href="#capacity">Capacity &amp; Assignments</a>
   </div>
 </nav>
 
@@ -303,7 +307,7 @@ footer{color:var(--sub);font-size:12px;text-align:center;padding-top:10px;}
         </thead>
         <tbody>
           <tr>
-            <td class="name">Zak Pulmano<span>ICT Officer</span></td>
+            <td class="name">Zak Pulmano<span class="role-mainly-text">Mainly Technical Support</span></td>
             <td class="cell" style="background:rgba(201,162,39,.55)">6</td>
             <td class="cell zero">–</td>
             <td class="cell zero">–</td>
@@ -312,7 +316,7 @@ footer{color:var(--sub);font-size:12px;text-align:center;padding-top:10px;}
             <td class="total">6</td>
           </tr>
           <tr>
-            <td class="name">Jay Roxas<span>ICT Officer</span></td>
+            <td class="name">Jay Roxas<span class="role-purely-text">Purely Technical Support</span></td>
             <td class="cell zero">–</td>
             <td class="cell" style="background:rgba(76,111,165,.55)">5</td>
             <td class="cell zero">–</td>
@@ -321,7 +325,7 @@ footer{color:var(--sub);font-size:12px;text-align:center;padding-top:10px;}
             <td class="total">5</td>
           </tr>
           <tr>
-            <td class="name">Nikko Racelis<span>ICT Officer</span></td>
+            <td class="name">Nikko Racelis<span class="role-purely-text">Purely Technical Support</span></td>
             <td class="cell" style="background:rgba(201,162,39,.18)">2</td>
             <td class="cell zero">–</td>
             <td class="cell" style="background:rgba(47,133,119,.55)">4</td>
@@ -330,7 +334,7 @@ footer{color:var(--sub);font-size:12px;text-align:center;padding-top:10px;}
             <td class="total">7</td>
           </tr>
           <tr>
-            <td class="name">Bernard Secreto<span>ICT Officer</span></td>
+            <td class="name">Bernard Secreto<span class="role-dev-text">Mainly Developer</span></td>
             <td class="cell zero">–</td>
             <td class="cell zero">–</td>
             <td class="cell zero">–</td>
@@ -339,7 +343,7 @@ footer{color:var(--sub);font-size:12px;text-align:center;padding-top:10px;}
             <td class="total">2</td>
           </tr>
           <tr>
-            <td class="name">Joseph Platon<span>ICT Officer</span></td>
+            <td class="name">Joseph Platon<span class="role-purely-text">Purely Technical Support</span></td>
             <td class="cell" style="background:rgba(201,162,39,.18)">1</td>
             <td class="cell zero">–</td>
             <td class="cell" style="background:rgba(47,133,119,.35)">3</td>
@@ -348,7 +352,7 @@ footer{color:var(--sub);font-size:12px;text-align:center;padding-top:10px;}
             <td class="total">5</td>
           </tr>
           <tr>
-            <td class="name">RJ Magsino<span>ICT Officer</span></td>
+            <td class="name">RJ Magsino<span class="role-dev-text">Mainly Developer</span></td>
             <td class="cell" style="background:rgba(201,162,39,.18)">1</td>
             <td class="cell zero">–</td>
             <td class="cell zero">–</td>
@@ -357,7 +361,7 @@ footer{color:var(--sub);font-size:12px;text-align:center;padding-top:10px;}
             <td class="total">1</td>
           </tr>
           <tr>
-            <td class="name">Nestor Arcebuche<span>ICT Officer</span></td>
+            <td class="name">Nestor Arcebuche<span class="role-mainly-text">Mainly Technical Support</span></td>
             <td class="cell zero">–</td>
             <td class="cell" style="background:rgba(76,111,165,.35)">2</td>
             <td class="cell zero">–</td>
@@ -380,8 +384,8 @@ footer{color:var(--sub);font-size:12px;text-align:center;padding-top:10px;}
   <!-- ============ CAPACITY / OVERLOAD ============ -->
   <section id="capacity">
     <div class="section-head">
-      <h2 class="section-title">Capacity &amp; Overload</h2>
-      <p class="section-note">Total assigned load per person, broken down by functional area. Track spans 0–7 tasks, the current max load.</p>
+      <h2 class="section-title">Capacity &amp; Task Assignments</h2>
+      <p class="section-note">Each person's total load, broken down by functional area, with the actual tasks behind it. Track spans 0–7 tasks, the current max load.</p>
     </div>
 
     <div class="capacity-legend">
@@ -394,93 +398,18 @@ footer{color:var(--sub);font-size:12px;text-align:center;padding-top:10px;}
 
     <div class="cap-list">
 
-      <div class="cap-row">
-        <div class="cap-name">Nikko Racelis<span>3 areas</span></div>
-        <div class="cap-track">
-          <div class="cap-grid-marks"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-          <div class="cap-seg" style="width:28.57%;background:rgb(201,162,39)"></div>
-          <div class="cap-seg" style="width:57.14%;background:rgb(47,133,119)"></div>
-          <div class="cap-seg" style="width:14.29%;background:rgb(124,82,149)"></div>
+      <div class="cap-card">
+        <div class="cap-card-top">
+          <div class="cap-name">Nikko Racelis<span>3 areas</span></div>
+          <div class="cap-track">
+            <div class="cap-grid-marks"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="cap-seg" style="width:28.57%;background:rgb(201,162,39)"></div>
+            <div class="cap-seg" style="width:57.14%;background:rgb(47,133,119)"></div>
+            <div class="cap-seg" style="width:14.29%;background:rgb(124,82,149)"></div>
+          </div>
+          <div class="cap-total">7 tasks</div>
+          <div class="cap-band band-high">High</div>
         </div>
-        <div class="cap-total">7 tasks</div>
-        <div class="cap-band band-high">High</div>
-      </div>
-
-      <div class="cap-row">
-        <div class="cap-name">Zak Pulmano<span>1 area</span></div>
-        <div class="cap-track">
-          <div class="cap-grid-marks"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-          <div class="cap-seg" style="width:85.71%;background:rgb(201,162,39)"></div>
-        </div>
-        <div class="cap-total">6 tasks</div>
-        <div class="cap-band band-high">High</div>
-      </div>
-
-      <div class="cap-row">
-        <div class="cap-name">Jay Roxas<span>1 area</span></div>
-        <div class="cap-track">
-          <div class="cap-grid-marks"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-          <div class="cap-seg" style="width:71.43%;background:rgb(76,111,165)"></div>
-        </div>
-        <div class="cap-total">5 tasks</div>
-        <div class="cap-band band-mod">Moderate</div>
-      </div>
-
-      <div class="cap-row">
-        <div class="cap-name">Joseph Platon<span>3 areas</span></div>
-        <div class="cap-track">
-          <div class="cap-grid-marks"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-          <div class="cap-seg" style="width:14.29%;background:rgb(201,162,39)"></div>
-          <div class="cap-seg" style="width:42.86%;background:rgb(47,133,119)"></div>
-          <div class="cap-seg" style="width:14.29%;background:rgb(124,82,149)"></div>
-        </div>
-        <div class="cap-total">5 tasks</div>
-        <div class="cap-band band-mod">Moderate</div>
-      </div>
-
-      <div class="cap-row">
-        <div class="cap-name">Nestor Arcebuche<span>1 area</span></div>
-        <div class="cap-track">
-          <div class="cap-grid-marks"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-          <div class="cap-seg" style="width:28.57%;background:rgb(76,111,165)"></div>
-        </div>
-        <div class="cap-total">2 tasks</div>
-        <div class="cap-band band-light">Light</div>
-      </div>
-
-      <div class="cap-row">
-        <div class="cap-name">Bernard Secreto<span>1 area</span></div>
-        <div class="cap-track">
-          <div class="cap-grid-marks"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-          <div class="cap-seg" style="width:28.57%;background:rgb(156,49,72)"></div>
-        </div>
-        <div class="cap-total">2 tasks</div>
-        <div class="cap-band band-light">Light</div>
-      </div>
-
-      <div class="cap-row">
-        <div class="cap-name">RJ Magsino<span>1 area</span></div>
-        <div class="cap-track">
-          <div class="cap-grid-marks"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-          <div class="cap-seg" style="width:14.29%;background:rgb(201,162,39)"></div>
-        </div>
-        <div class="cap-total">1 task</div>
-        <div class="cap-band band-light">Light</div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ============ STAFF TASK ASSIGNMENTS ============ -->
-  <section id="assignments">
-    <div class="section-head">
-      <h2 class="section-title">Staff Task Assignments</h2>
-      <p class="section-note">The actual tasks each person is currently doing, color-tagged by functional area.</p>
-    </div>
-    <div class="staff-grid">
-
-      <div class="staff-card">
-        <div class="staff-card-head"><h3>Nikko Racelis</h3><span class="count">7 tasks</span></div>
         <ul class="staff-task-list">
           <li><span class="dot" style="background:rgb(201,162,39)"></span>Tagpuan LMS Support</li>
           <li><span class="dot" style="background:rgb(201,162,39)"></span>MyPortal Support</li>
@@ -492,8 +421,16 @@ footer{color:var(--sub);font-size:12px;text-align:center;padding-top:10px;}
         </ul>
       </div>
 
-      <div class="staff-card">
-        <div class="staff-card-head"><h3>Zak Pulmano</h3><span class="count">6 tasks</span></div>
+      <div class="cap-card">
+        <div class="cap-card-top">
+          <div class="cap-name">Zak Pulmano<span>1 area</span></div>
+          <div class="cap-track">
+            <div class="cap-grid-marks"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="cap-seg" style="width:85.71%;background:rgb(201,162,39)"></div>
+          </div>
+          <div class="cap-total">6 tasks</div>
+          <div class="cap-band band-high">High</div>
+        </div>
         <ul class="staff-task-list">
           <li><span class="dot" style="background:rgb(201,162,39)"></span>Freshdesk Management</li>
           <li><span class="dot" style="background:rgb(201,162,39)"></span>MyPortal LMS Support</li>
@@ -504,8 +441,16 @@ footer{color:var(--sub);font-size:12px;text-align:center;padding-top:10px;}
         </ul>
       </div>
 
-      <div class="staff-card">
-        <div class="staff-card-head"><h3>Jay Roxas</h3><span class="count">5 tasks</span></div>
+      <div class="cap-card">
+        <div class="cap-card-top">
+          <div class="cap-name">Jay Roxas<span>1 area</span></div>
+          <div class="cap-track">
+            <div class="cap-grid-marks"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="cap-seg" style="width:71.43%;background:rgb(76,111,165)"></div>
+          </div>
+          <div class="cap-total">5 tasks</div>
+          <div class="cap-band band-mod">Moderate</div>
+        </div>
         <ul class="staff-task-list">
           <li><span class="dot" style="background:rgb(76,111,165)"></span>SMTP</li>
           <li><span class="dot" style="background:rgb(76,111,165)"></span>Hard Drive Corruption</li>
@@ -515,8 +460,18 @@ footer{color:var(--sub);font-size:12px;text-align:center;padding-top:10px;}
         </ul>
       </div>
 
-      <div class="staff-card">
-        <div class="staff-card-head"><h3>Joseph Platon</h3><span class="count">5 tasks</span></div>
+      <div class="cap-card">
+        <div class="cap-card-top">
+          <div class="cap-name">Joseph Platon<span>3 areas</span></div>
+          <div class="cap-track">
+            <div class="cap-grid-marks"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="cap-seg" style="width:14.29%;background:rgb(201,162,39)"></div>
+            <div class="cap-seg" style="width:42.86%;background:rgb(47,133,119)"></div>
+            <div class="cap-seg" style="width:14.29%;background:rgb(124,82,149)"></div>
+          </div>
+          <div class="cap-total">5 tasks</div>
+          <div class="cap-band band-mod">Moderate</div>
+        </div>
         <ul class="staff-task-list">
           <li><span class="dot" style="background:rgb(201,162,39)"></span>Freshdesk Management</li>
           <li><span class="dot" style="background:rgb(124,82,149)"></span>UP and UPOU Email Accounts</li>
@@ -526,24 +481,48 @@ footer{color:var(--sub);font-size:12px;text-align:center;padding-top:10px;}
         </ul>
       </div>
 
-      <div class="staff-card">
-        <div class="staff-card-head"><h3>Nestor Arcebuche</h3><span class="count">2 tasks</span></div>
+      <div class="cap-card">
+        <div class="cap-card-top">
+          <div class="cap-name">Nestor Arcebuche<span>1 area</span></div>
+          <div class="cap-track">
+            <div class="cap-grid-marks"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="cap-seg" style="width:28.57%;background:rgb(76,111,165)"></div>
+          </div>
+          <div class="cap-total">2 tasks</div>
+          <div class="cap-band band-light">Light</div>
+        </div>
         <ul class="staff-task-list">
           <li><span class="dot" style="background:rgb(76,111,165)"></span>Systems Administration</li>
           <li><span class="dot" style="background:rgb(76,111,165)"></span>Developer Support</li>
         </ul>
       </div>
 
-      <div class="staff-card">
-        <div class="staff-card-head"><h3>Bernard Secreto</h3><span class="count">2 tasks</span></div>
+      <div class="cap-card">
+        <div class="cap-card-top">
+          <div class="cap-name">Bernard Secreto<span>1 area</span></div>
+          <div class="cap-track">
+            <div class="cap-grid-marks"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="cap-seg" style="width:28.57%;background:rgb(156,49,72)"></div>
+          </div>
+          <div class="cap-total">2 tasks</div>
+          <div class="cap-band band-light">Light</div>
+        </div>
         <ul class="staff-task-list">
           <li><span class="dot" style="background:rgb(156,49,72)"></span>Cybersecurity Awareness</li>
           <li><span class="dot" style="background:rgb(156,49,72)"></span>Repository Management</li>
         </ul>
       </div>
 
-      <div class="staff-card">
-        <div class="staff-card-head"><h3>RJ Magsino</h3><span class="count">1 task</span></div>
+      <div class="cap-card">
+        <div class="cap-card-top">
+          <div class="cap-name">RJ Magsino<span>1 area</span></div>
+          <div class="cap-track">
+            <div class="cap-grid-marks"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="cap-seg" style="width:14.29%;background:rgb(201,162,39)"></div>
+          </div>
+          <div class="cap-total">1 task</div>
+          <div class="cap-band band-light">Light</div>
+        </div>
         <ul class="staff-task-list">
           <li><span class="dot" style="background:rgb(201,162,39)"></span>MyPortal Support</li>
         </ul>
