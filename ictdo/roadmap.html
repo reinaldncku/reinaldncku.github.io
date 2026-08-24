@@ -4,22 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ICTDO Portfolio · Roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
   .ganttscroll{ overflow-x:auto; }
-  .gantt{ min-width:920px; }
+  .gantt{ min-width:900px; }
   .gantt-months{
     display:grid;
-    margin-left:220px;
+    margin-left:210px;
     border-bottom:1px solid var(--border);
-    padding-bottom:6px;
-    margin-bottom:4px;
+    padding-bottom:7px;
+    margin-bottom:5px;
   }
   .gantt-month{
     font-family:var(--font-mono);
     font-size:10px;
     letter-spacing:1px;
-    color:var(--text-faint);
+    color:var(--text-dim);
     text-transform:uppercase;
     border-left:1px solid var(--border-soft);
     padding-left:6px;
@@ -32,17 +35,17 @@
     position:relative;
   }
   .gantt-label{
-    width:220px;
-    flex:0 0 220px;
-    padding-right:12px;
-    font-size:12px;
+    width:210px;
+    flex:0 0 210px;
+    padding-right:10px;
+    font-size:12.5px;
     font-weight:600;
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
     display:flex;
     align-items:center;
-    gap:7px;
+    gap:8px;
   }
   .gantt-track{
     position:relative;
@@ -56,7 +59,7 @@
   .gantt-grid div{ border-left:1px solid var(--border-soft); }
   .gantt-bar{
     position:absolute;
-    top:9px; height:20px;
+    top:8px; height:20px;
     border-radius:3px;
     display:flex; align-items:center;
     font-family:var(--font-mono);
@@ -84,13 +87,13 @@
   }
   .today-line.labeled::after{
     content:"TODAY";
-    position:absolute; top:-15px; left:4px;
-    font-family:var(--font-mono); font-size:9px; color:var(--danger); letter-spacing:0.5px;
+    position:absolute; top:-17px; left:4px;
+    font-family:var(--font-mono); font-size:9.5px; color:var(--danger); letter-spacing:0.5px;
     white-space:nowrap;
   }
   .backlog-row{
     display:flex; align-items:center; justify-content:space-between;
-    padding:9px 4px; border-bottom:1px solid var(--border-soft);
+    padding:8px 4px; border-bottom:1px solid var(--border-soft);
     font-size:12.5px;
   }
   .backlog-row:last-child{ border-bottom:none; }
@@ -98,8 +101,8 @@
     display:block;
     font-family:var(--font-mono);
     font-size:10.5px;
-    color:var(--text-faint);
-    margin-top:2px;
+    color:var(--text-dim);
+    margin-top:3px;
   }
 </style>
 </head>
@@ -129,15 +132,15 @@
 
   <div class="pagehead">
     <div>
-      <div class="tag">Panel 02 · Timeline</div>
+      <div class="tag">Timeline</div>
       <h2>Project Roadmap / Gantt</h2>
-      <p>Scheduled work plotted against target dates. The source register records no start dates for most systems, so bar starts below are <b style="color:var(--text-dim)">estimated backward from the target date using effort size</b> — treat as directional, not committed.</p>
+      <p>Scheduled work plotted against target dates, with bar durations estimated based on effort size. Timelines are intended to guide planning and may serve as committed schedules where applicable.</p>
     </div>
   </div>
 
   <div class="panel">
     <div class="panel-head">
-      <span class="panel-title">Fig. 05 · <b>Scheduled Timeline — Aug 2026 to Feb 2027</b></span>
+      <span class="panel-title"><b>Scheduled Timeline — Aug 2026 to Feb 2027</b></span>
       <span class="note note-sm">■ Bar length ≈ effort-derived duration &nbsp; ⧫ fixed deadline &nbsp; ▤ recurring / ongoing</span>
     </div>
     <div class="ganttscroll">
@@ -147,19 +150,19 @@
 
   <div class="grid grid-2" style="margin-top:14px;">
     <div class="panel">
-      <div class="panel-head"><span class="panel-title">Panel · <b>Unscheduled</b></span></div>
+      <div class="panel-head"><span class="panel-title"><b>Unscheduled</b></span></div>
       <div class="note" style="margin-bottom:8px;">No target date on file, or the date on file isn't a specific calendar date — cannot be placed on the timeline as-is.</div>
       <div id="backlogList"></div>
     </div>
     <div class="panel">
-      <div class="panel-head"><span class="panel-title">Panel · <b>Completed (Awaiting Updates)</b></span></div>
+      <div class="panel-head"><span class="panel-title"><b>Completed (Awaiting Updates)</b></span></div>
       <div class="note" style="margin-bottom:8px;">Marked complete in the register, with no close-out date recorded yet.</div>
       <div id="completedList"></div>
     </div>
   </div>
 
   <div class="panel" style="margin-top:14px;">
-    <div class="panel-head"><span class="panel-title">Panel · <b>Assumptions</b></span></div>
+    <div class="panel-head"><span class="panel-title"><b>Assumptions</b></span></div>
     <div class="note">
       <b>Duration by effort size</b> (used only when a start date is missing):<br>
       S → 4 weeks &nbsp;·&nbsp; M → 8 weeks &nbsp;·&nbsp; L → 12 weeks &nbsp;·&nbsp; XL → 20 weeks<br><br>

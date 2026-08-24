@@ -4,13 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ICTDO Portfolio · Manpower Matrix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
   .matrix-wrap{ overflow-x:auto; }
+  .legend-row{ display:flex; gap:16px; margin-bottom:12px; flex-wrap:wrap; }
+  .legend-row span{ display:flex; align-items:center; gap:6px; font-family:var(--font-body); font-size:11.5px; color:var(--text-dim); }
+  .legend-row i{ width:9px; height:9px; border-radius:50%; display:inline-block; }
   .matrix{ border-collapse:collapse; font-size:11px; }
   .matrix th, .matrix td{ border-bottom:1px solid var(--border-soft); text-align:center; padding:0; }
   .matrix thead th{
-    height:150px; width:40px; min-width:40px;
+    height:148px; width:40px; min-width:40px;
     vertical-align:bottom;
     padding-bottom:8px;
     border-bottom:1px solid var(--border);
@@ -19,7 +25,7 @@
     writing-mode:vertical-rl;
     transform:rotate(180deg);
     font-family:var(--font-mono);
-    font-size:10.5px;
+    font-size:10px;
     font-weight:600;
     color:var(--text-dim);
     letter-spacing:0.3px;
@@ -29,7 +35,7 @@
   .matrix thead th.corner{ vertical-align:bottom; text-align:left; padding-left:4px; }
   .matrix tbody th{
     text-align:left;
-    font-size:12px;
+    font-size:12.5px;
     font-weight:600;
     padding:8px 14px 8px 4px;
     white-space:nowrap;
@@ -44,7 +50,7 @@
   }
   .row-total{
     font-family:var(--font-mono);
-    color:var(--text-faint);
+    color:var(--text-dim);
     font-size:10.5px;
     padding-right:4px !important;
   }
@@ -83,7 +89,7 @@
 
   <div class="pagehead">
     <div>
-      <div class="tag">Panel 03 · Staffing</div>
+      <div class="tag">Staffing</div>
       <h2>Manpower Allocation — Person × Project</h2>
       <p>Every developer named in the register, cross-referenced against every project. Dot color marks the project's priority; row order runs from most to least concurrently staffed.</p>
     </div>
@@ -93,9 +99,10 @@
 
   <div class="panel" style="margin-top:14px;">
     <div class="panel-head">
-      <span class="panel-title">Fig. 06 · <b>Assignment Matrix</b></span>
-      <span class="note note-sm">● assigned &nbsp;·&nbsp; colored by project priority</span>
+      <span class="panel-title"><b>Assignment Matrix</b></span>
+      <span class="note note-sm">● assigned</span>
     </div>
+    <div class="legend-row" id="priorityLegend"></div>
     <div class="matrix-wrap">
       <table class="matrix" id="matrixTable"></table>
     </div>
@@ -131,6 +138,11 @@
       <div class="panel-title">${k.label}</div>
       <div class="value ${k.cls}">${k.value}</div>
     </div>
+  `).join("");
+
+  // Priority color legend
+  document.getElementById("priorityLegend").innerHTML = Object.entries(PRI_COLOR).map(([label, color]) => `
+    <span><i style="background:${color}"></i>${label}</span>
   `).join("");
 
   // Matrix

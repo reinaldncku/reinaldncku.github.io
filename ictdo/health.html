@@ -4,24 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ICTDO Portfolio · Health</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
   .rag-row{
     display:grid;
-    grid-template-columns: 14px 1.6fr 0.9fr 0.7fr 1fr 1.8fr 0.9fr;
+    grid-template-columns: 13px 1.6fr 0.9fr 0.7fr 1fr 1.8fr 0.85fr;
     gap:14px;
     align-items:center;
-    padding:13px 6px;
+    padding:11px 6px;
     border-bottom:1px solid var(--border-soft);
   }
   .rag-row:last-child{ border-bottom:none; }
   .rag-row .head{
     font-family:var(--font-mono);
-    font-size:11px;
+    font-size:10.5px;
     letter-spacing:0.7px;
     text-transform:uppercase;
-    color:var(--text-faint);
-    padding-bottom:11px;
+    color:var(--text-dim);
+    padding-bottom:10px;
     border-bottom:1px solid var(--border);
   }
   .rag-dot{
@@ -29,11 +32,11 @@
     border-radius:50%;
     display:block;
   }
-  .rag-proj{ font-weight:600; font-size:13.5px; }
-  .rag-proj .off{ display:block; font-family:var(--font-mono); font-size:11px; color:var(--text-faint); font-weight:400; margin-top:2px; }
+  .rag-proj{ font-weight:600; font-size:13px; }
+  .rag-proj .off{ display:block; font-family:var(--font-mono); font-size:10.5px; color:var(--text-dim); font-weight:400; margin-top:2px; }
   .rag-label{
     display:inline-flex; align-items:center; gap:6px;
-    font-family:var(--font-mono); font-size:11px; letter-spacing:0.4px; text-transform:uppercase; font-weight:600;
+    font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.4px; text-transform:uppercase; font-weight:600;
   }
   .factor-chip{
     display:inline-block;
@@ -47,11 +50,11 @@
     margin:2px 4px 2px 0;
     white-space:nowrap;
   }
-  .rag-staff{ font-family:var(--font-mono); font-size:12px; color:var(--text-dim); }
+  .rag-staff{ font-family:var(--font-mono); font-size:11.5px; color:var(--text-dim); }
   .rag-staff.un{ color:var(--danger); }
-  .rag-date{ font-family:var(--font-mono); font-size:12px; color:var(--text-dim); }
-  .legend-row{ display:flex; gap:20px; margin-bottom:14px; flex-wrap:wrap; }
-  .legend-row span{ display:flex; align-items:center; gap:7px; font-family:var(--font-mono); font-size:11.5px; color:var(--text-dim); }
+  .rag-date{ font-family:var(--font-mono); font-size:11.5px; color:var(--text-dim); }
+  .legend-row{ display:flex; gap:18px; margin-bottom:12px; flex-wrap:wrap; }
+  .legend-row span{ display:flex; align-items:center; gap:7px; font-family:var(--font-mono); font-size:11px; color:var(--text-dim); }
   .legend-row i{ width:10px; height:10px; border-radius:50%; display:inline-block; }
 </style>
 </head>
@@ -81,7 +84,7 @@
 
   <div class="pagehead">
     <div>
-      <div class="tag">Panel 06 · Health</div>
+      <div class="tag">Health</div>
       <h2>Portfolio Health / RAG Board</h2>
       <p>Every project rolled up into a single Red / Amber / Green rating, built from four visible factors — staffing, priority, stage-versus-priority, and fixed-deadline proximity. Nothing is hidden inside the score; the factors that drove each rating are listed alongside it.</p>
     </div>
@@ -90,7 +93,7 @@
   <div class="grid grid-4" id="kpiGrid"></div>
 
   <div class="panel" style="margin-top:14px;">
-    <div class="panel-head"><span class="panel-title">Fig. 09 · <b>Portfolio Health Board</b></span></div>
+    <div class="panel-head"><span class="panel-title"><b>Portfolio Health Board</b></span></div>
     <div class="legend-row">
       <span><i style="background:#9C3148"></i>At Risk — act now</span>
       <span><i style="background:#8A6D14"></i>Needs Attention — watch closely</span>
@@ -111,7 +114,7 @@
   </div>
 
   <div class="panel" style="margin-top:14px;">
-    <div class="panel-head"><span class="panel-title">Panel · <b>How This Is Scored</b></span></div>
+    <div class="panel-head"><span class="panel-title"><b>How This Is Scored</b></span></div>
     <div class="note">
       Each project starts at zero and picks up points only for factors that are actually true of it. <b>Completed</b> projects are always Green.<br><br>
       <b>Staffing</b> — no developer on file: +3<br>

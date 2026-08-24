@@ -4,11 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ICTDO Portfolio · Priority vs Effort</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
   .matgrid{
     display:grid;
-    grid-template-columns: 130px repeat(4, 1fr);
+    grid-template-columns: 132px repeat(4, 1fr);
     grid-template-rows: 34px repeat(4, minmax(96px,auto));
     gap:6px;
   }
@@ -16,13 +19,13 @@
   .mat-colhead, .mat-rowhead{
     display:flex; align-items:center; justify-content:center;
     font-family:var(--font-mono);
-    font-size:10.5px;
+    font-size:10px;
     letter-spacing:1px;
     text-transform:uppercase;
-    color:var(--text-faint);
+    color:var(--text-dim);
   }
-  .mat-rowhead{ justify-content:flex-start; padding-left:6px; flex-direction:column; align-items:flex-start; gap:2px; }
-  .mat-rowhead b{ font-family:var(--font-display); font-size:13px; color:var(--text); letter-spacing:0; text-transform:none; }
+  .mat-rowhead{ justify-content:flex-start; padding-left:6px; flex-direction:column; align-items:flex-start; gap:3px; }
+  .mat-rowhead b{ font-family:var(--font-display); font-size:13.5px; color:var(--text); letter-spacing:0; text-transform:none; }
   .mat-cell{
     background:var(--panel);
     border:1px solid var(--border);
@@ -38,9 +41,9 @@
   .mat-cell.zone-fill{ border-color:var(--border); }
   .mat-cell.zone-reconsider{ border-color:rgba(156,49,72,0.28); background:linear-gradient(180deg, rgba(156,49,72,0.04), var(--panel)); }
   .mat-zone-tag{
-    position:absolute; top:5px; right:6px;
+    position:absolute; top:7px; right:8px;
     font-family:var(--font-mono); font-size:8px; letter-spacing:0.5px;
-    color:var(--text-faint); text-transform:uppercase;
+    color:var(--text-dim); text-transform:uppercase;
   }
   .chip{
     font-family:var(--font-mono);
@@ -50,9 +53,9 @@
     border-left:3px solid var(--accent);
     padding:5px 8px;
     border-radius:2px;
-    line-height:1.35;
+    line-height:1.4;
   }
-  .chip .off{ display:block; color:var(--text-faint); font-size:9px; margin-top:2px; }
+  .chip .off{ display:block; color:var(--text-dim); font-size:9.5px; margin-top:2px; }
 </style>
 </head>
 <body data-page="priority-effort.html">
@@ -81,19 +84,19 @@
 
   <div class="pagehead">
     <div>
-      <div class="tag">Panel 05 · Sequencing</div>
+      <div class="tag">Sequencing</div>
       <h2>Priority vs. Effort Matrix</h2>
       <p>Every project placed by requested priority (rows) against effort size (columns). Use it to sequence work: high priority + low effort clears fast, high priority + high effort needs dedicated staffing, low priority + high effort is worth challenging.</p>
     </div>
   </div>
 
   <div class="panel">
-    <div class="panel-head"><span class="panel-title">Fig. 08 · <b>Priority × Effort Grid</b></span></div>
+    <div class="panel-head"><span class="panel-title"><b>Priority × Effort Grid</b></span></div>
     <div class="matgrid" id="matGrid"></div>
   </div>
 
   <div class="panel" style="margin-top:14px;" id="unsizedPanel">
-    <div class="panel-head"><span class="panel-title">Panel · <b>Effort Not Sized</b></span></div>
+    <div class="panel-head"><span class="panel-title"><b>Effort Not Sized</b></span></div>
     <div class="note" id="unsizedNote"></div>
   </div>
 
@@ -138,7 +141,7 @@
       const zc = zoneFor(pri, eff);
       html += `<div class="mat-cell ${zc}">
         <span class="mat-zone-tag">${zoneLabel(pri,eff)}</span>
-        ${projs.length ? projs.map(p => `<div class="chip">${p.project}<span class="off">${p.office}</span></div>`).join("") : `<span style="color:var(--text-faint); font-family:var(--font-mono); font-size:10px;">—</span>`}
+        ${projs.length ? projs.map(p => `<div class="chip">${p.project}<span class="off">${p.office}</span></div>`).join("") : `<span style="color:var(--text-dim); font-family:var(--font-mono); font-size:10px;">—</span>`}
       </div>`;
     });
   });

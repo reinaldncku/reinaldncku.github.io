@@ -4,25 +4,50 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ICTDO Portfolio · Capacity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
-  .cap-row{
-    display:grid;
-    grid-template-columns:160px 1fr 90px;
-    align-items:center;
-    gap:14px;
-    height:44px;
+  .cap-person{
+    padding:8px 0;
     border-bottom:1px solid var(--border-soft);
   }
+  .cap-row{
+    display:grid;
+    grid-template-columns:160px 1fr 86px;
+    align-items:center;
+    gap:12px;
+  }
   .cap-name{ font-size:12.5px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .cap-name .n{ display:block; font-family:var(--font-mono); font-size:9.5px; color:var(--text-faint); font-weight:400; margin-top:2px; }
-  .cap-track{ position:relative; height:16px; background:var(--panel-2); border-radius:2px; overflow:visible; }
-  .cap-fill{ position:absolute; top:0; left:0; height:100%; border-radius:2px; }
+  .cap-name .n{ display:inline; font-family:var(--font-body); font-size:10.5px; color:var(--text-dim); font-weight:400; margin-left:6px; }
+  .cap-track{ position:relative; height:13px; background:var(--panel-2); border-radius:3px; overflow:visible; }
+  .cap-fill{ position:absolute; top:0; left:0; height:100%; border-radius:3px; }
   .cap-threshold{ position:absolute; top:-4px; bottom:-4px; width:1px; border-left:1px dashed var(--text-faint); }
-  .cap-threshold span{ position:absolute; top:-13px; left:3px; font-family:var(--font-mono); font-size:8.5px; color:var(--text-faint); white-space:nowrap; }
-  .cap-value{ font-family:var(--font-mono); font-size:11px; text-align:right; }
-  .legend-row{ display:flex; gap:18px; margin-bottom:14px; flex-wrap:wrap; }
-  .legend-row span{ display:flex; align-items:center; gap:6px; font-family:var(--font-mono); font-size:10.5px; color:var(--text-dim); }
+  .cap-threshold span{ position:absolute; top:-13px; left:3px; font-family:var(--font-body); font-size:8.5px; color:var(--text-dim); white-space:nowrap; }
+  .cap-value{ font-family:var(--font-body); font-size:11.5px; text-align:right; }
+  .cap-projects{
+    margin-top:6px;
+    padding-left:172px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:4px;
+  }
+  .cap-proj-chip{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    font-size:10.5px;
+    color:var(--text-dim);
+    background:var(--panel-3);
+    border:1px solid var(--border);
+    padding:2px 8px;
+    border-radius:20px;
+    white-space:nowrap;
+  }
+  .cap-proj-chip b{ color:var(--navy); font-weight:600; }
+  .legend-row{ display:flex; gap:16px; margin-bottom:10px; flex-wrap:wrap; }
+  .legend-row span{ display:flex; align-items:center; gap:6px; font-family:var(--font-body); font-size:10.5px; color:var(--text-dim); }
   .legend-row i{ width:9px; height:9px; border-radius:2px; display:inline-block; }
 </style>
 </head>
@@ -52,7 +77,7 @@
 
   <div class="pagehead">
     <div>
-      <div class="tag">Panel 04 · Load</div>
+      <div class="tag">Load</div>
       <h2>Capacity / Overload View</h2>
       <p>Load weights each person's projects by effort size (S=1 · M=2 · L=3 · XL=5) and sums them — a truer read of pressure than a raw project count, since one XL system can outweigh three small ones.</p>
     </div>
@@ -62,7 +87,7 @@
 
   <div class="panel" style="margin-top:14px;">
     <div class="panel-head">
-      <span class="panel-title">Fig. 07 · <b>Weighted Load by Person</b></span>
+      <span class="panel-title"><b>Weighted Load by Person</b></span>
     </div>
     <div class="legend-row">
       <span><i style="background:#236B5F"></i>Available (&lt; 7)</span>
@@ -74,11 +99,11 @@
 
   <div class="grid grid-2" style="margin-top:14px;">
     <div class="panel">
-      <div class="panel-head"><span class="panel-title">Panel · <b>Overloaded — Detail</b></span></div>
+      <div class="panel-head"><span class="panel-title"><b>Overloaded — Detail</b></span></div>
       <div id="overloadDetail" class="note"></div>
     </div>
     <div class="panel">
-      <div class="panel-head"><span class="panel-title">Panel · <b>Unstaffed Work Waiting on Capacity</b></span></div>
+      <div class="panel-head"><span class="panel-title"><b>Unstaffed Work Waiting on Capacity</b></span></div>
       <div id="unstaffedDetail" class="note"></div>
     </div>
   </div>
@@ -125,15 +150,22 @@
     const w = (p.w / maxW * 100).toFixed(1);
     const t7 = (7 / maxW * 100).toFixed(1);
     const t11 = (11 / maxW * 100).toFixed(1);
+    const projChips = p.ps.map(proj => {
+      const pts = EFFORT_WEIGHT[proj.effort] || 1;
+      return `<span class="cap-proj-chip">${proj.project} <b>${pts} pt${pts>1?'s':''}</b></span>`;
+    }).join("");
     return `
-      <div class="cap-row">
-        <div class="cap-name">${p.name}<span class="n">${p.ps.length} project${p.ps.length>1?'s':''}</span></div>
-        <div class="cap-track">
-          <div class="cap-threshold" style="left:${t7}%"></div>
-          <div class="cap-threshold" style="left:${t11}%"></div>
-          <div class="cap-fill" style="width:${w}%; background:${TIER_COLOR[tier.cls]}"></div>
+      <div class="cap-person">
+        <div class="cap-row">
+          <div class="cap-name">${p.name}<span class="n">${p.ps.length} project${p.ps.length>1?'s':''}</span></div>
+          <div class="cap-track">
+            <div class="cap-threshold" style="left:${t7}%"></div>
+            <div class="cap-threshold" style="left:${t11}%"></div>
+            <div class="cap-fill" style="width:${w}%; background:${TIER_COLOR[tier.cls]}"></div>
+          </div>
+          <div class="cap-value">${p.w} <span style="color:var(--text-dim)">pts</span></div>
         </div>
-        <div class="cap-value">${p.w} <span style="color:var(--text-faint)">pts</span></div>
+        <div class="cap-projects">${projChips}</div>
       </div>
     `;
   }).join("") : `<div class="note" style="padding:16px 4px;">No staffed projects match the current filters.</div>`;
