@@ -120,20 +120,6 @@
     align-items:flex-start; gap:2px;
     white-space:normal;
   }
-  .gantt-recur-note{
-    font-family:var(--font-mono);
-    font-size:9.5px;
-    font-weight:400;
-    color:var(--text-faint);
-    white-space:normal;
-  }
-  .gantt-recurring-strip{
-    position:absolute;
-    left:0; width:100%; height:5px;
-    border-radius:2px;
-    background-image:repeating-linear-gradient(135deg, var(--border-strong) 0 5px, transparent 5px 10px);
-    opacity:0.8;
-  }
   .backlog-row{
     display:flex; align-items:center; justify-content:space-between;
     padding:8px 4px; border-bottom:1px solid var(--border-soft);
@@ -189,7 +175,7 @@
         <button class="gv-btn" data-view="person">By Person</button>
       </div>
     </div>
-    <p class="note note-sm" style="margin:-4px 0 12px;">■ Bar length ≈ effort-derived duration &nbsp; ⧫ fixed deadline &nbsp; ▤ recurring / ongoing (shown de-emphasized in the By Person view)</p>
+    <p class="note note-sm" style="margin:-4px 0 12px;">■ Bar length ≈ effort-derived duration &nbsp; ⧫ fixed deadline &nbsp; ▤ recurring / ongoing</p>
     <div class="ganttscroll">
       <div class="gantt" id="ganttChart"></div>
     </div>
@@ -279,7 +265,6 @@
 
   const todayPct = pct(TODAY_D);
   const LANE_HEIGHT = 30;
-  const RECUR_STRIP_H = 6;
 
   function renderProjectView(){
     const sortedRows = scheduled.slice().sort((a,b) => {
@@ -344,7 +329,7 @@
         else{ laneEnds[lane] = bar.endPct; }
         bar.lane = lane;
       });
-      return { name, recurringBars, timedBars, laneCount: Math.max(laneEnds.length, 1) };
+      return { name, recurringBars, timedBars, laneCount: laneEnds.length };
     })
     .filter(row => row.recurringBars.length || row.timedBars.length)
     .sort((a,b) => (b.timedBars.length + b.recurringBars.length) - (a.timedBars.length + a.recurringBars.length));
@@ -354,9 +339,8 @@
     const rows = buildPersonRows();
 
     const rowsHTML = rows.map((row, idx) => {
-      const trackHeight = row.timedBars.length
-        ? row.laneCount * LANE_HEIGHT + (row.recurringBars.length ? row.recurringBars.length * RECUR_STRIP_H + 8 : 8)
-        : (row.recurringBars.length * RECUR_STRIP_H + 20);
+      const totalLanes = row.laneCount + row.recurringBars.length;
+      const trackHeight = totalLanes * LANE_HEIGHT + 12;
 
       const barsHTML = row.timedBars.map(bar => {
         const p = bar.p;
@@ -371,18 +355,17 @@
         </div>`;
       }).join("");
 
-      const recurTop0 = row.laneCount * LANE_HEIGHT + 4;
-      const recurHTML = row.recurringBars.map((p, i) => `
-        <div class="gantt-recurring-strip" style="top:${recurTop0 + i*(RECUR_STRIP_H+2)}px;" title="${p.project} — recurring, ongoing"></div>
-      `).join("");
-
-      const recurLabel = row.recurringBars.length
-        ? `<span class="gantt-recur-note">+ ${row.recurringBars.map(p=>p.project).join(", ")} (ongoing)</span>`
-        : "";
+      const recurHTML = row.recurringBars.map((p, i) => {
+        const color = PRI_COLOR[p.priority];
+        const top = (row.laneCount + i) * LANE_HEIGHT + 6;
+        return `<div class="gantt-bar recurring" style="left:0%; width:100%; top:${top}px; background:${color}; opacity:0.55;">
+          ${p.project} — recurring
+        </div>`;
+      }).join("");
 
       return `
         <div class="gantt-row person-row" style="height:${trackHeight + 16}px;">
-          <div class="gantt-label person-label"><span>${row.name}</span>${recurLabel}</div>
+          <div class="gantt-label person-label"><span>${row.name}</span></div>
           <div class="gantt-track">
             <div class="gantt-grid" style="grid-template-columns:repeat(${months.length},1fr)">${months.map(()=>"<div></div>").join("")}</div>
             <div class="today-line ${idx===0?'labeled':''}" style="left:${todayPct}%"></div>

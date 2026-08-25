@@ -4,7 +4,7 @@ const PROJECTS = [
     "office": "SPMO",
     "priority": "Low",
     "status": "Not Started",
-    "developers": "Arnold Celis, Bernard Secreto, Nestor Arcebuche, James Telosa",
+    "developers": "Arnold Celis, Bernard Secreto, James Telosa",
     "start_date": null,
     "target_date": "2027-03-31",
     "deadline_fixed": "No",
@@ -81,7 +81,7 @@ const PROJECTS = [
     "office": "OUR",
     "priority": "High",
     "status": "Development",
-    "developers": "Mark Sumaya, Alex Bigal",
+    "developers": "Mark Sumaya, Alex Bigal, Bernard Secreto",
     "start_date": "Recurring",
     "target_date": "Recurring",
     "deadline_fixed": "NA",
@@ -152,5 +152,16 @@ const PROJECTS = [
     "target_date": "2026-12-15",
     "deadline_fixed": "Yes",
     "effort": "S"
+  },
+  {
+    "project": "LUCID",
+    "office": "UPOU",
+    "priority": "Medium",
+    "status": "Completed",
+    "developers": "Renz Magsino",
+    "start_date": null,
+    "target_date": null,
+    "deadline_fixed": null,
+    "effort": "M"
   }
 ];

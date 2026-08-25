@@ -96,7 +96,6 @@
     <div class="panel-head">
       <span class="panel-title"><b>Weighted Load by Person</b></span>
     </div>
-    <p class="panel-sub">Not Started and Completed projects carry no weight here — the work hasn't begun, or it's already done — so they don't count toward a person's points. They still appear below each bar for visibility, marked with a dashed border.</p>
     <div class="legend-row">
       <span><i style="background:#236B5F"></i>Available (&lt; 7)</span>
       <span><i style="background:#8A6D14"></i>At Capacity (7–10)</span>
@@ -161,7 +160,7 @@
     const projChips = p.ps.map(proj => {
       const pts = projectWeight(proj);
       if(pts === 0){
-        return `<span class="cap-proj-chip zero">${proj.project} <b>not counted</b></span>`;
+        return `<span class="cap-proj-chip zero">${proj.project} <b>${proj.status}</b></span>`;
       }
       return `<span class="cap-proj-chip">${proj.project} <b>${pts} pt${pts>1?'s':''}</b></span>`;
     }).join("");
