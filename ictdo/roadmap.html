@@ -91,6 +91,49 @@
     font-family:var(--font-mono); font-size:9.5px; color:var(--danger); letter-spacing:0.5px;
     white-space:nowrap;
   }
+  .gantt-view-toggle{
+    display:flex; gap:3px;
+    background:var(--panel-3);
+    border-radius:20px;
+    padding:3px;
+  }
+  .gv-btn{
+    font-family:var(--font-body);
+    font-size:11.5px;
+    font-weight:600;
+    padding:6px 13px;
+    border-radius:16px;
+    border:none;
+    background:transparent;
+    color:var(--text-dim);
+    cursor:pointer;
+  }
+  .gv-btn:hover{ color:var(--text); }
+  .gv-btn.active{
+    background:var(--panel);
+    color:var(--navy);
+    box-shadow:0 1px 2px rgba(22,35,63,0.1);
+  }
+  .gantt-row.person-row{ align-items:stretch; height:auto; }
+  .gantt-label.person-label{
+    display:flex; flex-direction:column; justify-content:center;
+    align-items:flex-start; gap:2px;
+    white-space:normal;
+  }
+  .gantt-recur-note{
+    font-family:var(--font-mono);
+    font-size:9.5px;
+    font-weight:400;
+    color:var(--text-faint);
+    white-space:normal;
+  }
+  .gantt-recurring-strip{
+    position:absolute;
+    left:0; width:100%; height:5px;
+    border-radius:2px;
+    background-image:repeating-linear-gradient(135deg, var(--border-strong) 0 5px, transparent 5px 10px);
+    opacity:0.8;
+  }
   .backlog-row{
     display:flex; align-items:center; justify-content:space-between;
     padding:8px 4px; border-bottom:1px solid var(--border-soft);
@@ -141,8 +184,12 @@
   <div class="panel">
     <div class="panel-head">
       <span class="panel-title"><b>Scheduled Timeline — Aug 2026 to Mar 2027</b></span>
-      <span class="note note-sm">■ Bar length ≈ effort-derived duration &nbsp; ⧫ fixed deadline &nbsp; ▤ recurring / ongoing</span>
+      <div class="gantt-view-toggle" id="ganttViewToggle">
+        <button class="gv-btn active" data-view="project">By Project</button>
+        <button class="gv-btn" data-view="person">By Person</button>
+      </div>
     </div>
+    <p class="note note-sm" style="margin:-4px 0 12px;">■ Bar length ≈ effort-derived duration &nbsp; ⧫ fixed deadline &nbsp; ▤ recurring / ongoing (shown de-emphasized in the By Person view)</p>
     <div class="ganttscroll">
       <div class="gantt" id="ganttChart"></div>
     </div>
@@ -222,7 +269,7 @@
     scheduled.push({ p, recurring:false, start, end, clipped });
   });
 
-  // ---- render month header ----
+  // ---- render month header (shared by both views) ----
   document.getElementById("ganttChart").innerHTML = `
     <div class="gantt-months" style="grid-template-columns:repeat(${months.length},1fr)">
       ${months.map(m=>`<div class="gantt-month">${m}</div>`).join("")}
@@ -231,15 +278,17 @@
   `;
 
   const todayPct = pct(TODAY_D);
+  const LANE_HEIGHT = 30;
+  const RECUR_STRIP_H = 6;
 
-  const sortedRows = scheduled.sort((a,b) => {
+  function renderProjectView(){
+    const sortedRows = scheduled.slice().sort((a,b) => {
       if(a.recurring) return -1;
       if(b.recurring) return 1;
       return a.start - b.start;
     });
 
-  const rowsHTML = sortedRows
-    .map((row, idx) => {
+    const rowsHTML = sortedRows.map((row, idx) => {
       const p = row.p;
       const color = PRI_COLOR[p.priority];
       let barHTML;
@@ -268,7 +317,99 @@
       `;
     }).join("");
 
-  document.getElementById("ganttRows").innerHTML = rowsHTML || `<div class="note" style="padding:24px 4px;">No scheduled projects match the current filters.</div>`;
+    document.getElementById("ganttRows").innerHTML = rowsHTML || `<div class="note" style="padding:24px 4px;">No scheduled projects match the current filters.</div>`;
+  }
+
+  function buildPersonRows(){
+    const manpower = buildManpower(DATA);
+    return Object.entries(manpower).map(([name, projs]) => {
+      const recurringBars = [];
+      const timedBars = [];
+      projs.forEach(p => {
+        if(p.status === "Completed") return;
+        if(p.start_date === "Recurring"){ recurringBars.push(p); return; }
+        if(!p.target_date || !isISODate(p.target_date)) return;
+        const end = new Date(p.target_date + "T00:00:00");
+        const weeks = DURATION_WEEKS[p.effort] || 6;
+        let start = new Date(end.getTime() - weeks*7*86400000);
+        let clipped = false;
+        if(start < TODAY_D){ start = TODAY_D; clipped = true; }
+        timedBars.push({ p, start, end, clipped, startPct: pct(start), endPct: pct(end) });
+      });
+      timedBars.sort((a,b) => a.start - b.start);
+      const laneEnds = [];
+      timedBars.forEach(bar => {
+        let lane = laneEnds.findIndex(e => bar.startPct >= e);
+        if(lane === -1){ lane = laneEnds.length; laneEnds.push(bar.endPct); }
+        else{ laneEnds[lane] = bar.endPct; }
+        bar.lane = lane;
+      });
+      return { name, recurringBars, timedBars, laneCount: Math.max(laneEnds.length, 1) };
+    })
+    .filter(row => row.recurringBars.length || row.timedBars.length)
+    .sort((a,b) => (b.timedBars.length + b.recurringBars.length) - (a.timedBars.length + a.recurringBars.length));
+  }
+
+  function renderPersonView(){
+    const rows = buildPersonRows();
+
+    const rowsHTML = rows.map((row, idx) => {
+      const trackHeight = row.timedBars.length
+        ? row.laneCount * LANE_HEIGHT + (row.recurringBars.length ? row.recurringBars.length * RECUR_STRIP_H + 8 : 8)
+        : (row.recurringBars.length * RECUR_STRIP_H + 20);
+
+      const barsHTML = row.timedBars.map(bar => {
+        const p = bar.p;
+        const color = PRI_COLOR[p.priority];
+        const l = bar.startPct, r = bar.endPct;
+        const w = Math.max(r - l, 1.2);
+        const top = bar.lane * LANE_HEIGHT + 6;
+        const flexClass = p.deadline_fixed === "No" ? "flex" : "";
+        return `<div class="gantt-bar ${flexClass}" style="left:${l}%; width:${w}%; top:${top}px; background:${color};" title="${p.project}: ${fmtDate(bar.clipped?TODAY:bar.start.toISOString().slice(0,10))} → ${fmtDate(p.target_date)}${bar.clipped?' (est. start pulled to today)':''}">
+          ${p.project}
+          ${p.deadline_fixed === "Yes" ? '<span class="anchor"></span>' : ''}
+        </div>`;
+      }).join("");
+
+      const recurTop0 = row.laneCount * LANE_HEIGHT + 4;
+      const recurHTML = row.recurringBars.map((p, i) => `
+        <div class="gantt-recurring-strip" style="top:${recurTop0 + i*(RECUR_STRIP_H+2)}px;" title="${p.project} — recurring, ongoing"></div>
+      `).join("");
+
+      const recurLabel = row.recurringBars.length
+        ? `<span class="gantt-recur-note">+ ${row.recurringBars.map(p=>p.project).join(", ")} (ongoing)</span>`
+        : "";
+
+      return `
+        <div class="gantt-row person-row" style="height:${trackHeight + 16}px;">
+          <div class="gantt-label person-label"><span>${row.name}</span>${recurLabel}</div>
+          <div class="gantt-track">
+            <div class="gantt-grid" style="grid-template-columns:repeat(${months.length},1fr)">${months.map(()=>"<div></div>").join("")}</div>
+            <div class="today-line ${idx===0?'labeled':''}" style="left:${todayPct}%"></div>
+            ${recurHTML}
+            ${barsHTML}
+          </div>
+        </div>
+      `;
+    }).join("");
+
+    document.getElementById("ganttRows").innerHTML = rowsHTML || `<div class="note" style="padding:24px 4px;">No staffed, scheduled work matches the current filters.</div>`;
+  }
+
+  let currentView = "project";
+  function renderCurrentView(){
+    if(currentView === "person") renderPersonView();
+    else renderProjectView();
+  }
+  renderCurrentView();
+
+  document.getElementById("ganttViewToggle").addEventListener("click", e => {
+    const btn = e.target.closest(".gv-btn");
+    if(!btn) return;
+    currentView = btn.dataset.view;
+    document.querySelectorAll(".gv-btn").forEach(b => b.classList.toggle("active", b === btn));
+    renderCurrentView();
+  });
 
   const filtersActive = Object.values(getFilterState()).some(Boolean);
 
