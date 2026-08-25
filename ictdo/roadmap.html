@@ -140,7 +140,7 @@
 
   <div class="panel">
     <div class="panel-head">
-      <span class="panel-title"><b>Scheduled Timeline — Aug 2026 to Feb 2027</b></span>
+      <span class="panel-title"><b>Scheduled Timeline — Aug 2026 to Mar 2027</b></span>
       <span class="note note-sm">■ Bar length ≈ effort-derived duration &nbsp; ⧫ fixed deadline &nbsp; ▤ recurring / ongoing</span>
     </div>
     <div class="ganttscroll">
@@ -184,14 +184,14 @@
   const DATA = filteredProjects();
 
   const RANGE_START = new Date("2026-08-01T00:00:00");
-  const RANGE_END   = new Date("2027-02-28T00:00:00");
+  const RANGE_END   = new Date("2027-03-31T00:00:00");
   const TOTAL_MS = RANGE_END - RANGE_START;
   const TODAY_D = new Date(TODAY + "T00:00:00");
 
   const DURATION_WEEKS = { S:4, M:8, L:12, XL:20 };
   const PRI_COLOR = { Critical:"#9C3148", High:"#8A6D14", Medium:"#3E5C86", Low:"#5B6472" };
 
-  const months = ["AUG 2026","SEP","OCT","NOV","DEC","JAN 2027","FEB"];
+  const months = ["AUG 2026","SEP","OCT","NOV","DEC","JAN 2027","FEB","MAR"];
 
   function pct(date){
     return Math.max(0, Math.min(100, (date - RANGE_START) / TOTAL_MS * 100));

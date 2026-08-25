@@ -63,8 +63,19 @@ function buildManpower(list){
   return map;
 }
 
+/* Not Started and Completed projects carry no weight in capacity load —
+   the work hasn't begun yet, or it's already finished, so neither should
+   count as current pressure on a person's plate. */
+function isUnweightedStatus(status){
+  return status === "Not Started" || status === "Completed";
+}
+
+function projectWeight(p){
+  return isUnweightedStatus(p.status) ? 0 : (EFFORT_WEIGHT[p.effort] || 1);
+}
+
 function weightedLoad(projects){
-  return projects.reduce((sum,p) => sum + (EFFORT_WEIGHT[p.effort] || 1), 0);
+  return projects.reduce((sum,p) => sum + projectWeight(p), 0);
 }
 
 function loadTier(weight){

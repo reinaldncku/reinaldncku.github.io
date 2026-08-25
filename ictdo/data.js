@@ -4,11 +4,11 @@ const PROJECTS = [
     "office": "SPMO",
     "priority": "Low",
     "status": "Not Started",
-    "developers": "Arnold Celis, Bernard Secreto, Nestor Arcebuche, AJ Alarcon",
+    "developers": "Arnold Celis, Bernard Secreto, Nestor Arcebuche, James Telosa",
     "start_date": null,
-    "target_date": null,
+    "target_date": "2027-03-31",
     "deadline_fixed": "No",
-    "effort": "XL"
+    "effort": "L"
   },
   {
     "project": "KEC Conference",
