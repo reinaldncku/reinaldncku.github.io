@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coffee Shop 146 — Group Project Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --espresso:#2B1B12;
+    --ink:#241611;
+    --paper:#FBF6EC;
+    --paper-dim:#F1E9D8;
+    --mustard:#C68A1F;
+    --mustard-deep:#9C6B14;
+    --sage:#5F7052;
+    --sage-deep:#485840;
+    --clay:#A8452E;
+    --line:#DED2B4;
+    --card:#FFFFFF;
+    --shadow: 0 2px 0 rgba(43,27,18,0.06);
+    --radius: 4px;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --mono: 'IBM Plex Mono', 'Courier New', monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  ::selection{background:var(--mustard); color:var(--espresso);}
+
+  a{color:var(--clay);}
+  a:focus-visible, button:focus-visible, .toc a:focus-visible{
+    outline:3px solid var(--mustard-deep);
+    outline-offset:2px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  /* ===== Layout shell ===== */
+  .shell{
+    display:grid;
+    grid-template-columns: 240px 1fr;
+    max-width:1180px;
+    margin:0 auto;
+  }
+  @media (max-width: 900px){
+    .shell{grid-template-columns: 1fr;}
+  }
+
+  /* ===== Sidebar / TOC ===== */
+  .toc-wrap{
+    padding:32px 20px;
+  }
+  .toc{
+    position:sticky;
+    top:24px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:18px 16px;
+  }
+  .toc-label{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--mustard-deep);
+    font-weight:600;
+    margin:0 0 10px;
+  }
+  .toc ol{
+    list-style:none;
+    margin:0; padding:0;
+    counter-reset:toc;
+  }
+  .toc li{counter-increment:toc; margin-bottom:2px;}
+  .toc a{
+    display:flex;
+    gap:8px;
+    text-decoration:none;
+    color:var(--ink);
+    font-size:13.5px;
+    font-weight:500;
+    padding:7px 6px;
+    border-radius:3px;
+  }
+  .toc a::before{
+    content: counter(toc, decimal-leading-zero);
+    font-family:var(--mono);
+    color:var(--mustard-deep);
+    font-size:12px;
+    flex-shrink:0;
+  }
+  .toc a:hover{background:var(--paper-dim);}
+  .toc-points{
+    margin-top:14px;
+    padding-top:14px;
+    border-top:1px dashed var(--line);
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--espresso);
+    opacity:0.75;
+  }
+
+  @media (max-width:900px){
+    .toc-wrap{padding:16px 20px 0;}
+    .toc{position:static;}
+    .toc ol{display:grid; grid-template-columns:1fr 1fr; gap:0 8px;}
+  }
+
+  main{padding: 0 28px 80px;}
+  @media (max-width:900px){ main{padding:0 20px 60px;} }
+
+  /* ===== Hero (menu-board) ===== */
+  .hero{
+    background: var(--espresso);
+    color: var(--paper);
+    border-radius: var(--radius);
+    margin-top:32px;
+    padding: 46px 40px 40px;
+    position:relative;
+    overflow:hidden;
+    background-image:
+      radial-gradient(circle at 12% 20%, rgba(198,138,31,0.10), transparent 45%),
+      radial-gradient(circle at 90% 85%, rgba(95,112,82,0.14), transparent 50%);
+  }
+  .hero::after{
+    content:"";
+    position:absolute; inset:8px;
+    border:1px solid rgba(251,246,236,0.16);
+    border-radius:2px;
+    pointer-events:none;
+  }
+  .kicker{
+    font-family:var(--mono);
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--mustard);
+    margin:0 0 14px;
+  }
+  .hero h1{
+    font-family:var(--serif);
+    font-weight:900;
+    font-size:clamp(2.1rem, 5vw, 3.4rem);
+    line-height:1.04;
+    margin:0 0 14px;
+    letter-spacing:-0.01em;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--mustard);
+  }
+  .hero p.sub{
+    font-size:16px;
+    max-width:52ch;
+    color:#E7DFCC;
+    margin:0 0 26px;
+  }
+  .hero-meta{
+    display:flex; flex-wrap:wrap; gap:10px;
+  }
+  .chip{
+    font-family:var(--mono);
+    font-size:12px;
+    padding:6px 12px;
+    border:1px solid rgba(251,246,236,0.25);
+    border-radius:100px;
+    color:var(--paper);
+  }
+  .chip.cli{border-color:var(--clay); color:#F0C7BA; background:rgba(168,69,46,0.18);}
+
+  /* ===== Section framing ===== */
+  section{
+    margin-top:56px;
+    scroll-margin-top:20px;
+  }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:20px;
+    border-bottom:2px solid var(--espresso);
+    padding-bottom:10px;
+  }
+  .section-num{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--mustard-deep);
+    font-weight:700;
+  }
+  .section-head h2{
+    font-family:var(--serif);
+    font-size:1.7rem;
+    font-weight:700;
+    margin:0;
+    color:var(--espresso);
+  }
+  .lede{
+    color:#4A3A2C;
+    max-width:70ch;
+    margin:-6px 0 22px;
+  }
+
+  /* ===== Pillars ===== */
+  .pillars{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin-top:22px;
+  }
+  @media (max-width:760px){ .pillars{grid-template-columns:1fr 1fr;} }
+  .pillar{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-top:4px solid var(--mustard-deep);
+    border-radius:var(--radius);
+    padding:16px 14px;
+  }
+  .pillar:nth-child(2){border-top-color:var(--sage-deep);}
+  .pillar:nth-child(3){border-top-color:var(--clay);}
+  .pillar:nth-child(4){border-top-color:var(--espresso);}
+  .pillar .n{font-family:var(--mono); font-size:11px; color:#8a7a63;}
+  .pillar h3{font-family:var(--serif); font-size:1.05rem; margin:4px 0 6px;}
+  .pillar p{font-size:13px; color:#4A3A2C; margin:0;}
+
+  .callout{
+    background:#F3E4C8;
+    border:1px solid #E4CB98;
+    border-left:4px solid var(--clay);
+    border-radius:var(--radius);
+    padding:14px 16px;
+    font-size:14.5px;
+    margin-top:20px;
+  }
+  .callout strong{color:var(--clay);}
+
+  /* ===== Menu board tables ===== */
+  .board-grid{
+    display:grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap:18px;
+    margin-top:6px;
+  }
+  @media (max-width:760px){ .board-grid{grid-template-columns:1fr;} }
+
+  .board{
+    background:var(--espresso);
+    color:var(--paper);
+    border-radius:var(--radius);
+    padding:20px 22px 22px;
+  }
+  .board h3{
+    font-family:var(--serif);
+    font-size:1.1rem;
+    margin:0 0 12px;
+    color:var(--mustard);
+    display:flex; align-items:center; gap:8px;
+  }
+  .board table{width:100%; border-collapse:collapse; font-size:14.5px;}
+  .board td{padding:8px 0; border-bottom:1px dashed rgba(251,246,236,0.22);}
+  .board td:last-child{text-align:right; font-family:var(--mono); color:var(--mustard);}
+  .board .addon{font-size:12.5px; color:#C9BFA8; margin-top:10px;}
+
+  .table-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:18px 20px;
+  }
+  .table-card h3{font-family:var(--serif); font-size:1.05rem; margin:0 0 12px;}
+  table.plain{width:100%; border-collapse:collapse; font-size:14px;}
+  table.plain th{
+    text-align:left; font-family:var(--mono); font-size:11px;
+    text-transform:uppercase; letter-spacing:0.06em; color:#8a7a63;
+    padding-bottom:6px; border-bottom:1px solid var(--line);
+  }
+  table.plain td{padding:8px 0; border-bottom:1px solid var(--paper-dim);}
+  table.plain tr:last-child td{border-bottom:none;}
+
+  .fee-note{
+    font-size:13px; color:#4A3A2C; margin-top:12px;
+    background:var(--paper-dim); padding:10px 12px; border-radius:3px;
+  }
+
+  .receipt-fields{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:8px 16px;
+    margin-top:16px;
+  }
+  @media (max-width:600px){ .receipt-fields{grid-template-columns:1fr 1fr;} }
+  .receipt-fields div{
+    font-size:13px; font-family:var(--mono);
+    padding:7px 9px; background:var(--paper-dim); border-radius:3px;
+  }
+
+  /* ===== Task steps ===== */
+  .task{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:20px 22px;
+    margin-bottom:14px;
+  }
+  .task-head{
+    display:flex; align-items:center; gap:12px; margin-bottom:10px;
+  }
+  .task-badge{
+    font-family:var(--mono); font-weight:700; font-size:13px;
+    color:var(--paper); background:var(--espresso);
+    width:30px; height:30px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .task h3{font-family:var(--serif); font-size:1.15rem; margin:0;}
+  .task ul{margin:8px 0 0; padding-left:20px;}
+  .task li{margin-bottom:4px; font-size:14.5px;}
+  .task p{font-size:14.5px; margin:8px 0 0; color:#4A3A2C;}
+  .word-note{
+    display:inline-block; margin-top:10px;
+    font-family:var(--mono); font-size:12px;
+    background:var(--paper-dim); padding:4px 9px; border-radius:100px;
+    color:var(--sage-deep); border:1px solid var(--line);
+  }
+
+  /* ===== Receipts (signature element) ===== */
+  .receipts{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:28px;
+    margin-top:8px;
+    align-items:start;
+  }
+  @media (max-width:760px){ .receipts{grid-template-columns:1fr;} }
+
+  .receipt{
+    background:#FFFEFA;
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--espresso);
+    padding:22px 20px 26px;
+    position:relative;
+    box-shadow: 0 6px 18px rgba(43,27,18,0.10);
+    border:1px solid #E9DFC7;
+  }
+  .receipt::before, .receipt::after{
+    content:"";
+    position:absolute; left:0; right:0; height:10px;
+    background:
+      linear-gradient(135deg, transparent 50%, #FBF6EC 50%) 0 0/10px 10px repeat-x,
+      linear-gradient(-135deg, transparent 50%, #FBF6EC 50%) 0 0/10px 10px repeat-x;
+  }
+  .receipt::before{top:-1px;}
+  .receipt::after{bottom:-1px; transform:rotate(180deg);}
+  .r-title{text-align:center; font-weight:700; letter-spacing:0.06em;}
+  .r-sub{text-align:center; font-size:11px; color:#8a7a63; margin-bottom:12px;}
+  .r-divider{border:none; border-top:1px dashed #C9BFA8; margin:10px 0;}
+  .r-row{display:flex; justify-content:space-between; padding:2px 0;}
+  .r-row.muted{color:#8a7a63; font-size:12px;}
+  .r-row.total{font-weight:700; font-size:14px; padding-top:6px;}
+  .r-tag{
+    display:inline-block; font-size:10.5px; background:var(--mustard); color:var(--espresso);
+    padding:2px 7px; border-radius:100px; margin-top:8px; letter-spacing:0.03em;
+  }
+  .r-math{font-size:11.5px; color:#6b5c47; margin-top:2px;}
+
+  .receipt-caption{
+    font-size:13px; color:#4A3A2C; margin-top:10px; text-align:center;
+  }
+
+  /* ===== Presentation checklist ===== */
+  .checklist{list-style:none; margin:0; padding:0;}
+  .checklist li{
+    display:flex; gap:12px; align-items:flex-start;
+    padding:11px 0; border-bottom:1px solid var(--paper-dim);
+    font-size:14.5px;
+  }
+  .checklist li:last-child{border-bottom:none;}
+  .checklist .box{
+    width:18px; height:18px; border:2px solid var(--sage-deep); border-radius:3px;
+    flex-shrink:0; margin-top:2px;
+  }
+  .rule-strip{
+    display:flex; gap:10px; flex-wrap:wrap; margin-top:16px;
+  }
+  .rule-strip span{
+    font-family:var(--mono); font-size:12px; color:var(--clay);
+    background:#F3E4C8; border:1px solid #E4CB98; padding:5px 10px; border-radius:3px;
+  }
+
+  /* ===== Submission ===== */
+  .zip{
+    background:var(--espresso); color:var(--paper);
+    border-radius:var(--radius); padding:22px;
+    font-family:var(--mono); font-size:13.5px;
+    margin-bottom:18px;
+  }
+  .zip .fname{color:var(--mustard); font-weight:600;}
+  .file-cards{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media (max-width:700px){ .file-cards{grid-template-columns:1fr;} }
+  .file-card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:16px 18px;
+  }
+  .file-card .tag{
+    font-family:var(--mono); font-size:11px; color:var(--paper); background:var(--sage-deep);
+    padding:2px 8px; border-radius:3px; display:inline-block; margin-bottom:8px;
+  }
+  .file-card code{
+    display:block; font-family:var(--mono); font-size:13px; background:var(--paper-dim);
+    padding:6px 8px; border-radius:3px; margin-bottom:10px;
+  }
+  .file-card ul{margin:0; padding-left:18px; font-size:13.5px;}
+  .file-card li{margin-bottom:4px;}
+
+  /* ===== Rubric ===== */
+  .rubric{width:100%; border-collapse:collapse; margin-top:6px; font-size:14px;}
+  .rubric th{
+    text-align:left; background:var(--espresso); color:var(--paper);
+    font-family:var(--mono); font-size:11.5px; text-transform:uppercase; letter-spacing:0.05em;
+    padding:10px 14px;
+  }
+  .rubric th.pts, .rubric td.pts{text-align:right;}
+  .rubric td{padding:12px 14px; border-bottom:1px solid var(--paper-dim); vertical-align:top;}
+  .rubric tr:nth-child(even) td{background:var(--paper-dim);}
+  .rubric td.pts{font-family:var(--mono); font-weight:700; color:var(--clay); white-space:nowrap;}
+  .rubric tr.total td{
+    border-top:2px solid var(--espresso); border-bottom:none;
+    font-weight:700; font-family:var(--mono); background:transparent;
+  }
+  .rubric-bar{
+    display:flex; height:10px; border-radius:100px; overflow:hidden; margin-top:16px;
+    border:1px solid var(--line);
+  }
+  .rubric-bar span{height:100%;}
+
+  footer{
+    margin-top:64px; padding:22px 0 0; border-top:1px solid var(--line);
+    font-size:12.5px; color:#8a7a63; font-family:var(--mono);
+  }
+
+  @media print{
+    .toc-wrap{display:none;}
+    .shell{grid-template-columns:1fr;}
+    .hero{background:var(--espresso) !important; -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <div class="toc-wrap">
+    <nav class="toc" aria-label="Section navigation">
+      <p class="toc-label">On this page</p>
+      <ol>
+        <li><a href="#overview">Overview &amp; pillars</a></li>
+        <li><a href="#requirements">System requirements</a></li>
+        <li><a href="#tasks">What to build</a></li>
+        <li><a href="#samples">Sample receipts</a></li>
+        <li><a href="#presentation">Presentation</a></li>
+        <li><a href="#submission">Submission</a></li>
+        <li><a href="#rubric">Rubric</a></li>
+      </ol>
+      <p class="toc-points">100 pts total · 5 components</p>
+    </nav>
+  </div>
+
+  <main>
+    <header class="hero">
+      <p class="kicker">MMS 146 · Object-Oriented Programming · 3rd Trimester, AY 2025–2026</p>
+      <h1>Group Project:<br><em>Coffee Shop 146</em></h1>
+      <p class="sub">Build a console-based Python program for a coffee shop, and use it to prove you understand the four pillars of OOP — not just recite them.</p>
+      <div class="hero-meta">
+        <span class="chip">Console app only</span>
+        <span class="chip cli">No GUI allowed</span>
+        <span class="chip">Group project</span>
+        <span class="chip">100 points</span>
+      </div>
+    </header>
+
+    <!-- ===== 1. OVERVIEW ===== -->
+    <section id="overview">
+      <div class="section-head">
+        <span class="section-num">01</span>
+        <h2>Project overview</h2>
+      </div>
+      <p class="lede">Your group will design a class structure, implement it in Python, test it, and then explain — in your own words — how your code demonstrates each pillar below. The design and the explanation are graded separately, so both need to hold up.</p>
+
+      <div class="pillars">
+        <div class="pillar">
+          <p class="n">Pillar 01</p>
+          <h3>Encapsulation</h3>
+          <p>Bundle data and behavior together, and protect an object's internal state.</p>
+        </div>
+        <div class="pillar">
+          <p class="n">Pillar 02</p>
+          <h3>Inheritance</h3>
+          <p>Share structure across related classes instead of repeating yourself.</p>
+        </div>
+        <div class="pillar">
+          <p class="n">Pillar 03</p>
+          <h3>Polymorphism</h3>
+          <p>Let different classes respond to the same call in their own way.</p>
+        </div>
+        <div class="pillar">
+          <p class="n">Pillar 04</p>
+          <h3>Abstraction</h3>
+          <p>Expose what an object does, hide how it does it.</p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <strong>Read this twice:</strong> the interface must be command-line only. A GUI — even an optional one — is not allowed.
+      </div>
+    </section>
+
+    <!-- ===== 2. SYSTEM REQUIREMENTS ===== -->
+    <section id="requirements">
+      <div class="section-head">
+        <span class="section-num">02</span>
+        <h2>System requirements</h2>
+      </div>
+      <p class="lede">This is the spec your program has to satisfy. Nothing here should be hard-coded to fit only the sample orders — the program must recalculate correctly for <em>any</em> valid combination.</p>
+
+      <div class="board-grid">
+        <div class="board">
+          <h3>☕ Menu</h3>
+          <table>
+            <tr><td>Latte</td><td>₱180</td></tr>
+            <tr><td>Cappuccino</td><td>₱150</td></tr>
+            <tr><td>Americano</td><td>₱120</td></tr>
+          </table>
+          <p class="addon">+ Add-on — Whipped Cream, ₱80</p>
+        </div>
+        <div class="board">
+          <h3>🎟 Membership discounts</h3>
+          <table>
+            <tr><td>Regular</td><td>0%</td></tr>
+            <tr><td>Gold</td><td>5%</td></tr>
+            <tr><td>PWD</td><td>20%</td></tr>
+            <tr><td>Senior Citizen</td><td>20%</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="board-grid" style="margin-top:18px;">
+        <div class="table-card">
+          <h3>Payment methods</h3>
+          <table class="plain">
+            <tr><th>Method</th><th>Notes</th></tr>
+            <tr><td>Cash</td><td>—</td></tr>
+            <tr><td>Card</td><td>+3% service fee</td></tr>
+            <tr><td>GCash</td><td>—</td></tr>
+            <tr><td>Maya</td><td>—</td></tr>
+          </table>
+          <p class="fee-note">Card service fee is 3%, applied <strong>after</strong> the membership discount — not on the original subtotal.</p>
+        </div>
+
+        <div class="table-card">
+          <h3>Receipt must show</h3>
+          <div class="receipt-fields">
+            <div>Customer name</div>
+            <div>Membership</div>
+            <div>Ordered item</div>
+            <div>Add-on (if any)</div>
+            <div>Subtotal</div>
+            <div>Discount</div>
+            <div>Service fee (if any)</div>
+            <div>Final total</div>
+            <div>Payment method</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <strong>Dynamic means dynamic:</strong> change the customer, order, add-on, membership, or payment method, and the math must still come out right. Test-case-specific shortcuts will be treated as not meeting the requirement.
+      </div>
+    </section>
+
+    <!-- ===== 3. PROJECT REQUIREMENTS / TASKS ===== -->
+    <section id="tasks">
+      <div class="section-head">
+        <span class="section-num">03</span>
+        <h2>What to build — four parts</h2>
+      </div>
+
+      <div class="task">
+        <div class="task-head">
+          <span class="task-badge">1</span>
+          <h3>Class design</h3>
+        </div>
+        <p>Produce class-design table(s) covering, for every class:</p>
+        <ul>
+          <li>Class name</li>
+          <li>Attributes</li>
+          <li>Methods</li>
+          <li>Parent class, if applicable</li>
+          <li>Purpose</li>
+        </ul>
+      </div>
+
+      <div class="task">
+        <div class="task-head">
+          <span class="task-badge">2</span>
+          <h3>Python program</h3>
+        </div>
+        <p>A working implementation that:</p>
+        <ul>
+          <li>Uses classes and objects appropriately</li>
+          <li>Demonstrates all four OOP pillars</li>
+          <li>Uses meaningful class, attribute, and method names</li>
+          <li>Produces a clear, correctly formatted receipt</li>
+          <li>Includes comments and documentation</li>
+          <li>Runs without errors</li>
+        </ul>
+        <p>It will be run against the two sample orders below, and then against different customer/order details to check it's genuinely dynamic.</p>
+      </div>
+
+      <div class="task">
+        <div class="task-head">
+          <span class="task-badge">3</span>
+          <h3>OOP documentation</h3>
+        </div>
+        <p>For <strong>each</strong> of the four pillars, provide:</p>
+        <ul>
+          <li>The OOP pillar</li>
+          <li>Class(es) involved</li>
+          <li>A relevant code screenshot</li>
+          <li>A brief explanation of how your code demonstrates it</li>
+        </ul>
+        <p>Explain it in a way that shows your group actually understands the concept in the context of your own code — not a textbook definition.</p>
+      </div>
+
+      <div class="task">
+        <div class="task-head">
+          <span class="task-badge">4</span>
+          <h3>AI use reflection</h3>
+        </div>
+        <p>If AI was used anywhere in the project, name the tool, how it helped, which parts were AI-assisted, and how your group verified the output.</p>
+        <span class="word-note">50–100 words</span>
+        <p>Every member is still responsible for understanding the full submitted code, AI-assisted parts included.</p>
+      </div>
+    </section>
+
+    <!-- ===== 4. SAMPLE RECEIPTS ===== -->
+    <section id="samples">
+      <div class="section-head">
+        <span class="section-num">04</span>
+        <h2>Sample orders your program must reproduce</h2>
+      </div>
+      <p class="lede">These two receipts show exactly how the math should chain together — subtotal → discount → service fee → final total. Use them to sanity-check your program before you test with anything else.</p>
+
+      <div class="receipts">
+        <div class="receipt">
+          <p class="r-title">COFFEE SHOP 146</p>
+          <p class="r-sub">official order receipt</p>
+          <hr class="r-divider">
+          <div class="r-row"><span>Customer</span><span>Maria</span></div>
+          <div class="r-row"><span>Membership</span><span>Gold</span></div>
+          <hr class="r-divider">
+          <div class="r-row"><span>Latte</span><span>₱180.00</span></div>
+          <div class="r-row"><span>+ Whipped Cream</span><span>₱80.00</span></div>
+          <div class="r-row"><span>Subtotal</span><span>₱260.00</span></div>
+          <div class="r-row muted"><span>Gold discount (5%)</span><span>−₱13.00</span></div>
+          <div class="r-row muted"><span class="r-math">after discount: ₱260.00 − ₱13.00</span><span>₱247.00</span></div>
+          <div class="r-row muted"><span>Card fee (3%)</span><span>+₱7.41</span></div>
+          <hr class="r-divider">
+          <div class="r-row total"><span>Final total</span><span>₱254.41</span></div>
+          <div class="r-row muted"><span>Payment</span><span>Card</span></div>
+          <span class="r-tag">expected output</span>
+        </div>
+
+        <div class="receipt">
+          <p class="r-title">COFFEE SHOP 146</p>
+          <p class="r-sub">official order receipt</p>
+          <hr class="r-divider">
+          <div class="r-row"><span>Customer</span><span>Juan</span></div>
+          <div class="r-row"><span>Membership</span><span>Regular</span></div>
+          <hr class="r-divider">
+          <div class="r-row"><span>Americano</span><span>₱120.00</span></div>
+          <div class="r-row muted"><span>+ Add-on</span><span>none</span></div>
+          <div class="r-row"><span>Subtotal</span><span>₱120.00</span></div>
+          <div class="r-row muted"><span>Regular discount (0%)</span><span>−₱0.00</span></div>
+          <div class="r-row muted"><span>Service fee</span><span>n/a</span></div>
+          <hr class="r-divider">
+          <div class="r-row total"><span>Final total</span><span>₱120.00</span></div>
+          <div class="r-row muted"><span>Payment</span><span>Cash</span></div>
+          <span class="r-tag">expected output</span>
+        </div>
+      </div>
+      <p class="receipt-caption">Your program will also be run with different customers, orders, and memberships — it needs to get those right too, not just these two.</p>
+    </section>
+
+    <!-- ===== 5. PRESENTATION ===== -->
+    <section id="presentation">
+      <div class="section-head">
+        <span class="section-num">05</span>
+        <h2>Group presentation</h2>
+      </div>
+      <p class="lede">One unlisted YouTube video, <strong>10 minutes or less</strong>, covering:</p>
+
+      <ul class="checklist">
+        <li><span class="box"></span> Briefly introduce the group</li>
+        <li><span class="box"></span> Show the program running correctly</li>
+        <li><span class="box"></span> Show it still working with changed customer/order details</li>
+        <li><span class="box"></span> Explain how your program demonstrates encapsulation, inheritance, polymorphism, and abstraction</li>
+        <li><span class="box"></span> Briefly explain how AI was used</li>
+      </ul>
+
+      <div class="rule-strip">
+        <span>Real voices only — no AI voices, presenters, or characters</span>
+        <span>Every member on camera</span>
+        <span>Use visuals: class design, source code, output</span>
+      </div>
+    </section>
+
+    <!-- ===== 6. SUBMISSION ===== -->
+    <section id="submission">
+      <div class="section-head">
+        <span class="section-num">06</span>
+        <h2>Submission</h2>
+      </div>
+      <div class="zip">One ZIP per group → <span class="fname">group_name_146_fin.zip</span></div>
+
+      <div class="file-cards">
+        <div class="file-card">
+          <span class="tag">1 · Source code</span>
+          <code>group_name_146_fin.py</code>
+          <ul>
+            <li>Header comment with group name and all member names</li>
+          </ul>
+        </div>
+        <div class="file-card">
+          <span class="tag">2 · Documentation</span>
+          <code>group_name_146_fin.pdf</code>
+          <ul>
+            <li>Group name and members</li>
+            <li>Link to the unlisted YouTube presentation</li>
+            <li>Class-design tables</li>
+            <li>Required program outputs</li>
+            <li>Four OOP pillars documentation</li>
+            <li>AI use reflection</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout" style="margin-top:16px;">
+        Every member needs a meaningful contribution. Split the work across class design, programming, testing/debugging, documentation, and presentation.
+      </div>
+    </section>
+
+    <!-- ===== 7. RUBRIC ===== -->
+    <section id="rubric">
+      <div class="section-head">
+        <span class="section-num">07</span>
+        <h2>Rubric</h2>
+      </div>
+
+      <table class="rubric">
+        <tr><th>Component</th><th class="pts">Points</th><th>What's evaluated</th></tr>
+        <tr><td>Class design</td><td class="pts">15</td><td>Appropriateness and coherence of the OOP structure — classes, attributes, methods, relationships.</td></tr>
+        <tr><td>Python implementation</td><td class="pts">40</td><td>Correctness and quality of the working program: requirements met, dynamic behavior, code clarity, effective use of the class design.</td></tr>
+        <tr><td>OOP documentation</td><td class="pts">20</td><td>Accuracy and quality of evidence/explanation for how each pillar is implemented in the code.</td></tr>
+        <tr><td>Group presentation</td><td class="pts">15</td><td>Ability to present the working program clearly and communicate design/implementation decisions.</td></tr>
+        <tr><td>AI use reflection</td><td class="pts">10</td><td>Transparency, appropriateness, verification, and critical reflection on AI use.</td></tr>
+        <tr class="total"><td>Total</td><td class="pts">100</td><td></td></tr>
+      </table>
+
+      <div class="rubric-bar" role="img" aria-label="Point distribution: Python implementation 40, OOP documentation 20, class design 15, presentation 15, AI reflection 10">
+        <span style="width:15%; background:var(--mustard-deep);"></span>
+        <span style="width:40%; background:var(--espresso);"></span>
+        <span style="width:20%; background:var(--sage-deep);"></span>
+        <span style="width:15%; background:var(--clay);"></span>
+        <span style="width:10%; background:#8a7a63;"></span>
+      </div>
+    </section>
+
+    <footer>
+      MMS 146 · Object-Oriented Programming — Coffee Shop 146 Group Project · 3rd Trimester, AY 2025–2026<br>
+      Prepared by Dr. Reinald Adrian Pugoy and Prof. Koree Monteloyola-Canizares
+    </footer>
+  </main>
+</div>
+
+</body>
+</html>
