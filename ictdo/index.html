@@ -180,7 +180,7 @@ function renderPage(){
     return m;
   };
 
-  const statusColorsFlat = { "Not Started":"#B7BEC8", "Requirements":"#7C8798", "Development":"#3E5C86", "Testing":"#8A6D14", "Completed":"#236B5F" };
+  const statusColorsFlat = { "Not Started":"#B7BEC8", "Development":"#3E5C86", "Testing":"#8A6D14", "Completed":"#236B5F" };
 
   const statusCounts = count(DATA, "status");
   new Chart(document.getElementById("chartStatus"), {

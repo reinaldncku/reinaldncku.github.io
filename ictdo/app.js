@@ -3,8 +3,8 @@
    Depends on PROJECTS from data.js being loaded first.
    ========================================================================== */
 
-const STAGE_ORDER = ["Not Started", "Requirements", "Development", "Testing", "Completed"];
-const STAGE_SHORT = { "Not Started":"NOT STARTED", "Requirements":"REQUIREMENTS", "Development":"DEVELOPMENT", "Testing":"TESTING", "Completed":"COMPLETED" };
+const STAGE_ORDER = ["Not Started", "Development", "Testing", "Completed"];
+const STAGE_SHORT = { "Not Started":"NOT STARTED", "Development":"DEVELOPMENT", "Testing":"TESTING", "Completed":"COMPLETED" };
 const PRIORITY_ORDER = ["Critical","High","Medium","Low"];
 const EFFORT_ORDER = ["S","M","L","XL"];
 const EFFORT_WEIGHT = { "S":1, "M":2, "L":3, "XL":5 };
@@ -12,7 +12,6 @@ const EFFORT_LABEL = { "S":"Small", "M":"Medium", "L":"Large", "XL":"X-Large" };
 
 const STATUS_COLOR = {
   "Not Started": "var(--idle)",
-  "Requirements": "#7C8798",
   "Development": "var(--accent-dim)",
   "Testing": "var(--warn)",
   "Completed": "var(--ok)"
@@ -100,7 +99,7 @@ function computeHealth(p){
   if(p.priority === "Critical") factors.push({ label:"Critical priority", pts:2 });
   else if(p.priority === "High") factors.push({ label:"High priority", pts:1 });
 
-  const earlyStage = (p.status === "Not Started" || p.status === "Requirements");
+  const earlyStage = (p.status === "Not Started");
   if(earlyStage && (p.priority === "Critical" || p.priority === "High")){
     factors.push({ label:"Early stage for its priority", pts:1 });
   }
