@@ -286,12 +286,34 @@ function priorityBadgeHTML(priority){
   return `<span class="badge badge-${cls}">${priority}</span>`;
 }
 
-/* Called immediately (not on DOMContentLoaded): app.js is a blocking
-   script placed after the topband/switchboard/filterbar markup, so
-   those elements already exist in the DOM by the time this file runs.
-   Each page's own inline script executes right after this one and
-   calls updateFilterCount() well before DOMContentLoaded would fire,
-   so the chrome must be built synchronously here. */
-renderSwitchboard(document.body.getAttribute("data-page"));
-renderPulse();
-renderFilterBar();
+/* ---------- Bootstrap: load live data, then render chrome + page ---------- */
+/* Every page calls bootstrap(renderPage) instead of running its render
+   logic immediately, since PROJECTS now comes from an async fetch rather
+   than being available the instant data.js loads. */
+
+function renderLoadBanner(status){
+  const el = document.getElementById("loadBanner");
+  if(!el) return;
+  // "not-configured" (SHEET_CSV_URL left blank) is expected while the
+  // live sheet hasn't been set up yet — stay quiet rather than nag on
+  // every page load. Real fetch failures (bad URL, network issue, sheet
+  // not published) still surface a banner since those need attention.
+  if(status.ok || status.reason === "not-configured"){
+    el.innerHTML = "";
+    el.style.display = "none";
+    return;
+  }
+  el.style.display = "block";
+  el.innerHTML = `<div class="load-banner-inner">Couldn't reach the live sheet (${status.reason}) — showing the last saved snapshot instead.</div>`;
+}
+
+async function bootstrap(renderPageFn){
+  const status = await loadProjects();
+
+  renderSwitchboard(document.body.getAttribute("data-page"));
+  renderPulse();
+  renderFilterBar();
+  renderLoadBanner(status);
+
+  renderPageFn();
+}

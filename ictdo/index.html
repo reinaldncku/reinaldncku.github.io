@@ -33,6 +33,7 @@
 </div>
 
 <div class="wrap">
+  <div class="load-banner" id="loadBanner"></div>
 
   <div class="pagehead">
     <div>
@@ -99,14 +100,14 @@
 
   <div class="foot">
     <span>ICTDO PORTFOLIO CONTROL · SOURCE: ICTDO_MASTER_PROJECT_PORTFOLIO.XLSX</span>
-    <span>15 PROJECTS TRACKED</span>
+    <span id="footProjectCount">— PROJECTS TRACKED</span>
   </div>
 </div>
 
 <script src="data.js"></script>
 <script src="app.js"></script>
 <script>
-(function(){
+function renderPage(){
 
   const DATA = filteredProjects();
 
@@ -166,6 +167,7 @@
   `).join("") : `<tr><td colspan="7" class="dim" style="text-align:center; padding:24px;">No projects match the current filters.</td></tr>`;
 
   updateFilterCount(DATA.length, PROJECTS.length);
+  document.getElementById("footProjectCount").textContent = `${PROJECTS.length} PROJECTS TRACKED`;
 
   // ---- Charts ----
   Chart.defaults.font.family = "'IBM Plex Sans', sans-serif";
@@ -228,7 +230,8 @@
     options:{ indexAxis:"y", plugins:{legend:{display:false}}, scales:{ x:{ grid:{color:"#E1E5EA"}, ticks:{precision:0} }, y:{grid:{display:false}} } }
   });
 
-})();
+}
+bootstrap(renderPage);
 </script>
 </body>
 </html>

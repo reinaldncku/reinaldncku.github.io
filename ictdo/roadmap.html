@@ -158,6 +158,7 @@
 </div>
 
 <div class="wrap">
+  <div class="load-banner" id="loadBanner"></div>
 
   <div class="pagehead">
     <div>
@@ -212,7 +213,7 @@
 <script src="data.js"></script>
 <script src="app.js"></script>
 <script>
-(function(){
+function renderPage(){
 
   const DATA = filteredProjects();
 
@@ -248,8 +249,13 @@
       return;
     }
     const end = new Date(p.target_date + "T00:00:00");
-    const weeks = DURATION_WEEKS[p.effort] || 6;
-    let start = new Date(end.getTime() - weeks*7*86400000);
+    let start;
+    if(isISODate(p.start_date)){
+      start = new Date(p.start_date + "T00:00:00"); // real start date on file — use it directly
+    } else {
+      const weeks = DURATION_WEEKS[p.effort] || 6;
+      start = new Date(end.getTime() - weeks*7*86400000); // no real start date — estimate backward from effort
+    }
     let clipped = false;
     if(start < TODAY_D){ start = TODAY_D; clipped = true; }
     scheduled.push({ p, recurring:false, start, end, clipped });
@@ -315,8 +321,13 @@
         if(p.start_date === "Recurring"){ recurringBars.push(p); return; }
         if(!p.target_date || !isISODate(p.target_date)) return;
         const end = new Date(p.target_date + "T00:00:00");
-        const weeks = DURATION_WEEKS[p.effort] || 6;
-        let start = new Date(end.getTime() - weeks*7*86400000);
+        let start;
+        if(isISODate(p.start_date)){
+          start = new Date(p.start_date + "T00:00:00");
+        } else {
+          const weeks = DURATION_WEEKS[p.effort] || 6;
+          start = new Date(end.getTime() - weeks*7*86400000);
+        }
         let clipped = false;
         if(start < TODAY_D){ start = TODAY_D; clipped = true; }
         timedBars.push({ p, start, end, clipped, startPct: pct(start), endPct: pct(end) });
@@ -412,7 +423,8 @@
 
   updateFilterCount(DATA.length, PROJECTS.length);
 
-})();
+}
+bootstrap(renderPage);
 </script>
 </body>
 </html>

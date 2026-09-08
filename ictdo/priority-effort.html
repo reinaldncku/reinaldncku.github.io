@@ -81,6 +81,7 @@
 </div>
 
 <div class="wrap">
+  <div class="load-banner" id="loadBanner"></div>
 
   <div class="pagehead">
     <div>
@@ -108,7 +109,7 @@
 <script src="data.js"></script>
 <script src="app.js"></script>
 <script>
-(function(){
+function renderPage(){
 
   const DATA = filteredProjects();
   const sized = DATA.filter(p => p.effort);
@@ -156,7 +157,8 @@
 
   updateFilterCount(DATA.length, PROJECTS.length);
 
-})();
+}
+bootstrap(renderPage);
 </script>
 </body>
 </html>

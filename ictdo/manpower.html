@@ -86,6 +86,7 @@
 </div>
 
 <div class="wrap">
+  <div class="load-banner" id="loadBanner"></div>
 
   <div class="pagehead">
     <div>
@@ -116,7 +117,7 @@
 <script src="data.js"></script>
 <script src="app.js"></script>
 <script>
-(function(){
+function renderPage(){
 
   const PRI_COLOR = { Critical:"#9C3148", High:"#8A6D14", Medium:"#3E5C86", Low:"#5B6472" };
   const DATA = filteredProjects();
@@ -178,7 +179,8 @@
 
   updateFilterCount(DATA.length, PROJECTS.length);
 
-})();
+}
+bootstrap(renderPage);
 </script>
 </body>
 </html>
