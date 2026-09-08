@@ -40,7 +40,7 @@ const FALLBACK_PROJECTS = [
   { "project": "Sustainability Website", "office": "A2C for Sustainability", "priority": "Low", "status": "Not Started", "developers": null, "start_date": null, "target_date": null, "deadline_fixed": "No", "effort": "S" },
   { "project": "MODeL Reconfiguration", "office": "OUP", "priority": "Medium", "status": "Not Started", "developers": null, "start_date": null, "target_date": "2026-12-15", "deadline_fixed": "Yes", "effort": "S" },
   { "project": "LUCID", "office": "UPOU", "priority": "Medium", "status": "Completed", "developers": "Renz Magsino", "start_date": null, "target_date": null, "deadline_fixed": null, "effort": "M" },
-  { "project": "IREC", "office": "OVCAA", "priority": "Medium", "status": "Not Started", "developers": "James Telosa, AJ Alarcon", "start_date": null, "target_date": null, "deadline_fixed": null, "effort": "M" }
+  { "project": "IREC", "office": "OVCAA", "priority": "Medium", "status": "Not Started", "developers": "James Telosa, AJ Alarcon", "start_date": "2026-10-01", "target_date": "2027-02-28", "deadline_fixed": null, "effort": "M" }
 ];
 
 // Populated synchronously so pages never see `undefined`; replaced by
