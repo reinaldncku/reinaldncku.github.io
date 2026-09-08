@@ -3,8 +3,12 @@
    Depends on PROJECTS from data.js being loaded first.
    ========================================================================== */
 
-const STAGE_ORDER = ["Not Started", "Development", "Testing", "Completed"];
-const STAGE_SHORT = { "Not Started":"NOT STARTED", "Development":"DEVELOPMENT", "Testing":"TESTING", "Completed":"COMPLETED" };
+const STAGE_ORDER = ["Not Started", "Development", "Testing", "Completed", "Parked"];
+const STAGE_SHORT = { "Not Started":"NOT STARTED", "Development":"DEVELOPMENT", "Testing":"TESTING", "Completed":"COMPLETED", "Parked":"PARKED" };
+// The four real sequential stages, used only for the per-row progress rail.
+// Parked is excluded here (and handled separately) since it isn't "further
+// along" than Completed — it's a pause, not a position in the pipeline.
+const PROGRESS_STAGES = ["Not Started", "Development", "Testing", "Completed"];
 const PRIORITY_ORDER = ["Critical","High","Medium","Low"];
 const EFFORT_ORDER = ["S","M","L","XL"];
 const EFFORT_WEIGHT = { "S":1, "M":2, "L":3, "XL":5 };
@@ -14,13 +18,14 @@ const STATUS_COLOR = {
   "Not Started": "var(--idle)",
   "Development": "var(--accent-dim)",
   "Testing": "var(--warn)",
-  "Completed": "var(--ok)"
+  "Completed": "var(--ok)",
+  "Parked": "var(--parked)"
 };
 
 const PRIORITY_CLASS = { Critical:"critical", High:"high", Medium:"medium", Low:"low" };
 
 function stageIndex(status){
-  const i = STAGE_ORDER.indexOf(status);
+  const i = PROGRESS_STAGES.indexOf(status);
   return i === -1 ? 0 : i;
 }
 
@@ -66,7 +71,7 @@ function buildManpower(list){
    the work hasn't begun yet, or it's already finished, so neither should
    count as current pressure on a person's plate. */
 function isUnweightedStatus(status){
-  return status === "Not Started" || status === "Completed";
+  return status === "Not Started" || status === "Completed" || status === "Parked";
 }
 
 function projectWeight(p){
@@ -272,8 +277,13 @@ function renderPulse(){
 }
 
 function stageRailHTML(status){
+  if(status === "Parked"){
+    return `<span class="stagerail" title="Parked — on hold">` +
+      PROGRESS_STAGES.map(() => `<i class="parked"></i>`).join("") +
+      `</span>`;
+  }
   const idx = stageIndex(status);
-  return `<span class="stagerail">` + STAGE_ORDER.map((s,i) => {
+  return `<span class="stagerail">` + PROGRESS_STAGES.map((s,i) => {
     if(i < idx) return `<i class="lit"></i>`;
     if(i === idx) return `<i class="current"></i>`;
     return `<i></i>`;

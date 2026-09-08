@@ -182,7 +182,7 @@
     </div>
   </div>
 
-  <div class="grid grid-2" style="margin-top:14px;">
+  <div class="grid grid-3" style="margin-top:14px;">
     <div class="panel">
       <div class="panel-head"><span class="panel-title"><b>Unscheduled</b></span></div>
       <div class="note" style="margin-bottom:8px;">No target date on file, or the date on file isn't a specific calendar date — cannot be placed on the timeline as-is.</div>
@@ -192,6 +192,11 @@
       <div class="panel-head"><span class="panel-title"><b>Completed (Awaiting Updates)</b></span></div>
       <div class="note" style="margin-bottom:8px;">Marked complete in the register, with no close-out date recorded yet.</div>
       <div id="completedList"></div>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><span class="panel-title"><b>Parked</b></span></div>
+      <div class="note" style="margin-bottom:8px;">On hold — not actively progressing, so kept off the active timeline. Carries no weight on the Capacity page either.</div>
+      <div id="parkedList"></div>
     </div>
   </div>
 
@@ -234,10 +239,15 @@ function renderPage(){
   const scheduled = [];
   const backlog = [];
   const completed = [];
+  const parked = [];
 
   DATA.forEach(p => {
     if(p.status === "Completed"){
       completed.push(p);
+      return;
+    }
+    if(p.status === "Parked"){
+      parked.push(p);
       return;
     }
     if(p.start_date === "Recurring"){
@@ -317,7 +327,7 @@ function renderPage(){
       const recurringBars = [];
       const timedBars = [];
       projs.forEach(p => {
-        if(p.status === "Completed") return;
+        if(p.status === "Completed" || p.status === "Parked") return;
         if(p.start_date === "Recurring"){ recurringBars.push(p); return; }
         if(!p.target_date || !isISODate(p.target_date)) return;
         const end = new Date(p.target_date + "T00:00:00");
@@ -420,6 +430,13 @@ function renderPage(){
       <span style="display:flex;gap:8px;align-items:center;">${priorityBadgeHTML(p.priority)}<span class="pill" style="color:var(--ok); border-color:rgba(35,107,95,0.3); background:var(--ok-bg);">COMPLETED</span></span>
     </div>
   `).join("") : `<div class="note">${filtersActive ? "No completed projects match the current filters." : "No projects currently marked complete."}</div>`;
+
+  document.getElementById("parkedList").innerHTML = parked.length ? parked.map(p => `
+    <div class="backlog-row">
+      <span>${p.project}${p.target_date ? `<span class="backlog-note">was targeting: ${fmtDate(p.target_date)}</span>` : ""}</span>
+      <span style="display:flex;gap:8px;align-items:center;">${priorityBadgeHTML(p.priority)}<span class="pill" style="color:var(--parked); border-color:rgba(110,90,140,0.3); background:var(--parked-bg);">PARKED</span></span>
+    </div>
+  `).join("") : `<div class="note">${filtersActive ? "No parked projects match the current filters." : "No projects are currently parked."}</div>`;
 
   updateFilterCount(DATA.length, PROJECTS.length);
 

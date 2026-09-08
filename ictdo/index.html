@@ -42,7 +42,8 @@
     </div>
   </div>
 
-  <div class="grid grid-4" id="kpiGrid"></div>
+  <div class="grid grid-2" id="kpiGrid"></div>
+  <div id="deadlineBanner" style="margin-top:14px;"></div>
 
   <div class="hr"></div>
 
@@ -115,8 +116,6 @@ function renderPage(){
   const total = DATA.length;
   const critical = DATA.filter(p => p.priority === "Critical").length;
   const manpower = buildManpower(DATA);
-  const peopleCount = Object.keys(manpower).length;
-  const unassigned = DATA.filter(p => !p.developers).length;
 
   const upcoming = DATA
     .filter(p => p.target_date && p.target_date !== "Recurring")
@@ -126,9 +125,7 @@ function renderPage(){
 
   const kpis = [
     { label:"Systems Development Workload", value: total, cls:"", delta:`${DATA.filter(p=>p.status!=="Not Started").length} in motion · ${DATA.filter(p=>p.status==="Not Started").length} not started` },
-    { label:"Critical Priority", value: critical, cls:"danger", delta: DATA.filter(p=>p.priority==="Critical").map(p=>p.project).join(" · ") },
-    { label:"Deadlines ≤ 60 Days", value: upcoming.length, cls: upcoming.length ? "warn":"ok", delta: upcoming.length ? upcoming.map(x=>x.p.project.split(" ")[0]).join(" · ") : "Nothing imminent" },
-    { label:"Unstaffed Projects", value: unassigned, cls: unassigned ? "danger":"ok", delta:`${peopleCount} people carrying the portfolio` }
+    { label:"Critical Priority", value: critical, cls:"danger", delta: DATA.filter(p=>p.priority==="Critical").map(p=>p.project).join(" · ") }
   ];
 
   document.getElementById("kpiGrid").innerHTML = kpis.map(k => `
@@ -138,6 +135,17 @@ function renderPage(){
       <div class="delta">${k.delta || "&nbsp;"}</div>
     </div>
   `).join("");
+
+  const deadlineCls = upcoming.length ? "warn" : "ok";
+  document.getElementById("deadlineBanner").innerHTML = `
+    <div class="panel kpi-banner ${deadlineCls}">
+      <div class="kpi-banner-left">
+        <div class="kpi-banner-label">Deadlines ≤ 60 Days</div>
+        <div class="kpi-banner-delta">${upcoming.length ? upcoming.map(x=>x.p.project).join(" · ") : "Nothing imminent in the next 60 days."}</div>
+      </div>
+      <div class="kpi-banner-value">${upcoming.length}</div>
+    </div>
+  `;
 
   // ---- Staffing risk panel ----
   const unassignedProjects = DATA.filter(p => !p.developers);
@@ -180,7 +188,7 @@ function renderPage(){
     return m;
   };
 
-  const statusColorsFlat = { "Not Started":"#B7BEC8", "Development":"#3E5C86", "Testing":"#8A6D14", "Completed":"#236B5F" };
+  const statusColorsFlat = { "Not Started":"#B7BEC8", "Development":"#3E5C86", "Testing":"#8A6D14", "Completed":"#236B5F", "Parked":"#6E5A8C" };
 
   const statusCounts = count(DATA, "status");
   new Chart(document.getElementById("chartStatus"), {

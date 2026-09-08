@@ -46,6 +46,8 @@
   --warn-bg:       rgba(201,162,39,0.14);
   --danger:        #9C3148;
   --danger-bg:     rgba(156,49,72,0.1);
+  --parked:        #6E5A8C;
+  --parked-bg:     rgba(110,90,140,0.12);
   --idle:          #B7BEC8;
 
   --radius:        4px;
@@ -375,6 +377,46 @@ a:focus-visible, button:focus-visible, .switch:focus-visible{
   margin-top:8px;
 }
 
+/* Deadline banner — deliberately bigger and bolder than a standard KPI
+   card, since near-term deadlines are the one number on this page that
+   most benefits from being impossible to miss. */
+.kpi-banner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  padding:22px 26px;
+  border-left:5px solid var(--warn);
+  background:var(--warn-bg);
+}
+.kpi-banner.ok{
+  border-left-color:var(--ok);
+  background:var(--ok-bg);
+}
+.kpi-banner-left{ flex:1; min-width:0; }
+.kpi-banner-label{
+  font-family:var(--font-mono);
+  font-size:13px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:var(--text-dim);
+  font-weight:700;
+  margin-bottom:7px;
+}
+.kpi-banner-delta{
+  font-size:13.5px;
+  color:var(--text-dim);
+}
+.kpi-banner-value{
+  font-family:var(--font-display);
+  font-size:56px;
+  font-weight:700;
+  line-height:1;
+  color:var(--warn);
+  flex:0 0 auto;
+}
+.kpi-banner.ok .kpi-banner-value{ color:var(--ok); }
+
 /* ==========================================================================
    BADGES
    ========================================================================== */
@@ -423,6 +465,7 @@ a:focus-visible, button:focus-visible, .switch:focus-visible{
 }
 .stagerail i.lit{ background:var(--accent-dim); border-color:var(--accent-dim); }
 .stagerail i.current{ background:var(--gold); border-color:var(--gold); }
+.stagerail i.parked{ background:var(--parked); border-color:var(--parked); opacity:0.75; }
 
 /* ==========================================================================
    TABLE
